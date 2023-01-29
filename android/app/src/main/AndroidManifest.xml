@@ -10,7 +10,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="قطعة"
+        android:label="قطعة غيار"
         android:icon="@mipmap/ic_launcher">
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyBUxwCTSpUnf2aPuLV-9H8yQ6H8rRpF3Tc"/>

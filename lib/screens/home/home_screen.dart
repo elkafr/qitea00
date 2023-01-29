@@ -433,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
     return ListView(
       children: <Widget>[
         SizedBox(
-          height: _width * .01,
+          height: _width * .0001,
         ),
         Container(
           margin: EdgeInsets.all(_width * .05),
@@ -955,7 +955,10 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         ),
       ),
-      title: Image.asset("assets/images/toplogo.png"),
+      title: Container(
+
+        child: Image.asset("assets/images/toplogo.png",height: _height*.07,),
+      ),
     );
 
     return NetworkIndicator(
