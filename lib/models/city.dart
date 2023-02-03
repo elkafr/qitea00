@@ -1,6 +1,6 @@
 class City {
-    String cityId;
-    String cityName;
+    String? cityId;
+    String? cityName;
 
     City({
         this.cityId,

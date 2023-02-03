@@ -7,21 +7,24 @@
          FlutterApplication and put your custom class here. -->
           <uses-permission android:name="android.permission.INTERNET"/>
           <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
-        android:label="قطعة غيار"
+
+        android:label="qitea"
         android:icon="@mipmap/ic_launcher">
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyBUxwCTSpUnf2aPuLV-9H8yQ6H8rRpF3Tc"/>
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -32,5 +35,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="high_importance_channel" />
     </application>
 </manifest>

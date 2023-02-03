@@ -13,17 +13,17 @@ class ChatMsgBetweenMembers {
         this.type,
     });
 
-    String messageId;
-    String messageContent;
-    String messageView;
-    String messageAds;
-    String messageSender;
-    String messageSenderImage;
-    String messageSenderPhone;
-    String senderUserId;
-    String messageDate;
-    String createsAt;
-    String type;
+    String? messageId;
+    String? messageContent;
+    String? messageView;
+    String? messageAds;
+    String? messageSender;
+    String? messageSenderImage;
+    String? messageSenderPhone;
+    String? senderUserId;
+    String? messageDate;
+    String? createsAt;
+    String? type;
 
     factory ChatMsgBetweenMembers.fromJson(Map<String, dynamic> json) => ChatMsgBetweenMembers(
         messageId: json["message_id"],

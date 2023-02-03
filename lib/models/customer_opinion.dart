@@ -1,8 +1,8 @@
 class CustomerOpinion {
-    String rate1Id;
-    String rate1User;
-    String rate1Value;
-    String rate1Content;
+    String? rate1Id;
+    String? rate1User;
+    String? rate1Value;
+    String? rate1Content;
 
     CustomerOpinion({
         this.rate1Id,

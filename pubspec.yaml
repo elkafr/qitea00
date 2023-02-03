@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 2.0.2+10
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.19.1 <3.0.0"
 
 
 dependencies:
@@ -23,41 +23,41 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_cupertino_localizations:
-  intl_translation: ^0.17.7
-  provider: ^3.2.0
-  shared_preferences: ^0.5.6
-  http: ^0.12.0+2
+  intl_translation: ^0.18.0
+  provider: ^6.0.5
+  shared_preferences: ^2.0.17
+  http: ^0.13.5
   # device_preview: ^0.2.6
-  flutter_launcher_icons: ^0.7.4
+  flutter_launcher_icons: ^0.11.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
-  font_awesome_flutter: ^8.5.0
-  pin_code_fields: ^2.3.0+3
-  badges: ^1.1.0
-  validators: ^2.0.0 
-  toast: ^0.1.5
-  flutter_offline: ^0.2.4+1
-  firebase_messaging: ^6.0.9
+  cupertino_icons: ^1.0.5
+  font_awesome_flutter: ^10.3.0
+  pin_code_fields: ^7.4.0
+  badges: ^3.0.2
+  validators: ^3.0.0
+  toast: ^0.3.0
+  flutter_offline: ^2.1.0
+  firebase_messaging: ^14.2.1
   flutter_local_notifications:
-  shimmer: ^1.0.1
-  flutter_spinkit: ^4.1.2
-  dio : ^3.0.0
-  flutter_svg: ^0.17.3+1
-  circular_check_box: ^1.0.1
-  flutter_html: ^0.11.0
-  url_launcher: ^5.4.1
-  dots_indicator: ^1.1.0
-  carousel_slider: ^1.3.1
-  location: ^3.0.0
-  geolocator: ^5.3.1
-  google_maps_flutter: ^0.5.27+2
+  shimmer: ^2.0.0
+  flutter_spinkit: ^5.1.0
+  dio: ^4.0.6
+  flutter_svg: ^2.0.0+1
+  circular_check_box: ^1.0.4
+  flutter_html: ^3.0.0-alpha.3
+  url_launcher: ^6.1.8
+  dots_indicator: ^2.1.0
+  carousel_slider: ^4.2.1
+  location: ^4.4.0
+  geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.3
   flutter_rating_bar: any
-  image_picker: ^0.6.2+3
-  path: ^1.6.2
+  image_picker: ^0.8.6+1
+  path: any
   webview_flutter: any
   flutter_app_badger: any
-  gesture_zoom_box: ^0.0.3
+  gesture_zoom_box: ^0.0.4
 
 
   

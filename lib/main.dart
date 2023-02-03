@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                 ],
                 locale: _specificLocalizationDelegate.overriddenLocale,
                 debugShowCheckedModeBanner: false,
-                title: 'qitea',
+                title: 'قطعة غيار',
                 theme: themeData(),
                routes: routes
                 ));

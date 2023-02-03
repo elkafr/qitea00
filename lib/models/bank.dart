@@ -1,9 +1,9 @@
 class Bank {
-    String bankId;
-    String bankTitle;
-    String bankAcount;
-    String bankIban;
-    String bankName;
+    String? bankId;
+    String? bankTitle;
+    String? bankAcount;
+    String? bankIban;
+    String? bankName;
 
     Bank({
         this.bankId,

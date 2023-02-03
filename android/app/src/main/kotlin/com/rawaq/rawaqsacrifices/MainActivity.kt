@@ -1,4 +1,4 @@
-package com.rawaq.stylo
+package com.rawaq.qitea
 
 import io.flutter.embedding.android.FlutterActivity
 

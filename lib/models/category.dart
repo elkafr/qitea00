@@ -1,10 +1,10 @@
 class Category {
-    String mtgerCatId;
-    String mtgerCatName;
-    String mtgerCatPhoto;
-    String mtgerCatType;
-    String mtgerCatDetails;
-    String mtgerCatShow;
+    String? mtgerCatId;
+    String? mtgerCatName;
+    String? mtgerCatPhoto;
+    String? mtgerCatType;
+    String? mtgerCatDetails;
+    String? mtgerCatShow;
       bool isSelected =  false;
 
     Category({

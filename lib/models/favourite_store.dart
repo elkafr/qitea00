@@ -1,9 +1,9 @@
 class FavouriteStore {
-    String mtgerId;
-    String mtgerName;
-    String mtgerCat;
-    String mtgerAdress;
-    String mtgerPhoto;
+    String? mtgerId;
+    String? mtgerName;
+    String? mtgerCat;
+    String? mtgerAdress;
+    String? mtgerPhoto;
 
     FavouriteStore({
         this.mtgerId,

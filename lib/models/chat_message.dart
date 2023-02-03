@@ -10,14 +10,14 @@ class ChatMessage {
         this.messageDate,
     });
 
-    String messageId;
-    String messageContent;
-    String messageView;
-    String messageSender;
-    String messageSenderImage;
-    String senderUserId;
-    String messageAds;
-    String messageDate;
+    String? messageId;
+    String? messageContent;
+    String? messageView;
+    String? messageSender;
+    String? messageSenderImage;
+    String? senderUserId;
+    String? messageAds;
+    String? messageDate;
 
     factory ChatMessage.fromJson(Map<String, dynamic> json) => ChatMessage(
         messageId: json["message_id"],
