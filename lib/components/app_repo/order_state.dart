@@ -14,35 +14,35 @@ class OrderState extends ChangeNotifier {
 
   // Order get currentOrder => _currentOrder;
 
-  String _carttId;
+  String? _carttId;
 
   void setCarttId(String carttId) {
     _carttId = carttId;
     notifyListeners();
   }
 
-  String get carttId => _carttId;
+  String get carttId => _carttId!;
 
 
 
-   String _carttFatora;
+   String? _carttFatora;
 
   void setCarttFatora(String carttFatora) {
     _carttFatora = carttFatora;
     notifyListeners();
   }
 
-  String get carttFatora => _carttFatora;
+  String get carttFatora => _carttFatora!;
 
 
-   String _carttSeller;
+   String? _carttSeller;
 
   void setCarttSeller(String carttSeller) {
     _carttSeller = carttSeller;
     notifyListeners();
   }
 
-  String get carttSeller => _carttSeller;
+  String get carttSeller => _carttSeller!;
 
 
 

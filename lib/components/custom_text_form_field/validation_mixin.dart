@@ -33,7 +33,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
   // }
 
   bool checkAddProductValidation(BuildContext context,
-      {File imgFile, Marka adMainCategory}) {
+      {File? imgFile, Marka? adMainCategory}) {
 
     if (adMainCategory == null) {
       showToast("يجب اختيار الماركة", context);
@@ -43,7 +43,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
   }
 
   bool checkEditProductValidation(BuildContext context,
-      { Category adMainCategory}) {
+      { Category? adMainCategory}) {
 
 
     if (adMainCategory == null) {
@@ -55,7 +55,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
 
 
   bool checkAddCatValidation(BuildContext context,
-      {File imgFile, Category adMainCategory}) {
+      {File? imgFile, Category? adMainCategory}) {
     if (imgFile == null) {
       showToast("يجب اختيار صورة", context);
       return false;
@@ -67,7 +67,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
 
 
   bool checkDriverRegisterValidation(BuildContext context,
-      {File imgFile,File imgFile1,File imgFile2,File imgFile3,File imgFile4,File imgFile5, City userCity}) {
+      {File? imgFile,File? imgFile1,File? imgFile2,File? imgFile3,File? imgFile4,File? imgFile5, City? userCity}) {
     if (imgFile == null) {
       showToast("يجب اختيار الصورة الشخصية", context);
       return false;
@@ -114,7 +114,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
 
 
   bool checkMtgerRegisterValidation(BuildContext context,
-      {File imgFile, City userCity}) {
+      {File? imgFile, City userCity}) {
     if (imgFile == null) {
       showToast("يجب اختيار صورة من السجل التجاري ", context);
       return false;

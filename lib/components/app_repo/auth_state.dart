@@ -10,30 +10,30 @@ class AuthState extends ChangeNotifier {
 
   bool get acceptTerms => _acceptTerms;
 
-  String _userPhone;
+  String? _userPhone;
 
   void setUserPhone(String userPhone) {
     _userPhone = userPhone;
     notifyListeners();
   }
 
-  String get userPhone => _userPhone;
+  String get userPhone => _userPhone!;
 
-   String _codeActivation;
+   String? _codeActivation;
 
   void setcodeActivation(String code) {
     _codeActivation = code;
     notifyListeners();
   }
 
-  String get codeActivation => _codeActivation;
+  String get codeActivation => _codeActivation!;
 
-    String _userId;
+    String? _userId;
 
   void setUserId(String id) {
     _userPhone = id;
     notifyListeners();
   }
 
-  String get userId => _userId;
+  String get userId => _userId!;
 }

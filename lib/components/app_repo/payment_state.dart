@@ -10,12 +10,12 @@ class PaymentState extends ChangeNotifier {
 
   bool get enableCardsAndBankAccounts => _enableCardsAndBankAccounts;
 
-     String _userPhone;
+     String? _userPhone;
 
   void setUserPhone(String phone) {
     _userPhone = phone;
     notifyListeners();
   }
 
-  String get userPhone => _userPhone;
+  String get userPhone => _userPhone!;
 }

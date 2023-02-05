@@ -7,7 +7,7 @@ class LocationState extends ChangeNotifier {
 
 
 
-   String _address;
+   String? _address;
 
   void setCurrentAddress(String address) {
     _address = address;
@@ -18,10 +18,10 @@ class LocationState extends ChangeNotifier {
     _address = address;
   }
 
-  String get address => _address;
+  String get address => _address!;
 
 
-double _locationLatitude;
+double? _locationLatitude;
 
 
   void setLocationLatitude(double lat) {
@@ -30,12 +30,12 @@ double _locationLatitude;
   }
 
   
-    double get locationLatitude => _locationLatitude;
+    double get locationLatitude => _locationLatitude!;
 
 
 
 
-double _locationlongitude;
+double? _locationlongitude;
 
 
   void setLocationlongitude(double long) {
@@ -44,7 +44,7 @@ double _locationlongitude;
   }
 
   
-    double get locationlongitude => _locationlongitude;
+    double get locationlongitude => _locationlongitude!;
 
 
 
@@ -52,14 +52,14 @@ double _locationlongitude;
 
 
 
-   String _anotherAdress;
+   String? _anotherAdress;
 
    void setAnotherAdress(String anotherAdress) {
      _anotherAdress = anotherAdress;
      notifyListeners();
    }
 
-   String get anotherAdress => _anotherAdress;
+   String get anotherAdress => _anotherAdress!;
 
 
 }

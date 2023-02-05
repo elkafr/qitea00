@@ -4,14 +4,14 @@ import 'package:qitea/models/category.dart';
 import 'package:qitea/services/access_api.dart';
 
 class AppState extends ChangeNotifier {
-  User _currentUser;
+  User? _currentUser;
   Services _services = Services();
   void setCurrentUser(User currentUser) {
     _currentUser = currentUser;
     notifyListeners();
   }
 
-  User get currentUser => _currentUser;
+  User get currentUser => _currentUser!;
 
 
 
@@ -25,38 +25,38 @@ class AppState extends ChangeNotifier {
   bool get acceptTerms => _acceptTerms;
 
  void  updateUserEmail(String newUserEmail){
-   _currentUser.userEmail = newUserEmail;
+   _currentUser!.userEmail = newUserEmail;
    notifyListeners();
  }
 
  void  updateUserPhone(String newUserPhone){
-   _currentUser.userPhone = newUserPhone;
+   _currentUser!.userPhone = newUserPhone;
    notifyListeners();
  }
   void  updateUserCity(String newUserCity){
-    _currentUser.userCity = newUserCity;
+    _currentUser!.userCity = newUserCity;
     notifyListeners();
   }
 
   void  updateUserCityName(String newUserCityName){
-    _currentUser.userCityName = newUserCityName;
+    _currentUser!.userCityName = newUserCityName;
     notifyListeners();
   }
 
   void  updateUserName(String newUserName){
-   _currentUser.userName = newUserName;
+   _currentUser!.userName = newUserName;
    notifyListeners();
  }
 
   // current language from shared prefernces 'ar' or 'en'
-  String _currentLang;
+  String? _currentLang;
   
  void setCurrentLanguage(String currentLang) {
     _currentLang = currentLang;
     notifyListeners();
   }
 
-  String get currentLang => _currentLang;
+  String get currentLang => _currentLang!;
   // int _notificationLength = 0 ;
 
 
@@ -68,150 +68,150 @@ class AppState extends ChangeNotifier {
   // int get notificationLength => _notificationLength;
 
 
-  String _phoneSend;
+  String? _phoneSend;
 
   void setCurrentPhoneSend(String phoneSend) {
     _phoneSend = phoneSend;
     notifyListeners();
   }
 
-  String get phoneSend => _phoneSend;
+  String get phoneSend => _phoneSend!;
 
 
-  String _tokenSend;
+  String? _tokenSend;
 
   void setCurrentTokenSend(String tokenSend) {
     _tokenSend = tokenSend;
     notifyListeners();
   }
 
-  String get tokenSend => _tokenSend;
+  String get tokenSend => _tokenSend!;
 
    // update current cat
-  Category  _selectedCat ;
+  Category?  _selectedCat ;
   void setSelectedCat(Category selectedCat){
     _selectedCat = selectedCat;
     notifyListeners();
   }
-  Category  get selectedCat => _selectedCat;
+  Category  get selectedCat => _selectedCat!;
 
   // update current cat name
-  String  _selectedCatName ;
+  String?  _selectedCatName ;
   void setSelectedCatName(String selectedCatName){
     _selectedCatName = selectedCatName;
     notifyListeners();
   }
-  String  get selectedCatName => _selectedCatName;
+  String  get selectedCatName => _selectedCatName!;
 
 
   // update current sub
-  Category  _selectedSub ;
+  Category?  _selectedSub ;
   void setSelectedSub(Category selectedSub){
     _selectedSub = selectedSub;
     notifyListeners();
   }
-  Category  get selectedSub => _selectedSub;
+  Category  get selectedSub => _selectedSub!;
 
 
 
 
   // filter provider
-  int _filter;
+  int? _filter;
   void setCurrentFilter(int filter) {
     _filter= filter;
     notifyListeners();
   }
-  int get filter => _filter;
+  int get filter => _filter!;
 
   // url provider
-  String _url;
+  String? _url;
   void setCurrentUrl(String url) {
     _url= url;
     notifyListeners();
   }
-  String get url => _url;
+  String get url => _url!;
 
 
 
   // add note provider
-  String _note;
+  String? _note;
   void setCurrentNote(String filter) {
     _note= filter;
     notifyListeners();
   }
-  String get note => _note;
+  String get note => _note!;
 
 
 
 
   // add phone111 provider
-  String _phone111;
+  String? _phone111;
   void setCurrentPhone111(String phone111) {
     _phone111= phone111;
     notifyListeners();
   }
-  String get phone111 => _phone111;
+  String get phone111 => _phone111!;
 
 
 
   // add tabb provider
-  int _tabb;
+  int? _tabb;
   void setCurrentTabb(int tabb) {
     _tabb= tabb;
     notifyListeners();
   }
-  int get tabb => _tabb;
+  int get tabb => _tabb!;
 
 
   // select pay method provider
-  String _payMethod;
+  String? _payMethod;
   void setCurrentPayMethod(String payMethod) {
     _payMethod= payMethod;
     notifyListeners();
   }
-  String get payMethod => _payMethod;
+  String get payMethod => _payMethod!;
 
 
   // cupone value provider
-  String _cupone;
+  String? _cupone;
   void setCurrentCupone(String cupone) {
     _cupone= cupone;
     notifyListeners();
   }
-  String get cupone => _cupone;
+  String get cupone => _cupone!;
 
 
 
   // filter orders provider
-  int _filterOrders;
+  int? _filterOrders;
   void setCurrentFilterOrders(int filterOrders) {
     _filterOrders= filterOrders;
     notifyListeners();
   }
-  int get filterOrders => _filterOrders;
+  int get filterOrders => _filterOrders!;
 
 
 
   // selectTab provider
-  String _selectTab;
+  String? _selectTab;
   void setCurrentSelectTab(String selectTab) {
     _selectTab= selectTab;
     notifyListeners();
   }
-  String get selectTab => _selectTab;
+  String get selectTab => _selectTab!;
 
 
 
 
 
-  String _carttNumber;
+  String? _carttNumber;
 
   void setCurrentCarttNumber(String carttNumber) {
     _carttNumber = carttNumber;
     notifyListeners();
   }
 
-  String get carttNumber => _carttNumber;
+  String get carttNumber => _carttNumber!;
 
 
 
@@ -268,7 +268,7 @@ class AppState extends ChangeNotifier {
 
   Future<String> getUnreadNotify() async {
     final response =
-    await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_currentUser.userId}");
+    await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_currentUser!.userId}");
     String messages = '';
     if (response['response'] == '1') {
       messages = response['Number'];

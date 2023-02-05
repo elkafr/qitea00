@@ -4,24 +4,24 @@ import 'package:qitea/utils/app_colors.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class CustomButton2 extends StatelessWidget {
-  final double height ;
-  final Color btnColor;
-  final String btnLbl;
-  final Function onPressedFunction;
-  final TextStyle btnStyle;
-  final Color borderColor;
-  final bool defaultMargin;
+  final double? height ;
+  final Color? btnColor;
+  final String? btnLbl;
+  final Function? onPressedFunction;
+  final TextStyle? btnStyle;
+  final Color? borderColor;
+  final bool? defaultMargin;
 
 
   const CustomButton2(
-      {Key key,
+      {Key? key,
         this.btnLbl,
         this.height,
         this.borderColor,
         this.onPressedFunction,
         this.btnColor,
         this.btnStyle,
-        this.defaultMargin: true
+        this.defaultMargin
       })
       : super(key: key);
 
@@ -30,20 +30,22 @@ class CustomButton2 extends StatelessWidget {
     return Container(
         height:  height ==  null? 46 : height,
         margin: EdgeInsets.symmetric(
-            horizontal: defaultMargin?
+            horizontal: defaultMargin!?
             MediaQuery.of(context).size.width * 0.07 : 0.0,
             vertical: MediaQuery.of(context).size.height * 0.01),
         child: Builder(
-            builder: (context) => RaisedButton(
+            builder: (context) => ElevatedButton(
               onPressed: () {
-                onPressedFunction();
+                onPressedFunction!();
               },
-              elevation: 0,
-              shape: new RoundedRectangleBorder(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: btnColor,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color:borderColor != null ? borderColor : cLightLemon  )
+                ),
+                side: BorderSide(color:borderColor != null ? borderColor! : cLightLemon  ),
+                elevation:0,
               ),
-              color: btnColor,
               child: Stack(
                 children: <Widget>[
                   Container(

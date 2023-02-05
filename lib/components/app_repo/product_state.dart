@@ -4,14 +4,14 @@ import 'package:qitea/models/product.dart';
 class ProductState extends ChangeNotifier {
 
 
-    Product _currentProduct;
+    Product? _currentProduct;
 
   void setCurrentProduct(Product product) {
     _currentProduct = product;
     notifyListeners();
   }
 
-  Product get currentProduct => _currentProduct;
+  Product get currentProduct => _currentProduct!;
 
 
 }

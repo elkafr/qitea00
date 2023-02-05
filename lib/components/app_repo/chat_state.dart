@@ -8,8 +8,8 @@ import 'package:qitea/utils/utils.dart';
 
 
 class ChatState extends ChangeNotifier{
-  User _currentUser;
-  String _currentLang;
+  User? _currentUser;
+  String? _currentLang;
 
   void update(AppState appState) {
     _currentUser = appState.currentUser;
@@ -22,7 +22,7 @@ class ChatState extends ChangeNotifier{
   Future<List<ChatMsgBetweenMembers>> getChatMessageList(String senderId,String adsId,String userId) async {
     final response = await _services.get(Utils.BETWEEN_MESSAGES_URL +
         '?user_id=$userId&user_id1=$senderId&ads_id=$adsId&page=1&api_lang=$_currentLang');
-    List<ChatMsgBetweenMembers> messageList = List<ChatMsgBetweenMembers>();
+    List<ChatMsgBetweenMembers> messageList = <ChatMsgBetweenMembers>[];
     if (response['response'] == '1') {
       Iterable iterable = response['messages'];
       messageList = iterable.map((model) => ChatMsgBetweenMembers.fromJson(model)).toList();
