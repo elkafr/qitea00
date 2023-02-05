@@ -5,7 +5,7 @@ class Category {
     String? mtgerCatType;
     String? mtgerCatDetails;
     String? mtgerCatShow;
-      bool isSelected =  false;
+      bool? isSelected =  false;
 
     Category({
         this.mtgerCatId,

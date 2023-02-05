@@ -1,11 +1,11 @@
 class Product {
-    String adsMtgerId;
-    String adsMtgerName;
-    String adsMtgerDetails;
-    String adsMtgerPrice;
+    String? adsMtgerId;
+    String? adsMtgerName;
+    String? adsMtgerDetails;
+    String? adsMtgerPrice;
     dynamic adsMtgerCat;
-    String adsMtgerPhoto;
-    String addCart;
+    String? adsMtgerPhoto;
+    String? addCart;
 
     Product({
         this.adsMtgerId,

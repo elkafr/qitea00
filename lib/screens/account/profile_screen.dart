@@ -18,9 +18,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState
     extends State<ProfileScreen> {
-  double _height, _width;
+  double _height=0, _width=0;
 
-  AppState _appState;
+  AppState? _appState;
 
 
 

@@ -20,12 +20,12 @@ class ModifyPasswordScreen extends StatefulWidget {
 }
 
 class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
-  double _height, _width;
+  double _height=0, _width=0;
   bool _initialRun = true;
-  AppState _appState;
+  AppState? _appState;
   Services _services = Services();
   String _useroLdPassword = '', _userNewPassword = '', _confirmNewPassword = '';
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
 
   @override
   void didChangeDependencies() {
@@ -37,8 +37,8 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
   }
 
   bool _checkValidation(BuildContext context,
-      {String oldPassword, String newPassword, String confirmNewPassword}) {
-    if (oldPassword.trim().length == 0) {
+      {String? oldPassword, String? newPassword, String? confirmNewPassword}) {
+    if (oldPassword!.trim().length == 0) {
       showToast(AppLocalizations.of(context).passwordValidation, context,
           color: cRed);
       return false;

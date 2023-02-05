@@ -52,8 +52,8 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
 
 
-double _height,_width;
-AppState _appState;
+double _height=0,_width=0;
+AppState? _appState;
 Services _services = Services();
 String _facebookUrl = '',
     _instragramUrl = '',
@@ -91,7 +91,7 @@ Widget _buildBodyItem(){
         height: 50,
       ),
 
-  _appState.currentUser == null
+  _appState!.currentUser == null
   ?
   Container(
   alignment: Alignment.centerRight,
@@ -134,7 +134,7 @@ Widget _buildBodyItem(){
   builder: (context,authProvider,child){
   return CircleAvatar(
   backgroundColor: cLightLemon,
-  backgroundImage: NetworkImage(_appState.currentUser.userPhoto!=null?_appState.currentUser.userPhoto:""),
+  backgroundImage: NetworkImage(_appState!.currentUser!.userPhoto!=null?_appState!.currentUser!.userPhoto!:""),
   maxRadius: 40,
   );
   }
@@ -145,11 +145,11 @@ Widget _buildBodyItem(){
   mainAxisAlignment: MainAxisAlignment.start,
   children: <Widget>[
   Padding(padding: EdgeInsets.all(4)),
-  Text(_appState.currentUser.userName,style: TextStyle(color: cPrimaryColor,fontSize: 20)),
-    _appState.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cPrimaryColor,fontSize: 16),):Row(
+  Text(_appState!.currentUser.userName!,style: TextStyle(color: cPrimaryColor,fontSize: 20)),
+    _appState!.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cPrimaryColor,fontSize: 16),):Row(
       children: <Widget>[
         RatingBar.builder(
-          initialRating:  double.parse(_appState.currentUser.userRate),
+          initialRating:  double.parse(_appState!.currentUser.userRate!),
           minRating: 1,
           direction: Axis.horizontal,
           allowHalfRating: true,
@@ -160,6 +160,9 @@ Widget _buildBodyItem(){
             Icons.star,
             color: Colors.amber,
           ),
+          onRatingUpdate: (x){
+            
+          },
 
         ),
 
@@ -168,13 +171,13 @@ Widget _buildBodyItem(){
         Container(
 
   decoration: BoxDecoration(
-    color: _appState.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
+    color: _appState!.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
                 borderRadius: BorderRadius.all(
                  const Radius.circular(15.00),
              ),
  ),
           padding: EdgeInsets.only(right: 11,left: 11,top: 6,bottom: 6),
-          child: Text(_appState.currentUser.userType=="driver"?"مندوب":"تاجر",style: TextStyle(color: Colors.white,fontSize: 15),),
+          child: Text(_appState!.currentUser.userType=="driver"?"مندوب":"تاجر",style: TextStyle(color: Colors.white,fontSize: 15),),
 
         )
       ],
@@ -198,7 +201,7 @@ Widget _buildBodyItem(){
 
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[300],
+              color: Colors.grey.withOpacity(300),
               blurRadius: 12.0, // has the effect of softening the shadow
               spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -216,7 +219,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState.currentUser.userNumberOfCartts,
+                trailing: Text(_appState!.currentUser.userNumberOfCartts!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -225,15 +228,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ),
-            _appState.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Container(
+            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/wallet.png"),
                 title: Text("اجمالى المبالغ المترتبة",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState.currentUser.userCredit,
+                trailing: Text(_appState!.currentUser.userCredit!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -242,15 +245,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Container(
+            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/wallet.png"),
                 title: Text("اجمالى المبالغ المدفوعة",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState.currentUser.totalOfReq,
+                trailing: Text(_appState!.currentUser.totalOfReq!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -259,15 +262,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Container(
+            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/transfer.png"),
                 title: Text("طلبات التحويل",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState.currentUser.numberOfReq,
+                trailing: Text(_appState!.currentUser.numberOfReq!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -279,8 +282,8 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState.currentUser.userType!="user"?Container(
+            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/card.png"),
                 title: Text("حسابي البنكي",
@@ -391,14 +394,14 @@ Widget _buildBodyItem(){
       child: Scaffold(
           backgroundColor: Color(0xffF5F6F8),          body: Stack(
             children: <Widget>[
-              _appState.currentUser != null?_buildBodyItem():NotRegistered() ,
+              _appState!.currentUser != null?_buildBodyItem():NotRegistered() ,
               Positioned(
                 top: 0,
                 left: 0,
                 right: 0,
                 child: GradientAppBar(
                   appBarTitle:  AppLocalizations.of(context).account,
-trailing: _appState.currentUser != null?Container(
+trailing: _appState!.currentUser != null?Container(
   padding: EdgeInsets.only(left: _width*.06,top: _width*.03),
   child: Row(
     children: <Widget>[

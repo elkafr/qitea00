@@ -14,8 +14,8 @@ class LanguageScreen extends StatefulWidget {
 }
 
 class _LanguageScreenState extends State<LanguageScreen> {
-  double _height, _width;
-  AppState _appState;
+  double _height=0, _width=0;
+  AppState? _appState;
 
   Widget _buildBodyItem() {
     return ListView(
@@ -28,7 +28,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
       
             SharedPreferencesHelper.setUserLang('ar');
             helper.onLocaleChanged(new Locale('ar'));
-            _appState.setCurrentLanguage('ar');
+            _appState!.setCurrentLanguage('ar');
           },
           child: Row(
             children: <Widget>[
@@ -51,7 +51,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
            
             SharedPreferencesHelper.setUserLang('en');
             helper.onLocaleChanged(new Locale('en'));
-            _appState.setCurrentLanguage('en');
+            _appState!.setCurrentLanguage('en');
           },
           child: Row(
             children: <Widget>[
@@ -87,13 +87,13 @@ class _LanguageScreenState extends State<LanguageScreen> {
             right: 0,
             child: GradientAppBar(
                 appBarTitle: AppLocalizations.of(context).language,
-                 leading: _appState.currentLang == 'ar' ? IconButton(
+                 leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon:Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);

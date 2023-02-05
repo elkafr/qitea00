@@ -1,15 +1,15 @@
 class NotificationItem {
-    String messageId;
-    String messageTitle;
-    String messageContent;
-    String messageAdsId;
-    int messageView;
-    String messageIsViewed;
-    String messageSender;
-    String messageSenderId;
-    String messageSenderType;
-    String messageDate;
-    String delete;
+    String? messageId;
+    String? messageTitle;
+    String? messageContent;
+    String? messageAdsId;
+    int? messageView;
+    String? messageIsViewed;
+    String? messageSender;
+    String? messageSenderId;
+    String? messageSenderType;
+    String? messageDate;
+    String? delete;
 
     NotificationItem({
         this.messageId,

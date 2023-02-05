@@ -1,12 +1,12 @@
 class Req{
-    String reqId;
-    String reqUser;
-    String reqDate;
-    String reqDone;
-    String reqDoneDate;
-    String reqPhoto;
-    String reqValue;
-    String reqType;
+    String? reqId;
+    String? reqUser;
+    String? reqDate;
+    String? reqDone;
+    String? reqDoneDate;
+    String? reqPhoto;
+    String? reqValue;
+    String? reqType;
 
     Req({
         this.reqId,

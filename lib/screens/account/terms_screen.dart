@@ -19,14 +19,14 @@ class TermsScreen extends StatefulWidget {
 
 class TermsScreenState extends State<TermsScreen> {
 
-  double _height ,_width;
-  AppState _appState;
+  double _height=0 ,_width=0;
+  AppState? _appState;
 Services _services = Services();
   bool _initialRun = true;
-  Future<String> _termsContent;
+  Future<String>? _termsContent;
 
   Future<String> _getTermsContent() async {
-    var results = await _services.get('https://qtaapp.com/api/use_policy?lang=${_appState.currentLang}');
+    var results = await _services.get('https://qtaapp.com/api/use_policy?lang=${_appState!.currentLang}');
     String termsContent = '';
    if (results['response'] == '1') {
       termsContent = results['content'];
@@ -108,13 +108,13 @@ void didChangeDependencies() {
             right: 0,
             child: GradientAppBar(
               appBarTitle: AppLocalizations.of(context).terms,
-            leading: _appState.currentLang == 'ar' ? IconButton(
+            leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);

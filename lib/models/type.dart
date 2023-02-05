@@ -3,8 +3,8 @@ class Type {
     this.typeId,
     this.typeName,
   });
-  String typeId;
-  String typeName;
+  String? typeId;
+  String? typeName;
 
   factory Type.fromJson(Map<String, dynamic> json) => Type(
     typeId: json["type_id"],

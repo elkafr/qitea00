@@ -1,11 +1,11 @@
 class ProductDetails {
-    String adsMtgerId;
-    String adsMtgerName;
-    String adsMtgerCat;
-    String adsMtgerPrice;
-    String adsMtgerContent;
-    bool isAddToCart;
-    String adsMtgerPhoto;
+    String? adsMtgerId;
+    String? adsMtgerName;
+    String? adsMtgerCat;
+    String? adsMtgerPrice;
+    String? adsMtgerContent;
+    bool? isAddToCart;
+    String? adsMtgerPhoto;
     List<MtgerDetail> mtgerDetails;
 
     ProductDetails({

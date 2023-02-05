@@ -1,12 +1,12 @@
 class Marka {
   Marka({
-    this.isSelected: false,
+    this.isSelected,
     this.markaId,
     this.markaName,
   });
-  bool isSelected;
-  String markaId;
-  String markaName;
+  bool? isSelected;
+  String? markaId;
+  String? markaName;
 
   factory Marka.fromJson(Map<String, dynamic> json) => Marka(
     markaId: json["marka_id"],

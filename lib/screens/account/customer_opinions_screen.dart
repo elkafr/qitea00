@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:qitea/app_repo/app_state.dart';
-import 'package:qitea/app_repo/progress_indicator_state.dart';
+import 'package:qitea/components/app_repo/app_state.dart';
+import 'package:qitea/components/app_repo/progress_indicator_state.dart';
 import 'package:qitea/components/buttons/custom_button.dart';
 import 'package:qitea/components/connectivity/network_indicator.dart';
 import 'package:qitea/components/dialogs/opinion_dialog.dart';

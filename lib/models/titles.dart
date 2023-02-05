@@ -1,7 +1,7 @@
 class Titles {
-  String titlesId;
-  String titlesName;
-  String titlesPhoto;
+  String? titlesId;
+  String? titlesName;
+  String? titlesPhoto;
 
   Titles({
     this.titlesId,

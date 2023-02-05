@@ -22,26 +22,26 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
 class ContactWithUsScreen extends StatefulWidget {
-  ContactWithUsScreen({Key key}) : super(key: key);
+  ContactWithUsScreen({Key? key}) : super(key: key);
 
   @override
   _ContactWithUsScreenState createState() => _ContactWithUsScreenState();
 }
 
 class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _userEmail, _messageTitle, _userName, _messageContent;
+  String? _userEmail, _messageTitle, _userName, _messageContent;
   Services _services = Services();
-  AppState _appState;
-  ProgressIndicatorState _progressIndicatorState;
+  AppState? _appState;
+  ProgressIndicatorState? _progressIndicatorState;
   String _facebookUrl = '',
       _instragramUrl = '',
       _linkedinUrl = '',
       _twitterUrl = '';
 
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   _launchURL(String url) async {
     launch(url);
@@ -70,7 +70,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed.
-    _focusNode.dispose();
+    _focusNode!.dispose();
     super.dispose();
   }
 
@@ -199,13 +199,13 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                 btnColor: cLightLemon,
                 btnLbl: AppLocalizations.of(context).send,
                 onPressedFunction: () async {
-                  if (_formKey.currentState.validate()) {
-                    _progressIndicatorState.setIsLoading(true);
+                  if (_formKey.currentState!.validate()) {
+                    _progressIndicatorState!.setIsLoading(true);
 
                     var results = await _services.get(
-                      '${Utils.BASE_URL}contact?msg_name=$_userName&msg_email=$_userEmail&msg_title=$_messageTitle&msg_content=$_messageContent&lang=${_appState.currentLang}',
+                      '${Utils.BASE_URL}contact?msg_name=$_userName&msg_email=$_userEmail&msg_title=$_messageTitle&msg_content=$_messageContent&lang=${_appState!.currentLang}',
                     );
-                    _progressIndicatorState.setIsLoading(false);
+                    _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                       showToast(results['message'], context);
                       Navigator.pop(context);
@@ -323,7 +323,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                   right: 0,
                   child: GradientAppBar(
                     appBarTitle: AppLocalizations.of(context).contactUs,
-                    leading: _appState.currentLang == 'ar'
+                    leading: _appState!.currentLang == 'ar'
                         ? IconButton(
                       icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                       onPressed: () {
@@ -331,7 +331,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                       },
                     )
                         : Container(),
-                    trailing: _appState.currentLang == 'en'
+                    trailing: _appState!.currentLang == 'en'
                         ? IconButton(
                       icon: Icon(
                         Icons.arrow_back_ios,

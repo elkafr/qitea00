@@ -1,12 +1,12 @@
 class Sacrifice {
-    String adsMtgerId;
-    String adsMtgerName;
-    String adsMtgerPrice;
+    String? adsMtgerId;
+    String? adsMtgerName;
+    String? adsMtgerPrice;
     dynamic adsMtgerCat;
-    String adsMtgerPhoto;
-    String addCart;
-    String adsMtgerHasOffer;
-    String adsMtgerOffer;
+    String? adsMtgerPhoto;
+    String? addCart;
+    String? adsMtgerHasOffer;
+    String? adsMtgerOffer;
 
     Sacrifice({
         this.adsMtgerId,

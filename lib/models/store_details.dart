@@ -1,8 +1,8 @@
 class StoreDetails {
-    String mtgerId;
-    String mtgerName;
-    String mtgerAdress;
-    String mtgerPhoto;
+    String? mtgerId;
+    String? mtgerName;
+    String? mtgerAdress;
+    String? mtgerPhoto;
 
     StoreDetails({
         this.mtgerId,

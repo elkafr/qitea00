@@ -1,7 +1,7 @@
 class SliderModel {
-    String id;
-    String url;
-    String photo;
+    String? id;
+    String? url;
+    String? photo;
 
     SliderModel({
         this.id,

@@ -28,22 +28,22 @@ import 'package:qitea/screens/auth/password_recovery_bottom_sheet.dart';
 import 'package:validators/validators.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _userPhone, _userPassword;
+  String? _userPhone, _userPassword;
   Services _services = Services();
-  ProgressIndicatorState _progressIndicatorState;
-  AppState _appState;
-  NavigationState _navigationState;
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  ProgressIndicatorState? _progressIndicatorState;
+  AppState? _appState;
+  NavigationState? _navigationState;
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   Widget _buildBodyItem() {
     return SingleChildScrollView(
@@ -175,21 +175,21 @@ class _LoginScreenState extends State<LoginScreen> {
                  btnColor: cLightLemon,
                  btnLbl: 'تسجيل دخول',
                  onPressedFunction: () async {
-                   if (_formKey.currentState.validate()) {
+                   if (_formKey.currentState!.validate()) {
                      _firebaseMessaging.getToken().then((token) async {
                        //       print('mobile token $token');
-                       _progressIndicatorState.setIsLoading(true);
+                       _progressIndicatorState!.setIsLoading(true);
                        var results = await _services.get(
-                         '${Utils.SENDCODE_URL}?user_phone=$_userPhone&user_pass=$_userPassword&token=$token&lang=${_appState.currentLang}&key=$cKey',
+                         '${Utils.SENDCODE_URL}?user_phone=$_userPhone&user_pass=$_userPassword&token=$token&lang=${_appState!.currentLang}&key=$cKey',
                        );
-                       _progressIndicatorState.setIsLoading(false);
+                       _progressIndicatorState!.setIsLoading(false);
                        if (results['response'] == '1') {
-                         _appState.setCurrentPhoneSend(_userPhone);
-                         _appState.setCurrentTokenSend(token);
+                         _appState!.setCurrentPhoneSend(_userPhone!);
+                         _appState!.setCurrentTokenSend(token!);
                          showToast(results['message'], context);
-                         _appState.setCurrentUser(User.fromJson(results["user_details"]));
-                         SharedPreferencesHelper.save("user", _appState.currentUser);
-                         _navigationState.upadateNavigationIndex(0);
+                         _appState!.setCurrentUser(User.fromJson(results["user_details"]));
+                         SharedPreferencesHelper.save("user", _appState!.currentUser);
+                         _navigationState!.upadateNavigationIndex(0);
                          Navigator.pushReplacementNamed(context, '/navigation');
                        } else {
                          showErrorDialog(results['message'], context);
@@ -246,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _progressIndicatorState = Provider.of<ProgressIndicatorState>(context);
     _appState = Provider.of<AppState>(context);
     _navigationState = Provider.of<NavigationState>(context);
-    print('lang : ${_appState.currentLang}');
+    print('lang : ${_appState!.currentLang}');
     return NetworkIndicator(
         child: PageContainer(
 

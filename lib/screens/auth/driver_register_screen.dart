@@ -32,7 +32,7 @@ import 'dart:core';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -118,36 +118,35 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 import 'dart:math' as math;
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
 class DriverRegisterScreen extends StatefulWidget {
-  DriverRegisterScreen({Key key}) : super(key: key);
+  DriverRegisterScreen({Key? key}) : super(key: key);
 
   @override
   _DriverRegisterScreenState createState() => _DriverRegisterScreenState();
 }
 
 class _DriverRegisterScreenState extends State<DriverRegisterScreen> with ValidationMixin {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
   String _userName = '', _userEmail = '', _userPhone = '', _userIqama = '', _userPassword = '';
-  City _selectedCity;
-  Future<List<City>> _cityList;
+  City? _selectedCity;
+  Future<List<City>>? _cityList;
   Services _services = Services();
-  ProgressIndicatorState _progressIndicatorState;
-  AppState _appState;
-  NavigationState _navigationState;
+  ProgressIndicatorState? _progressIndicatorState;
+  AppState? _appState;
+  NavigationState? _navigationState;
   bool _initialRun = true;
 
 
-  File _imageFile;
-  File _imageFile1;
-  File _imageFile2;
-  File _imageFile3;
-  File _imageFile4;
-  File _imageFile5;
+  File? _imageFile;
+  File? _imageFile1;
+  File? _imageFile2;
+  File? _imageFile3;
+  File? _imageFile4;
+  File? _imageFile5;
 
   dynamic _pickImageError;
   final _picker = ImagePicker();
@@ -159,9 +158,9 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
 
 
   Future<List<City>> _getCityItems() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getcity?lang=${_appState.currentLang}');
-    List<City> cityList = List<City>();
+    Map<dynamic, dynamic> results = await _services!.get(
+        'https://qtaapp.com/api/getcity?lang=${_appState!.currentLang!}');
+    List<City> cityList = <City>[];
     if (results['response'] == '1') {
       Iterable iterable = results['city'];
       cityList = iterable.map((model) => City.fromJson(model)).toList();
@@ -186,10 +185,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
 
 
 
-  void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile = await _picker.getImage(source: source);
-      _imageFile = File(pickedFile.path);
+      _imageFile = File(pickedFile!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -197,10 +196,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
     }
   }
 
-  void _onImageButtonPressed1(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed1(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile1 = await _picker1.getImage(source: source);
-      _imageFile1 = File(pickedFile1.path);
+      _imageFile1 = File(pickedFile1!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -209,10 +208,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
   }
 
 
-  void _onImageButtonPressed2(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed2(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile2 = await _picker2.getImage(source: source);
-      _imageFile2 = File(pickedFile2.path);
+      _imageFile2 = File(pickedFile2!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -221,10 +220,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
   }
 
 
-  void _onImageButtonPressed3(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed3(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile3 = await _picker3.getImage(source: source);
-      _imageFile3 = File(pickedFile3.path);
+      _imageFile3 = File(pickedFile3!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -233,10 +232,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
   }
 
 
-  void _onImageButtonPressed4(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed4(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile4 = await _picker4.getImage(source: source);
-      _imageFile4 = File(pickedFile4.path);
+      _imageFile4 = File(pickedFile4!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -245,10 +244,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
   }
 
 
-  void _onImageButtonPressed5(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed5(ImageSource source, {BuildContext? context}) async {
     try {
       final pickedFile5 = await _picker5.getImage(source: source);
-      _imageFile5 = File(pickedFile5.path);
+      _imageFile5 = File(pickedFile5!.path);
       setState(() {});
     } catch (e) {
       _pickImageError = e;
@@ -465,7 +464,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
               child: GestureDetector(
                 child: Text("تخطي",style: TextStyle(color: cOmarColor,fontSize: 14),),
                 onTap: (){
-                  _navigationState.upadateNavigationIndex(0);
+                  _navigationState!.upadateNavigationIndex(0);
                   Navigator.pushReplacementNamed(context, '/navigation');
                 },
               ),
@@ -582,9 +581,9 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.hasData) {
-                      var cityList = snapshot.data.map((item) {
+                      var cityList = snapshot.data!.map((item) {
                         return new DropdownMenuItem<City>(
-                          child: new Text(item.cityName),
+                          child: new Text(item.cityName!),
                           value: item,
                         );
                       }).toList();
@@ -663,7 +662,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -682,7 +681,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile,
+                          _imageFile!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -704,7 +703,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -723,7 +722,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile1,
+                          _imageFile1!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -746,7 +745,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -765,7 +764,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile2,
+                          _imageFile2!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -791,7 +790,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -810,7 +809,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile3,
+                          _imageFile3!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -836,7 +835,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -855,7 +854,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile4,
+                          _imageFile4!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -879,7 +878,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[300],
+                        color: Colors.grey.withOpacity(300),
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -898,7 +897,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         ?ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:  Image.file(
-                          _imageFile5,
+                          _imageFile5!,
                           fit: BoxFit.fill,
                         )):Icon(Icons.camera_alt,size: 30,color: cHintColor,),
                   ),
@@ -1027,47 +1026,47 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                 btnColor: cLightLemon,
                 btnLbl: AppLocalizations.of(context).register,
                 onPressedFunction: () async {
-                  if (_formKey.currentState.validate() &
+                  if (_formKey.currentState!.validate() &
                   checkDriverRegisterValidation(context,
-                    imgFile: _imageFile,
-                    imgFile1: _imageFile1,
-                    imgFile2: _imageFile2,
-                    imgFile3: _imageFile3,
-                    imgFile4: _imageFile4,
-                    imgFile5: _imageFile5,
-                      userCity:_selectedCity
+                    imgFile: _imageFile!,
+                    imgFile1: _imageFile1!,
+                    imgFile2: _imageFile2!,
+                    imgFile3: _imageFile3!,
+                    imgFile4: _imageFile4!,
+                    imgFile5: _imageFile5!,
+                      userCity:_selectedCity!
                   )
 
                   ) {
-                    if (_appState.acceptTerms) {
+                    if (_appState!.acceptTerms) {
 
 
 
 
 
-                      _progressIndicatorState.setIsLoading(true);
+                      _progressIndicatorState!.setIsLoading(true);
                       String fileName = (_imageFile != null)
-                          ? Path.basename(_imageFile.path)
+                          ? Path.basename(_imageFile!.path)
                           : "";
 
                       String fileName1 = (_imageFile1 != null)
-                          ? Path.basename(_imageFile1.path)
+                          ? Path.basename(_imageFile1!.path)
                           : "";
 
                       String fileName2 = (_imageFile2 != null)
-                          ? Path.basename(_imageFile2.path)
+                          ? Path.basename(_imageFile2!.path)
                           : "";
 
                       String fileName3 = (_imageFile3 != null)
-                          ? Path.basename(_imageFile3.path)
+                          ? Path.basename(_imageFile3!.path)
                           : "";
 
                       String fileName4 = (_imageFile4 != null)
-                          ? Path.basename(_imageFile4.path)
+                          ? Path.basename(_imageFile4!.path)
                           : "";
 
                       String fileName5 = (_imageFile5 != null)
-                          ? Path.basename(_imageFile5.path)
+                          ? Path.basename(_imageFile5!.path)
                           : "";
 
 
@@ -1075,40 +1074,40 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         "user_name": _userName,
                         "user_phone":_userPhone,
                         "user_email": _userEmail,
-                        "user_city": _selectedCity.cityId,
+                        "user_city": _selectedCity!.cityId,
                         "user_pass": _userPassword,
                         "user_iqama": _userIqama,
-                        "lang": _appState.currentLang,
+                        "lang": _appState!.currentLang,
                         "user_photo": (_imageFile != null)
-                            ? await MultipartFile.fromFile(_imageFile.path,
+                            ? await MultipartFile.fromFile(_imageFile!.path,
                             filename: fileName)
                             : "",
                         "car_front": (_imageFile1 != null)
                             ? await MultipartFile.fromFile(
-                            _imageFile1.path,
+                            _imageFile1!.path,
                             filename: fileName1)
                             : "",
                         "iqama_photo": (_imageFile2 != null)
                             ? await MultipartFile.fromFile(
-                            _imageFile2.path,
+                            _imageFile2!.path,
                             filename: fileName2)
                             : "",
 
                         "car_photo": (_imageFile3 != null)
                             ? await MultipartFile.fromFile(
-                            _imageFile3.path,
+                            _imageFile3!.path,
                             filename: fileName3)
                             : "",
 
                         "car_license": (_imageFile4 != null)
                             ? await MultipartFile.fromFile(
-                            _imageFile4.path,
+                            _imageFile4!.path,
                             filename: fileName4)
                             : "",
 
                         "car_back": (_imageFile5 != null)
                             ? await MultipartFile.fromFile(
-                            _imageFile5.path,
+                            _imageFile5!.path,
                             filename: fileName5)
                             : "",
 
@@ -1122,12 +1121,12 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
 
 
 
-                      _progressIndicatorState.setIsLoading(false);
+                      _progressIndicatorState!.setIsLoading(false);
                       if (results['response'] == '1') {
 
                         showToast(results['message'], context);
                       //  _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
-                        _appState.setCurrentPhone111(results['user_id'].toString());
+                        _appState!.setCurrentPhone111(results['user_id'].toString());
                         Navigator.pushNamed(context, '/register_code_activation1_screen' );
 
                       } else {

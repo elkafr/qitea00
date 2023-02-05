@@ -27,23 +27,23 @@ class ModifyPersonalInfoScreen extends StatefulWidget {
 }
 
 class _ModifyPersonalInfoScreenState extends State<ModifyPersonalInfoScreen> {
-  double _height, _width;
+  double _height=0, _width=0;
   bool _initialRun = true;
-  ProgressIndicatorState _progressIndicatorState;
-  AppState _appState;
-  Future<List<City>> _cityList;
-  City _selectedCity;
+  ProgressIndicatorState? _progressIndicatorState;
+  AppState? _appState;
+  Future<List<City>>? _cityList;
+  City? _selectedCity;
   Services _services = Services();
   String _userName = '', _userEmail = '', _userPhone = '';
 
   Future<List<City>> _getCityList() async {
-    Map<String, dynamic> results =
-        await _services.get(Utils.CITIES_URL, header: {
+    Map<dynamic, dynamic> results =
+        await _services!.get(Utils!.CITIES_URL!, header: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Accept-Language': _appState.currentLang
+      'Accept-Language': _appState!.currentLang
     });
-    List<City> cityList = List<City>();
+    List<City> cityList = <City>[];
     if (results['response'] == '1') {
       Iterable iterable = results['city'];
       cityList = iterable.map((model) => City.fromJson(model)).toList();
@@ -58,27 +58,27 @@ class _ModifyPersonalInfoScreenState extends State<ModifyPersonalInfoScreen> {
     super.didChangeDependencies();
     if (_initialRun) {
       _appState = Provider.of<AppState>(context);
-      _userName = _appState.currentUser.userName;
-      _userEmail = _appState.currentUser.userEmail;
-      _userPhone = _appState.currentUser.userPhone;
+      _userName = _appState!.currentUser.userName!;
+      _userEmail = _appState!.currentUser.userEmail!;
+      _userPhone = _appState!.currentUser.userPhone!;
        _cityList = _getCityList();
       _initialRun = false;
     }
   }
 
   bool _checkValidation(BuildContext context,
-      {String name, String phone, String email, City city}) {
-    if (name.trim().length < 4) {
+      {String? name, String? phone, String? email, City? city}) {
+    if (name!.trim().length < 4) {
       showToast(AppLocalizations.of(context).nameValidation, context,color: cRed);
       return false;
-    } else if (phone.trim().length == 0) {
+    } else if (phone!.trim().length == 0) {
       showToast(AppLocalizations.of(context).phonoNoValidation, context,color: cRed);
       return false;
-    } else if (!isEmail(email)) {
+    } else if (!isEmail(email!)) {
       showToast(AppLocalizations.of(context).emailValidation, context,color: cRed);
       return false;
     } else if (city == null) {
-      showToast(AppLocalizations.of(context).cityValidation, context,color: cRed);
+      showToast(AppLocalizations.of(context)!.cityValidation!, context,color: cRed);
       return false;
     }
 

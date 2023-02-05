@@ -1,12 +1,12 @@
 class Model {
   Model({
-    this.isSelected: false,
+    this.isSelected,
     this.modelId,
     this.modelName,
   });
-  bool isSelected;
-  String modelId;
-  String modelName;
+  bool? isSelected;
+  String? modelId;
+  String? modelName;
 
   factory Model.fromJson(Map<String, dynamic> json) => Model(
     modelId: json["model_id"],

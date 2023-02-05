@@ -18,15 +18,15 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
 
-  double _height ,_width;
+  double? _height ,_width;
 Services _services = Services();
-AppState _appState;
+AppState? _appState;
 bool _initialRun = true;
 
-  Future<String> _aboutContent;
+  Future<String>? _aboutContent;
 
   Future<String> _getAboutContent() async {
-    var results = await _services.get('https://qtaapp.com/api/site_use?lang=${_appState.currentLang}');
+    var results = await _services.get('https://qtaapp.com/api/site_use?lang=${_appState!.currentLang}');
     String aboutContent = '';
    if (results['response'] == '1') {
       aboutContent = results['content'];
@@ -59,11 +59,11 @@ void didChangeDependencies() {
               return ListView(
                 children: <Widget>[
                     SizedBox(
-              height: _height * 0.1,
+              height: _height! * 0.1,
             ),
             Container(
-              height: _height * 0.25,
-              margin: EdgeInsets.symmetric(horizontal: _width * 0.03),
+              height: _height! * 0.25,
+              margin: EdgeInsets.symmetric(horizontal: _width! * 0.03),
               child: Center(
                 child: Image.asset('assets/images/logo.png'),
               ),
@@ -71,12 +71,12 @@ void didChangeDependencies() {
             Divider(),
                   Container(
              
-                      padding: EdgeInsets.symmetric(horizontal: _width * 0.05),
+                      padding: EdgeInsets.symmetric(horizontal: _width! * 0.05),
                       child: Html(
                         data: snapshot.data,
                       )),
                   SizedBox(
-                    height: _height * 0.35,
+                    height: _height! * 0.35,
                   ),
                
                 ],
@@ -107,13 +107,13 @@ void didChangeDependencies() {
             right: 0,
             child: GradientAppBar(
               appBarTitle: AppLocalizations.of(context).about,
-             leading:_appState.currentLang == 'ar' ? IconButton(
+             leading:_appState!.currentLang == 'ar' ? IconButton(
                icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                onPressed: () {
                  Navigator.pop(context);
                },
              ):Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                 onPressed: () {
                   Navigator.pop(context);

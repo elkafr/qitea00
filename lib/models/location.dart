@@ -1,13 +1,13 @@
 class Location {
-  String locationId;
-  String locationTitles;
-  String titlesId;
-  String titlesName;
-  String titlesPhoto;
-  String locationDetails;
-  String locationMapx;
-  String locationMapy;
-  String locationUser;
+  String? locationId;
+  String? locationTitles;
+  String? titlesId;
+  String? titlesName;
+  String? titlesPhoto;
+  String? locationDetails;
+  String? locationMapx;
+  String? locationMapy;
+  String? locationUser;
 
   Location({
     this.locationId,

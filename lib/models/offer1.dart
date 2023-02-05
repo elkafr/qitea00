@@ -1,15 +1,15 @@
 class Offer1 {
-  int offerId;
-  int offerDriver;
-  String offerDriverName;
-  String offerDriverRate;
-  String offerDriverPhone;
-  String offerDriverMapx;
-  String offerDriverMapy;
-  int offerCartt;
-  int offerPrice;
-  String offerState;
-  String offerDate;
+  int? offerId;
+  int? offerDriver;
+  String? offerDriverName;
+  String? offerDriverRate;
+  String? offerDriverPhone;
+  String? offerDriverMapx;
+  String? offerDriverMapy;
+  int? offerCartt;
+  int? offerPrice;
+  String? offerState;
+  String? offerDate;
 
 
 

@@ -1,28 +1,28 @@
 class User {
-    String userId;
-    String userName;
-    String userEmail;
-    String userPhone;
-    String userCity;
-    String userCityName;
-    String userCredit;
-    String userPhoto;
-    String userType;
+    String? userId;
+    String? userName;
+    String? userEmail;
+    String? userPhone;
+    String? userCity;
+    String? userCityName;
+    String? userCredit;
+    String? userPhoto;
+    String? userType;
 
-    String userIqama;
-    String carFront;
-    String iqamaPhoto;
-    String carPhoto;
-    String carLicense;
-    String carBack;
-    String userNumberOfCartts;
-    String userMapx;
-    String userMapy;
-    String userMarka;
-    String userRate;
+    String? userIqama;
+    String? carFront;
+    String? iqamaPhoto;
+    String? carPhoto;
+    String? carLicense;
+    String? carBack;
+    String? userNumberOfCartts;
+    String? userMapx;
+    String? userMapy;
+    String? userMarka;
+    String? userRate;
 
-    String numberOfReq;
-    String totalOfReq;
+    String? numberOfReq;
+    String? totalOfReq;
 
     User({
         this.userId,

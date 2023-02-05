@@ -1,8 +1,8 @@
 class Option {
-    int optionsId;
-    String optionsName;
-    int optionsPrice;
-    bool isSelected;
+    int? optionsId;
+    String? optionsName;
+    int? optionsPrice;
+    bool? isSelected;
 
     Option({
         this.optionsId,
