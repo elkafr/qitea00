@@ -35,7 +35,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-   SpecificLocalizationDelegate _specificLocalizationDelegate;
+   SpecificLocalizationDelegate? _specificLocalizationDelegate;
 
   onLocaleChange(Locale locale) {
     setState(() {
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                 localizationsDelegates: [
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
-                  _specificLocalizationDelegate,
+                  _specificLocalizationDelegate!,
                   GlobalCupertinoLocalizations.delegate,
                   DefaultCupertinoLocalizations.delegate,
                 ],
@@ -94,7 +94,7 @@ class _MyAppState extends State<MyApp> {
                   Locale('en'),
                   Locale('ar')
                 ],
-                locale: _specificLocalizationDelegate.overriddenLocale,
+                locale: _specificLocalizationDelegate!.overriddenLocale,
                 debugShowCheckedModeBanner: false,
                 title: 'قطعة غيار',
                 theme: themeData(),

@@ -12,7 +12,7 @@ class TorfCity extends StatefulWidget {
 }
 
 class _TorfCityState extends State<TorfCity> {
-  double _height, _width;
+  double _height=0, _width=0;
 
   Widget _buildBodyItem() {
     return ListView(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -28,16 +30,16 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   var _height, _width;
   Services _services = Services();
- Future<List<NotificationItem>> _notificationList;
-  AppState _appState;
-  OrderState _orderState;
+ Future<List<NotificationItem>>? _notificationList;
+  AppState? _appState;
+  OrderState? _orderState;
   bool _initialRun = true;
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
 
   Future<List<NotificationItem>> _getNotifications() async {
-    Map<String, dynamic> results =
-        await _services.get('https://qtaapp.com/api/my_inbox1?page=1&user_id=${_appState.currentUser.userId}&lang=${_appState.currentLang}');
-    List notificationsList = List<NotificationItem>();
+    Map<dynamic, dynamic> results =
+        await _services.get('https://qtaapp.com/api/my_inbox1?page=1&user_id=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}');
+    List notificationsList = <NotificationItem>[];
 
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
@@ -45,7 +47,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     } else {
       print('error');
     }
-    return notificationsList;
+    return notificationsList as FutureOr<List<NotificationItem>>;
   }
 
   // Future<Null> _getUnreadNotificationNum() async {
@@ -73,7 +75,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     if (_initialRun) {
       _appState = Provider.of<AppState>(context);
       _orderState = Provider.of<OrderState>(context);
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
        _notificationList = _getNotifications();
         // _getUnreadNotificationNum();
       }
@@ -86,14 +88,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     _width = MediaQuery.of(context).size.width;
     return Consumer<AppState>(builder: (context, appState, child) {
-      return _appState.currentUser != null
+      return _appState!.currentUser != null
           ? FutureBuilder<List<NotificationItem>>(
               future: _notificationList,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  if (snapshot.data.length > 0) {
+                  if (snapshot.data!.length > 0) {
                     return ListView.builder(
-                        itemCount: snapshot.data.length,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             child: Row(
@@ -103,21 +105,21 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                   width: _width*.82,
                                   child: GestureDetector(
                                     onTap: (){
-                                      _orderState.setCarttId(snapshot.data[index].messageAdsId);
+                                      _orderState!.setCarttId(snapshot.data![index].messageAdsId!);
 
-                                      _appState.setCurrentOfferCartt(snapshot
-                                          .data[index].messageAdsId);
-
-
-                                      snapshot.data[index].messageSenderType=="mtger"?_appState.setCurrentOfferMtger(snapshot
-                                          .data[index].messageSenderId):_appState.setCurrentOfferDriver(snapshot
-                                          .data[index].messageSenderId);
+                                      _appState!.setCurrentOfferCartt(snapshot
+                                          .data![index].messageAdsId!);
 
 
-                                      print(_appState.currentOfferCartt);
-                                      print(_appState.currentOfferMtger);
+                                      snapshot.data[index].messageSenderType=="mtger"?_appState!.setCurrentOfferMtger(snapshot
+                                          .data![index].messageSenderId!):_appState!.setCurrentOfferDriver(snapshot
+                                          .data![index].messageSenderId!);
 
-                                      if(_appState.currentUser.userType=="user") {
+
+                                      print(_appState!.currentOfferCartt);
+                                      print(_appState!.currentOfferMtger);
+
+                                      if(_appState!.currentUser.userType=="user") {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -126,9 +128,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
 
 
-                                      }else if(_appState.currentUser.userType=="mtger") {
+                                      }else if(_appState!.currentUser.userType=="mtger") {
 
-                                   snapshot.data[index].messageTitle.contains(new RegExp(r'اعتذار', caseSensitive: false))?Text("")
+                                   snapshot.data![index].messageTitle!.contains(new RegExp('اعتذار', caseSensitive: false))?Text("")
                                         :Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -136,7 +138,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                                     MtgerOrderDetailsScreen()));
 
 
-                                      } else if(_appState.currentUser.userType=="driver") {
+                                      } else if(_appState!.currentUser.userType=="driver") {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -153,7 +155,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                           margin: EdgeInsets.symmetric(
                                               horizontal: _width *0.12
                                           ),
-                                          child:  Text(snapshot.data[index].messageTitle,
+                                          child:  Text(snapshot.data![index].messageTitle!,
                                             style: TextStyle(
                                                 color: Color(0xffA7A7A7),
                                                 fontSize: 12,fontWeight: FontWeight.w400
@@ -177,7 +179,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
                                                   text: TextSpan(
                                                     text: snapshot
-                                                        .data[index].messageContent,
+                                                        .data![index].messageContent,
                                                     style: TextStyle(
                                                         color: cOmarColor,
                                                         fontWeight: FontWeight.w500,
@@ -192,7 +194,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                           margin: EdgeInsets.symmetric(
                                               horizontal: _width *0.12
                                           ),
-                                          child:  Text(snapshot.data[index].messageDate,
+                                          child:  Text(snapshot.data![index].messageDate!,
                                             style: TextStyle(
                                                 color: Color(0xffA7A7A7),
                                                 fontSize: 12,fontWeight: FontWeight.w400
@@ -215,12 +217,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                    child: Image.asset('assets/images/delete.png'),
                                    onTap: () async{
 
-                                     _progressIndicatorState.setIsLoading(true);
+                                     _progressIndicatorState!.setIsLoading(true);
 
                                      var results = await _services.get(
-                                       'https://qtaapp.com/api/do_delete_message1?id=${snapshot.data[index].messageId}&lang=${_appState.currentLang}',
+                                       'https://qtaapp.com/api/do_delete_message1?id=${snapshot.data![index].messageId}&lang=${_appState!.currentLang}',
                                      );
-                                     _progressIndicatorState.setIsLoading(false);
+                                     _progressIndicatorState!.setIsLoading(false);
                                      if (results['response'] == '1') {
                                        showToast(results['message'], context);
                                 setState(() {
@@ -289,7 +291,7 @@ leading: IconButton(
   tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
 ),
                   appBarTitle: AppLocalizations.of(context).notifications,
-trailing: _appState.currentUser!=null?GestureDetector(
+trailing: _appState!.currentUser!=null?GestureDetector(
   child: Container(
     padding: EdgeInsets.all(12),
     child: Row(
@@ -301,12 +303,12 @@ trailing: _appState.currentUser!=null?GestureDetector(
   ),
   onTap: () async{
 
-    _progressIndicatorState.setIsLoading(true);
+    _progressIndicatorState!.setIsLoading(true);
 
     var results = await _services.get(
-      'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState.currentUser.userId}',
+      'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState!.currentUser.userId}',
     );
-    _progressIndicatorState.setIsLoading(false);
+    _progressIndicatorState!.setIsLoading(false);
     if (results['response'] == '1') {
       showToast(results['message'], context);
       setState(() {

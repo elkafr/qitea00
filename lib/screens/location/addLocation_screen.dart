@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:qitea/components/app_repo/app_state.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
@@ -44,29 +45,29 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
 
   Completer<GoogleMapController> _mapController = Completer();
   Set<Marker> _markers = Set();
-  LocationState _locationState;
-  AppState _appState;
-  Marker _marker;
+  LocationState? _locationState;
+  AppState? _appState;
+  Marker? _marker;
   double _height = 0, _width = 0;
-  BitmapDescriptor pinLocationIcon;
+  BitmapDescriptor? pinLocationIcon;
   final _formKey = GlobalKey<FormState>();
   bool isSwitched = false;
-  Future<List<Titles>> _titlesList;
+  Future<List<Titles>>? _titlesList;
   Services _services = Services();
   String _adress='';
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
 
   Future<List<Titles>> _getTitlesList() async {
-    Map<String, dynamic> results =
-    await _services.get('https://qtaapp.com/api/gettitles?lang=${_appState.currentLang}');
-    List bankList = List<Titles>();
+    Map<dynamic, dynamic> results =
+    await _services.get('https://qtaapp.com/api/gettitles?lang=${_appState!.currentLang}');
+    List bankList = <Titles>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
       bankList = iterable.map((model) => Titles.fromJson(model)).toList();
     } else {
       showErrorDialog(results['message'], context);
     }
-    return bankList;
+    return bankList as FutureOr<List<Titles>>;
   }
 
   @override
@@ -97,20 +98,20 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           print('Tapped');
         },
         draggable: true,
-        icon: pinLocationIcon,
+        icon: pinLocationIcon!,
         onDragEnd: ((value) async {
           print('ismail');
           print(value.latitude);
           print(value.longitude);
-          _locationState.setLocationLatitude(value.latitude);
-          _locationState.setLocationlongitude(value.longitude);
+          _locationState!.setLocationLatitude(value.latitude);
+          _locationState!.setLocationlongitude(value.longitude);
           //              final coordinates = new Coordinates(
           //                _locationState.locationLatitude, _locationState
           //  .locationlongitude);
-          List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
-              _locationState.locationLatitude, _locationState
+          List<Placemark> placemark = await placemarkFromCoordinates(
+              _locationState!.locationLatitude, _locationState!
               .locationlongitude);
-          _locationState.setCurrentAddress(placemark[0].name);
+          _locationState!.setCurrentAddress(placemark[0].name!);
 
           //   var addresses = await Geocoder.local.findAddressesFromCoordinates(
           //     coordinates);
@@ -120,11 +121,11 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
         }),
         markerId: MarkerId('my marker'),
         // infoWindow: InfoWindow(title: widget.address),
-        position: LatLng(_locationState.locationLatitude,
-            _locationState.locationlongitude),
+        position: LatLng(_locationState!.locationLatitude,
+            _locationState!.locationlongitude),
         flat: true,
     );
-    _markers.add( _marker);
+    _markers.add( _marker!);
 
 
 
@@ -188,26 +189,26 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                 // myLocationEnabled: true,
                                 initialCameraPosition: CameraPosition(
 
-                                  target: LatLng(_locationState.locationLatitude,
-                                      _locationState.locationlongitude),
+                                  target: LatLng(_locationState!.locationLatitude,
+                                      _locationState!.locationlongitude),
                                   zoom: 15,
                                 ),
                                 onMapCreated: (GoogleMapController controller) async{
 
-                                  _locationState.setLocationLatitude(_locationState.locationLatitude);
-                                  _locationState.setLocationlongitude(_locationState.locationlongitude);
+                                  _locationState!.setLocationLatitude(_locationState!.locationLatitude);
+                                  _locationState!.setLocationlongitude(_locationState!.locationlongitude);
 
-                                  List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
-                                      _locationState.locationLatitude,_locationState.locationlongitude);
-                                  _locationState.setCurrentAddress(placemark[0].name + '  ' + placemark[0].administrativeArea + ' '
-                                      + placemark[0].country);
+                                  List<Placemark> placemark = await placemarkFromCoordinates(
+                                      _locationState!.locationLatitude,_locationState!.locationlongitude);
+                                  _locationState!.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
+                                      + placemark[0].country!);
 
                                   controller.setMapStyle(MapStyle.style);
                                   _mapController.complete(controller);
 
                                   controller.animateCamera(CameraUpdate.newCameraPosition(
                                       CameraPosition(
-                                          target: LatLng(_locationState.locationLatitude,_locationState.locationlongitude),
+                                          target: LatLng(_locationState!.locationLatitude,_locationState!.locationlongitude),
                                           zoom: 15.0)));
 
 
@@ -232,7 +233,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                           bottomRight:  Radius.circular(6.00),
                                           bottomLeft:  Radius.circular(6.00),
                                         ),
-                                        border: Border.all(color: Colors.grey[300])),
+                                        border: Border.all(color: Colors.grey.withOpacity(300))),
 
                                     alignment: Alignment.center,
                                     padding: EdgeInsets.all(12),
@@ -244,7 +245,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                       children: <Widget>[
                                         Image.asset("assets/images/topmap.png",),
                                         Padding(padding: EdgeInsets.all(2)),
-                                        Text(_locationState.address!=null?_locationState.address:"",style: TextStyle(
+                                        Text(_locationState!.address!=null?_locationState!.address:"",style: TextStyle(
                                             height: 1.5,
                                             color: cText,fontSize: 18,fontWeight: FontWeight.w400
                                         ),
@@ -267,7 +268,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                             bottomRight:  Radius.circular(6.00),
                                             bottomLeft:  Radius.circular(6.00),
                                           ),
-                                          border: Border.all(color: Colors.grey[300])),
+                                          border: Border.all(color: Colors.grey.withOpacity(300))),
 
                                       alignment: Alignment.center,
                                       padding: EdgeInsets.all(12),
@@ -287,7 +288,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
 
                                               hintTxt: "مثال : المنزل , العمل ...",
                                               validationFunc: (value) {
-                                                if (value.trim().length == 0) {
+                                                if (value!.trim().length == 0) {
                                                   return "فضلا ادخال الوصف";
                                                 }
                                                 return null;
@@ -330,14 +331,14 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                                   future: _titlesList,
                                                   builder: (context, snapshot) {
                                                     if (snapshot.hasData) {
-                                                      if (snapshot.data.length > 0) {
+                                                      if (snapshot.data!.length > 0) {
                                                         return ListView.builder(
                                                           scrollDirection: Axis.horizontal,
-                                                            itemCount: snapshot.data.length,
+                                                            itemCount: snapshot.data!.length,
                                                             itemBuilder: (context, index) {
                                                               return GestureDetector(
                                                                 onTap: (){
-                                                                  _appState.setCurrentSelectTab(snapshot.data[index].titlesId);
+                                                                  _appState!.setCurrentSelectTab(snapshot.data![index].titlesId!);
                                                                 },
                                                                 child: Container(
                                                                   alignment: Alignment.center,
@@ -347,16 +348,16 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                                                       borderRadius: BorderRadius.all(
                                                                         const Radius.circular(5.00),
                                                                       ),
-                                                                      border: Border.all(color: _appState.selectTab==snapshot.data[index].titlesId?cPrimaryColor:Colors.grey[200])),
+                                                                      border: Border.all(color: _appState!.selectTab==snapshot.data![index].titlesId?cPrimaryColor:Colors.grey.withOpacity(300))),
                                                                   width: _width*.24,
 
                                                                   child: Container(
                                                                     child: Row(
                                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                                       children: <Widget>[
-                                                                        Image.network(snapshot.data[index].titlesPhoto,width: 18,height: 18,color: _appState.selectTab==snapshot.data[index].titlesId?cPrimaryColor:Colors.grey[400],),
+                                                                        Image.network(snapshot.data![index].titlesPhoto!,width: 18,height: 18,color: _appState!.selectTab==snapshot.data![index].titlesId?cPrimaryColor:Colors.grey[400],),
                                                                         Padding(padding: EdgeInsets.all(2)),
-                                                                        Text(snapshot.data[index].titlesName)
+                                                                        Text(snapshot.data![index].titlesName!)
                                                                       ],
                                                                     ),
                                                                   ),
@@ -389,9 +390,9 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                         child: CustomButton(
                                             btnLbl: "اختيار الموقع الحالي",
                                             onPressedFunction: () async {
-    if (_formKey.currentState.validate()) {
-      if (_locationState.locationLatitude == null ||
-          _locationState.locationlongitude == null) {
+    if (_formKey.currentState!.validate()) {
+      if (_locationState!.locationLatitude == null ||
+          _locationState!.locationlongitude == null) {
         // Commons.showError(context, _homeProvider.currentLang=="ar"?"عفوا يجب تحديد اللوكيشن":"Sorry, you must specify the location");
         showErrorDialog("عفوا يجب تحديد اللوكيشن", context);
       } else {
@@ -405,14 +406,14 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
         print(_adress);
 
         if(isSwitched==true){
-          _progressIndicatorState.setIsLoading(true);
+          _progressIndicatorState!.setIsLoading(true);
 
           var results = await _services.get(
-            'https://qtaapp.com/api/addLocation?lang=${_appState.currentLang}&location_titles=${_appState.selectTab}&location_details=$_adress&location_mapx=${_locationState.locationLatitude}&location_mapy=${_locationState.locationlongitude}&location_user=${_appState.currentUser.userId}',
+            'https://qtaapp.com/api/addLocation?lang=${_appState!.currentLang}&location_titles=${_appState!.selectTab}&location_details=$_adress&location_mapx=${_locationState!.locationLatitude}&location_mapy=${_locationState!.locationlongitude}&location_user=${_appState!.currentUser.userId}',
           );
-          _progressIndicatorState.setIsLoading(false);
+          _progressIndicatorState!.setIsLoading(false);
           if (results['response'] == '1') {
-            _locationState.setCurrentAddress(_adress);
+            _locationState!.setCurrentAddress(_adress);
             showToast(results['message'], context);
             Navigator.pushNamed(context, '/navigation');
           } else {
@@ -454,7 +455,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
         markerId: MarkerId('marker_2'),
         position: LatLng(_position.target.latitude, _position.target.longitude),
         draggable: true,
-        icon: pinLocationIcon
+        icon: pinLocationIcon!
 
 
 
@@ -462,13 +463,13 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
     );
     print(_position.target.latitude);
     print(_position.target.longitude);
-    _locationState.setLocationLatitude(_position.target.latitude);
-    _locationState.setLocationlongitude(_position.target.longitude);
-    List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
-        _locationState.locationLatitude, _locationState
+    _locationState!.setLocationLatitude(_position.target.latitude);
+    _locationState!.setLocationlongitude(_position.target.longitude);
+    List<Placemark> placemark = await placemarkFromCoordinates(
+        _locationState!.locationLatitude, _locationState!
         .locationlongitude);
-    _locationState.setCurrentAddress(placemark[0].name + '  ' + placemark[0].administrativeArea + ' '
-        + placemark[0].country);
+    _locationState!.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
+        + placemark[0].country!);
     //              final coordinates = new Coordinates(
     //                _locationState.locationLatitude, _locationState
     //  .locationlongitude);
@@ -476,7 +477,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
     //         coordinates);
     //       var first = addresses.first;
     //     _locationState.setCurrentAddress(first.addressLine);
-    print(_locationState.address);
+    print(_locationState!.address);
     if (!mounted) return;
     setState(() {});
   }

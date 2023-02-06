@@ -204,7 +204,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                                 color: cWhite,
                                 borderRadius: BorderRadius.circular(10.0)),
                             child: StoreCardItem(
-                              store: snapshot.data[index],
+                              store: snapshot.data![index],
                             ),
                           )
                       );

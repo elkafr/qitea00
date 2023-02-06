@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:provider/provider.dart';
 import 'package:qitea/components/app_data/shared_preferences_helper.dart';
 import 'package:qitea/components/app_repo/app_state.dart';
@@ -36,28 +37,28 @@ import 'package:provider/provider.dart';
 
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({Key key}) : super(key: key);
+  LocationScreen({Key? key}) : super(key: key);
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _bankTitle, _bankName, _bankAcount, _bankIban;
+  String? _bankTitle, _bankName, _bankAcount, _bankIban;
   Services _services = Services();
-  AppState _appState;
-  ProgressIndicatorState _progressIndicatorState;
+  AppState? _appState;
+  ProgressIndicatorState? _progressIndicatorState;
 
 
   Completer<GoogleMapController> _mapController = Completer();
   Set<Marker> _markers = Set();
-  LocationState _locationState;
-  Marker _marker;
+  LocationState? _locationState;
+  Marker? _marker;
 
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -80,7 +81,7 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed.
-    _focusNode.dispose();
+    _focusNode!.dispose();
     super.dispose();
   }
 
@@ -116,8 +117,8 @@ class _LocationScreenState extends State<LocationScreen> {
                 mapType: MapType.normal,
                 // myLocationEnabled: true,
                 initialCameraPosition: CameraPosition(
-                    target: LatLng(_locationState.locationLatitude,
-                        _locationState.locationlongitude),
+                    target: LatLng(_locationState!.locationLatitude,
+                        _locationState!.locationlongitude),
                     zoom: 12),
                 onMapCreated: (GoogleMapController controller) {
                   _mapController.complete(controller);
@@ -127,7 +128,7 @@ class _LocationScreenState extends State<LocationScreen> {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-              child: Text(_locationState.address,style: TextStyle(
+              child: Text(_locationState!.address,style: TextStyle(
                   height: 1.5,
                   color: cPrimaryColor,fontSize: 13,fontWeight: FontWeight.w400
               )),
@@ -167,7 +168,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       right: 0,
                       child: GradientAppBar(
                         appBarTitle: "اختيار اللوكيشن",
-                        leading: _appState.currentLang == 'ar'
+                        leading: _appState!.currentLang == 'ar'
                             ? IconButton(
                           icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                           onPressed: () {
@@ -175,7 +176,7 @@ class _LocationScreenState extends State<LocationScreen> {
                           },
                         )
                             : Container(),
-                        trailing: _appState.currentLang == 'en'
+                        trailing: _appState!.currentLang == 'en'
                             ? IconButton(
                           icon: Icon(
                             Icons.arrow_back_ios,
@@ -218,13 +219,13 @@ class _LocationScreenState extends State<LocationScreen> {
     );
     print(_position.target.latitude);
     print(_position.target.longitude);
-    _locationState.setLocationLatitude(_position.target.latitude);
-    _locationState.setLocationlongitude(_position.target.longitude);
-    List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
-        _locationState.locationLatitude, _locationState
+    _locationState!.setLocationLatitude(_position.target.latitude);
+    _locationState!.setLocationlongitude(_position.target.longitude);
+    List<Placemark> placemark = await placemarkFromCoordinates(
+        _locationState!.locationLatitude, _locationState!
         .locationlongitude);
-    _locationState.setCurrentAddress(placemark[0].name + '  ' + placemark[0].administrativeArea + ' '
-        + placemark[0].country);
+    _locationState!.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
+        + placemark[0].country!);
     //              final coordinates = new Coordinates(
     //                _locationState.locationLatitude, _locationState
     //  .locationlongitude);
@@ -232,7 +233,7 @@ class _LocationScreenState extends State<LocationScreen> {
     //         coordinates);
     //       var first = addresses.first;
     //     _locationState.setCurrentAddress(first.addressLine);
-    print(_locationState.address);
+    print(_locationState!.address);
     if (!mounted) return;
     setState(() {});
   }

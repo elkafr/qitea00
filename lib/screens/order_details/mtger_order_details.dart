@@ -59,26 +59,26 @@ class MtgerOrderDetailsScreen extends StatefulWidget {
 
 class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
   bool _initialRun = true;
-  OrderState _orderState;
-  double _height, _width;
+  OrderState? _orderState;
+  double _height=0, _width=0;
   Services _services = Services();
-  ProgressIndicatorState _progressIndicatorState;
-  AppState _appState;
-  TabState _tabState;
-  NavigationState _navigationState;
-  Future<Order> _orderDetails;
+  ProgressIndicatorState? _progressIndicatorState;
+  AppState? _appState;
+  TabState? _tabState;
+  NavigationState? _navigationState;
+  Future<Order>? _orderDetails;
   final _formKey = GlobalKey<FormState>();
 
-  int _offerType;
-  String _requestPrice1, _requestPrice2, _requestPrice3;
-  String _requestLabel1, _requestLabel2, _requestLabel3;
-  String  _requestPrice1Offer1, _requestPrice1Offer2, _requestPrice1Offer3,_requestPrice1Label1,_requestPrice1Label2,_requestPrice1Label3;
-  String  _requestPrice2Offer1, _requestPrice2Offer2, _requestPrice2Offer3,_requestPrice2Label1,_requestPrice2Label2,_requestPrice2Label3;
-  String  _requestPrice3Offer1, _requestPrice3Offer2, _requestPrice3Offer3,_requestPrice3Label1,_requestPrice3Label2,_requestPrice3Label3;
+  int? _offerType;
+  String? _requestPrice1, _requestPrice2, _requestPrice3;
+  String? _requestLabel1, _requestLabel2, _requestLabel3;
+  String?  _requestPrice1Offer1, _requestPrice1Offer2, _requestPrice1Offer3,_requestPrice1Label1,_requestPrice1Label2,_requestPrice1Label3;
+  String?  _requestPrice2Offer1, _requestPrice2Offer2, _requestPrice2Offer3,_requestPrice2Label1,_requestPrice2Label2,_requestPrice2Label3;
+  String?  _requestPrice3Offer1, _requestPrice3Offer2, _requestPrice3Offer3,_requestPrice3Label1,_requestPrice3Label2,_requestPrice3Label3;
 
   Future<Order> _getOrderDetails() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/show_buy?lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&cartt_id=${_orderState.carttId}');
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/show_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&cartt_id=${_orderState!.carttId}');
     Order orderDetails = Order();
     if (results['response'] == '1') {
       orderDetails = Order.fromJson(results['result']);
@@ -94,7 +94,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      _appState.setCurrentTabb(0);
+      _appState!.setCurrentTabb(0);
       _orderState = Provider.of<OrderState>(context);
       _orderDetails = _getOrderDetails();
     }
@@ -127,7 +127,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                 right:_width * 0.03,
                 bottom:_width * 0.025),
             child: Text(
-              " حالة الطلب : "+order.carttState,
+              " حالة الطلب : "+order.carttState!,
               style: TextStyle(
                 fontSize: 14,
                 color: cOmarColor,
@@ -152,7 +152,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey[300],
+                    color: Colors.grey.withOpacity(300),
                     blurRadius: 12.0, // has the effect of softening the shadow
                     spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -182,7 +182,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal:_width * 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  order.carttMarkaName,
+                                  order.carttMarkaName!,
                                   style: TextStyle(
                                       fontSize: 15,
                                       color: cOmarColor,
@@ -196,7 +196,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal: _width* 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  " رقم الطلب : "+order.carttId,
+                                  " رقم الطلب : "+order.carttId!,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: cOmarColor,
@@ -222,7 +222,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal:_width * 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  order.carttTypeeName,
+                                  order.carttTypeeName!,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: cOmarColor,
@@ -238,7 +238,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal: _width* 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  " تاريخ الطلب : "+order.carttDate,
+                                  " تاريخ الطلب : "+order.carttDate!,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: cOmarColor,
@@ -268,7 +268,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal: _width * 0.04,
                                     vertical: _width * 0.01),
                                 child: Text(
-                                  " موديل : "+order.carttModelName,
+                                  " موديل : "+order.carttModelName!,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: cOmarColor,
@@ -284,7 +284,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal: _width * 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  " عدد القطع : "+order.carttNumber,
+                                  " عدد القطع : "+order.carttNumber!,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: cOmarColor,
@@ -312,7 +312,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     horizontal: _width * 0.04,
                                     vertical: _height * 0.01),
                                 child: Text(
-                                  " رقم الهيكل : "+order.carttHikal,
+                                  " رقم الهيكل : "+order.carttHikal!,
                                   style: TextStyle(
                                       fontSize: 15,
                                       color: cLightLemon,
@@ -395,7 +395,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                               horizontal: _width * 0.04,
                               vertical: _width * 0.01),
                           child: Text(
-                            order.carttDetails1,
+                            order.carttDetails1!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cOmarColor,
@@ -433,13 +433,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                           doubleTapScale: 2.0,
                                           duration: Duration(milliseconds: 200),
                                           onPressed: () => Navigator.pop(context),
-                                          child: Image.network(order.carttPhoto1,height: _height,width: _width,fit: BoxFit.fill,),
+                                          child: Image.network(order.carttPhoto1!,height: _height,width: _width,fit: BoxFit.fill,),
                                         ),
                                       ),
                                     );
                                   });
                             },
-                            child: Image.network(order.carttPhoto1,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
+                            child: Image.network(order.carttPhoto1!,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
                           ),
                         ),
 
@@ -490,7 +490,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                               horizontal: _width * 0.04,
                               vertical: _width * 0.01),
                           child: Text(
-                            order.carttDetails2,
+                            order.carttDetails2!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cOmarColor,
@@ -528,13 +528,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                           doubleTapScale: 2.0,
                                           duration: Duration(milliseconds: 200),
                                           onPressed: () => Navigator.pop(context),
-                                          child: Image.network(order.carttPhoto2,height: _height,width: _width,fit: BoxFit.fill,),
+                                          child: Image.network(order.carttPhoto2!,height: _height,width: _width,fit: BoxFit.fill,),
                                         ),
                                       ),
                                     );
                                   });
                             },
-                            child: Image.network(order.carttPhoto2,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
+                            child: Image.network(order.carttPhoto2!,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
                           ),
                         ):Text("",style: TextStyle(height: 0),),
 
@@ -591,7 +591,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                               horizontal: _width * 0.04,
                               vertical: _width * 0.01),
                           child: Text(
-                            order.carttDetails3,
+                            order.carttDetails3!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cOmarColor,
@@ -629,13 +629,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                           doubleTapScale: 2.0,
                                           duration: Duration(milliseconds: 200),
                                           onPressed: () => Navigator.pop(context),
-                                          child: Image.network(order.carttPhoto3,height: _height,width: _width,fit: BoxFit.fill,),
+                                          child: Image.network(order.carttPhoto3!,height: _height,width: _width,fit: BoxFit.fill,),
                                         ),
                                       ),
                                     );
                                   });
                             },
-                            child: Image.network(order.carttPhoto3,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
+                            child: Image.network(order.carttPhoto3!,height: _height*.15,width: _width,fit: BoxFit.fitWidth,),
                           ),
                         ):Text("",style: TextStyle(height: 0),),
 
@@ -689,19 +689,19 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 onTap: (index) {
                                   print(index);
                                   _offerType=index;
-                                  _appState.setCurrentTabb(index);
+                                  _appState!.setCurrentTabb(index);
                                 },
                                 tabs: [
                               Tab(child: Container(
                                 decoration: BoxDecoration(
-                                  color: _appState.tabb==0?cLightLemon:cWhite,
+                                  color: _appState!.tabb==0?cLightLemon:cWhite,
                                   border: Border.all(
                                     color: Color(0xffF9F9F9),
                                   ),
                                   borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey[300],
+                                      color: Colors.grey.withOpacity(300),
                                       blurRadius: 25.0, // has the effect of softening the shadow
                                       spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -720,14 +720,14 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                               Tab(child: Container(
 
                                 decoration: BoxDecoration(
-                                  color: _appState.tabb==1?cLightLemon:cWhite,
+                                  color: _appState!.tabb==1?cLightLemon:cWhite,
                                   border: Border.all(
                                     color: Color(0xffF9F9F9),
                                   ),
                                   borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey[300],
+                                      color: Colors.grey.withOpacity(300),
                                       blurRadius: 25.0, // has the effect of softening the shadow
                                       spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -1516,17 +1516,17 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                               onPressedFunction: () async {
 
 
-                                if (_formKey.currentState.validate()) {
+                                if (_formKey.currentState!.validate()) {
                                   if (_requestPrice1 == null && _requestPrice1Offer1 ==null) {
 
                                     showToast(
                                         "يجب ادخال عرض السعر",
                                         context);
                                   } else {
-                                    _progressIndicatorState.setIsLoading(true);
+                                    _progressIndicatorState!.setIsLoading(true);
                                     FormData formData = new FormData.fromMap({
 
-                                      "offer_mtger": _appState.currentUser.userId,
+                                      "offer_mtger": _appState!.currentUser.userId,
                                       "offer_cartt": order.carttId,
                                       "offer_type": _offerType,
                                       "requestPrice1": _requestPrice1,
@@ -1554,7 +1554,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                       "requestPrice3Label2":_requestPrice3Label2,
                                       "requestPrice3Label3":_requestPrice3Label3,
 
-                                      "lang":_appState.currentLang
+                                      "lang":_appState!.currentLang
                                     });
 
                                     var results = await _services.postWithDio(
@@ -1562,7 +1562,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
                                         body: formData);
 
-                                    _progressIndicatorState.setIsLoading(false);
+                                    _progressIndicatorState!.setIsLoading(false);
 
 
                                     if (results['response'] == '1') {
@@ -1597,7 +1597,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState.currentUser.userId?Container(
+          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser.userId?Container(
             padding: EdgeInsets.all(30),
             margin: EdgeInsets.only(
                 left: _width * 0.03,
@@ -1613,7 +1613,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey[300],
+                  color: Colors.grey.withOpacity(300),
                   blurRadius: 12.0, // has the effect of softening the shadow
                   spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -1636,7 +1636,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                   children: <Widget>[
                     Text("التقييم",style: TextStyle(fontWeight: FontWeight.bold),),
                     RatingBar.builder(
-                      initialRating:  double.parse(order.carttMtgerRate),
+                      initialRating:  double.parse(order.carttMtgerRate!),
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -1664,7 +1664,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState.currentUser.userId?Container(
+          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser.userId?Container(
             padding: EdgeInsets.all(30),
             margin: EdgeInsets.only(
                 left: _width * 0.03,
@@ -1679,7 +1679,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey[300],
+                  color: Colors.grey.withOpacity(300),
                   blurRadius: 12.0, // has the effect of softening the shadow
                   spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -1701,7 +1701,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                     Text("قيمة العرض المقدم",style: TextStyle(),),
                     Spacer(),
                     Container(
-                      child: Text(order.carttPrice,style: TextStyle(color: Colors.white)),
+                      child: Text(order.carttPrice!,style: TextStyle(color: Colors.white)),
                       color: cLightLemon,
                       padding: EdgeInsets.only(top: 4,bottom: 4,left: 7,right: 7),
                     ),
@@ -1754,7 +1754,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                 if (snapshot.hasData) {
                   return Stack(
                     children: <Widget>[
-                      _buildBodyItem(snapshot.data),
+                      _buildBodyItem(snapshot.data!),
                       Center(
                         child: ProgressIndicatorComponent(),
                       ),
@@ -1763,9 +1763,9 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                         left: 0,
                         right: 0,
                         child: GradientAppBar(
-                            appBarTitle: "طلب رقم : "+_orderState.carttId,
+                            appBarTitle: "طلب رقم : "+_orderState!.carttId,
                            
-                            leading: _appState.currentLang == 'en' ? IconButton(
+                            leading: _appState!.currentLang == 'en' ? IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
                   color: cBlack,
@@ -1774,7 +1774,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'ar' ? IconButton(
+              trailing: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Transform.rotate(
                 angle: 180 * math.pi / 180,
                 child: IconButton(

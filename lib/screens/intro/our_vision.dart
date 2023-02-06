@@ -13,7 +13,7 @@ class OurVision extends StatefulWidget {
 }
 
 class _OurVisionState extends State<OurVision> {
-  double _height, _width;
+  double _height=0, _width=0;
 
   Widget _buildBodyItem() {
     return ListView(
