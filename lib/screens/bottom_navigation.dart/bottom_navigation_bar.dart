@@ -41,18 +41,18 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   bool _initialRun = true;
-  AppState _appState;
+  AppState? _appState;
   var _scaffoldKey = GlobalKey<ScaffoldState>();
-  NavigationState _navigationState;
-  LocationData _locData;
-  LocationState _locationState;
+  NavigationState? _navigationState;
+  LocationData? _locData;
+  LocationState? _locationState;
   Services _services = Services();
   ValueNotifier<int> notificationCounterValueNotifer =
   ValueNotifier(0);
-  Future<String> _termsContent;
+  Future<String>? _termsContent;
 
   Future<String> _getTermsContent() async {
-    var results =     await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_appState.currentUser.userId}");
+    var results =     await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_appState!.currentUser.userId}");
     String termsContent = '';
     if (results['response'] == '1') {
       termsContent = results['Number'];
@@ -62,18 +62,17 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return termsContent;
   }
 
-  FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
   new FlutterLocalNotificationsPlugin();
-
   void _iOSPermission() {
-    _firebaseMessaging.requestNotificationPermissions(
-        IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
-    });
+    _firebaseMessaging.requestPermission(sound: true, badge: true, alert: true);
+    // _firebaseMessaging.onIosSettingsRegistered
+    //     .listen((IosNotificationSettings settings) {
+    //   print("Settings registered: $settings");
+    // });
   }
+
 
   void _firebaseCloudMessagingListeners() {
     var android = new AndroidInitializationSettings('mipmap/ic_launcher');
@@ -94,13 +93,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');
 
-        _navigationState.upadateNavigationIndex(2);
+        _navigationState!.upadateNavigationIndex(2);
         Navigator.pushReplacementNamed(context, '/navigation');
       },
       onLaunch: (Map<String, dynamic> message) async {
         print('on launch $message');
 
-        _navigationState.upadateNavigationIndex(2);
+        _navigationState!.upadateNavigationIndex(2);
         Navigator.pushReplacementNamed(context, '/navigation');
       },
     );

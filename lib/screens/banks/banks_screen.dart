@@ -50,20 +50,20 @@ class BanksScreen extends StatefulWidget {
 }
 
 class _BanksScreenState extends State<BanksScreen> {
-  double _height, _width;
-  Future<List<Bank>> _banksList;
+  double _height=0, _width=0;
+  Future<List<Bank>>? _banksList;
   Services _services = Services();
-  StoreState _storeState;
-  AppState _appState;
-  NavigationState _navigationState;
+  StoreState? _storeState;
+  AppState? _appState;
+  NavigationState? _navigationState;
 
 
   bool _initialRun = true;
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
   Future<List<Bank>> _getBanksList() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getbank?page=1&lang=${_appState.currentLang}&bank_user=${_appState.currentUser.userId}');
-    List<Bank> bankList = List<Bank>();
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/getbank?page=1&lang=${_appState!.currentLang}&bank_user=${_appState!.currentUser.userId}');
+    List<Bank> bankList = <Bank>[];
     if (results['response'] == '1') {
       Iterable iterable = results['bank'];
       bankList = iterable.map((model) => Bank.fromJson(model)).toList();
@@ -79,9 +79,9 @@ class _BanksScreenState extends State<BanksScreen> {
         future: _banksList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.length > 0) {
+            if (snapshot.data!.length > 0) {
               return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       width: _width,
@@ -97,7 +97,7 @@ class _BanksScreenState extends State<BanksScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey[300],
+                            color: Colors.grey.withOpacity(300),
                             blurRadius: 7.0, // has the effect of softening the shadow
                             spreadRadius: 3.0, // has the effect of extending the shadow
 
@@ -112,7 +112,7 @@ class _BanksScreenState extends State<BanksScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("البنك :"),
-                                  Text(snapshot.data[index].bankTitle)
+                                  Text(snapshot.data![index].bankTitle!)
                                 ],
                               ),
 
@@ -121,7 +121,7 @@ class _BanksScreenState extends State<BanksScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("اسم الحساب :"),
-                                  Text(snapshot.data[index].bankName)
+                                  Text(snapshot.data![index].bankName!)
                                 ],
                               ),
                               Divider(),
@@ -129,7 +129,7 @@ class _BanksScreenState extends State<BanksScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("رقم الحساب :"),
-                                  Text(snapshot.data[index].bankAcount)
+                                  Text(snapshot.data![index].bankAcount!)
                                 ],
                               ),
                               Divider(),
@@ -137,7 +137,7 @@ class _BanksScreenState extends State<BanksScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("رقم الايبان :"),
-                                  Text(snapshot.data[index].bankIban)
+                                  Text(snapshot.data![index].bankIban!)
                                 ],
                               ),
                              SizedBox(height: 20,),
@@ -146,10 +146,10 @@ class _BanksScreenState extends State<BanksScreen> {
                                btnColor: cLightLemon,
                                btnLbl: "حذف الحساب",
                                onPressedFunction: () async{
-                                 _progressIndicatorState.setIsLoading(true);
+                                 _progressIndicatorState!.setIsLoading(true);
                                  var results = await _services.get(
-                                     'https://qtaapp.com/api/do_delete_bank?id=${snapshot.data[index].bankId}&lang=${_appState.currentLang}');
-                                 _progressIndicatorState.setIsLoading(false);
+                                     'https://qtaapp.com/api/do_delete_bank?id=${snapshot.data![index].bankId}&lang=${_appState!.currentLang}');
+                                 _progressIndicatorState!.setIsLoading(false);
                                  if (results['response'] == '1') {
                                    showToast(results['message'], context);
                                    _banksList = _getBanksList();
@@ -213,7 +213,7 @@ class _BanksScreenState extends State<BanksScreen> {
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
         _banksList = _getBanksList();
       }
     }
@@ -246,7 +246,7 @@ class _BanksScreenState extends State<BanksScreen> {
                       color: cBlack,
                     ),
                     onPressed: () {
-                      _navigationState.upadateNavigationIndex(3);
+                      _navigationState!.upadateNavigationIndex(3);
                       Navigator.pushReplacementNamed(context, '/navigation');
                     },
                   ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,11 +21,11 @@ class _SliderImagesState extends State<SliderImages> {
   Services _services = Services();
   bool _initialRun = true;
 
-  Future<List<SliderModel>> _sliderImages;
+  Future<List<SliderModel>>? _sliderImages;
 
   Future<List<SliderModel>> _getsliderImages() async {
-    Map<String, dynamic> results = await _services.get(Utils.SLIDER_URL);
-    List sliderList = List<SliderModel>();
+    Map<dynamic, dynamic> results = await _services.get(Utils.SLIDER_URL);
+    List sliderList = <SliderModel>[];
     if (results['response'] == '1') {
       Iterable iterable = results['slider'];
       sliderList =
@@ -31,7 +33,7 @@ class _SliderImagesState extends State<SliderImages> {
     } else {
       print('error');
     }
-    return sliderList;
+    return sliderList as FutureOr<List<SliderModel>>;
   }
 
   @override
@@ -60,7 +62,7 @@ class _SliderImagesState extends State<SliderImages> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
             return    CarouselWithIndicator(
-              imgList:snapshot.data ,
+              imgList:snapshot.data! ,
             );
                 // return Stack(
                 //   alignment: AlignmentDirectional.bottomCenter,

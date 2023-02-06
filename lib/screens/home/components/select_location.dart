@@ -1,6 +1,8 @@
 
 
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,7 +18,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -66,30 +68,29 @@ import 'package:qitea/screens/orders/components/cancel_order_bottom_sheet.dart';
 import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:qitea/screens/chat/chat_screen.dart';
-import 'package:qitea/screens/chat/widgets/chat_msg_item.dart';
+
 import 'package:qitea/components/custom_text_form_field/custom_text_form_field.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
 class SelectLocation extends StatefulWidget {
-  const SelectLocation({Key key}) : super(key: key);
+  const SelectLocation({Key? key}) : super(key: key);
   @override
   _SelectLocationState createState() => _SelectLocationState();
 }
 
 class _SelectLocationState extends State<SelectLocation> {
   Services _services = Services();
-  Future<List<Location>> _locationList;
-   AppState _appState;
-   LocationState _locationState;
+  Future<List<Location>>? _locationList;
+   AppState? _appState;
+   LocationState? _locationState;
   bool _initialRun = true;
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
 
   Future<List<Location>> _getLocations() async {
     String language =  await SharedPreferencesHelper.getUserLang();
-    Map<String, dynamic> results = await _services.get(Utils.LOCATIONS_URL+ '?user_id=${_appState.currentUser!=null?_appState.currentUser.userId:"0"}&lang=$language');
-    List locationList = List<Location>();
+    Map<dynamic, dynamic> results = await _services.get(Utils.LOCATIONS_URL+ '?user_id=${_appState!.currentUser!=null?_appState!.currentUser.userId:"0"}&lang=$language');
+    List locationList = <Location>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
       locationList = iterable.map((model) => Location.fromJson(model)).toList();
@@ -97,7 +98,7 @@ class _SelectLocationState extends State<SelectLocation> {
     } else {
       print('error');
     }
-    return locationList;
+    return locationList as FutureOr<List<Location>>;
   }
 
 
@@ -157,7 +158,7 @@ class _SelectLocationState extends State<SelectLocation> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
-                      itemCount: snapshot.data.length,
+                      itemCount: snapshot.data!.length,
 
 
                       itemBuilder: (BuildContext context, int index) {
@@ -179,16 +180,16 @@ class _SelectLocationState extends State<SelectLocation> {
                               ListTile(
                                 
                                 title: GestureDetector(
-                                  child: Text(snapshot.data[index].titlesName,style: TextStyle(color: cText,fontSize: 15),),
+                                  child: Text(snapshot.data![index].titlesName!,style: TextStyle(color: cText,fontSize: 15),),
                                   onTap: (){
-                                   _locationState.setCurrentAddress(snapshot.data[index].titlesName);
-                                   _locationState.setLocationLatitude(double.parse(snapshot.data[index].locationMapx));
-                                   _locationState.setLocationlongitude(double.parse(snapshot.data[index].locationMapy));
+                                   _locationState!.setCurrentAddress(snapshot.data![index].titlesName!);
+                                   _locationState!.setLocationLatitude(double.parse(snapshot.data![index].locationMapx!));
+                                   _locationState!.setLocationlongitude(double.parse(snapshot.data![index].locationMapy!));
                                    Navigator.pop(context);
                                   },
                                 ),
-                                subtitle: Text(snapshot.data[index].locationDetails,style: TextStyle(color: cHintColor,fontSize: 13),),
-                                leading: Image.network(snapshot.data[index].titlesPhoto),
+                                subtitle: Text(snapshot.data![index].locationDetails!,style: TextStyle(color: cHintColor,fontSize: 13),),
+                                leading: Image.network(snapshot.data![index].titlesPhoto!),
                                 trailing: Container(
                                 width: 100,
                                   child: Row(
@@ -206,12 +207,12 @@ class _SelectLocationState extends State<SelectLocation> {
                                         child: Image.asset('assets/images/delete.png'),
                                         onTap: () async{
 
-                                          _progressIndicatorState.setIsLoading(true);
+                                          _progressIndicatorState!.setIsLoading(true);
 
                                           var results = await _services.get(
-                                            'https://qtaapp.com/api/do_delete_location?id=${snapshot.data[index].locationId}&lang=${_appState.currentLang}',
+                                            'https://qtaapp.com/api/do_delete_location?id=${snapshot.data![index].locationId}&lang=${_appState!.currentLang}',
                                           );
-                                          _progressIndicatorState.setIsLoading(false);
+                                          _progressIndicatorState!.setIsLoading(false);
                                           if (results['response'] == '1') {
                                             showToast(results['message'], context);
                                             Navigator.pop(context);

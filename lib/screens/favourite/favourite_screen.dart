@@ -24,17 +24,17 @@ class FavouriteScreen extends StatefulWidget {
 }
 
 class _FavouriteScreenState extends State<FavouriteScreen> {
-  double _height, _width;
-  Future<List<FavouriteStore>> _storeList;
+  double _height=0, _width=0;
+  Future<List<FavouriteStore>>? _storeList;
   Services _services = Services();
-  StoreState _storeState;
-  AppState _appState;
+  StoreState? _storeState;
+  AppState? _appState;
   bool _initialRun = true;
 
   Future<List<FavouriteStore>> _getFavouriteStores() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/my_fav?user_id=${_appState.currentUser.userId}&page=1&lang=${_appState.currentLang}');
-    List<FavouriteStore> storeList = List<FavouriteStore>();
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/my_fav?user_id=${_appState!.currentUser.userId}&page=1&lang=${_appState!.currentLang}');
+    List<FavouriteStore> storeList = <FavouriteStore>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
       storeList = iterable.map((model) => FavouriteStore.fromJson(model)).toList();
@@ -50,20 +50,20 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
         future: _storeList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.length > 0) {
+            if (snapshot.data!.length > 0) {
               return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                         onTap: () {
                           
-                          _storeState.setCurrentStore(
+                          _storeState!.setCurrentStore(
                             Store(
-                              mtgerId: snapshot.data[index].mtgerId,
-                              mtgerName: snapshot.data[index].mtgerName,
-                              mtgerCat: snapshot.data[index].mtgerCat,
-                              mtgerAdress: snapshot.data[index].mtgerAdress,
-                              mtgerPhoto: snapshot.data[index].mtgerPhoto,
+                              mtgerId: snapshot.data![index].mtgerId,
+                              mtgerName: snapshot.data![index].mtgerName,
+                              mtgerCat: snapshot.data![index].mtgerCat,
+                              mtgerAdress: snapshot.data![index].mtgerAdress,
+                              mtgerPhoto: snapshot.data![index].mtgerPhoto,
                               isAddToFav: 1
                             )
                           );
@@ -78,7 +78,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                               color: cWhite,
                               borderRadius: BorderRadius.circular(10.0)),
                           child: FavouriteStoreItem(
-                            favouriteStore: snapshot.data[index],
+                            favouriteStore: snapshot.data![index],
                           ),
                         ));
                   });
@@ -124,7 +124,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
         _storeList = _getFavouriteStores();
       }
     }

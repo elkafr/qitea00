@@ -41,17 +41,17 @@ import 'package:qitea/components/app_repo/progress_indicator_state.dart';
 import 'package:qitea/components/progress_indicator_component/progress_indicator_component.dart';
 
 class AddCupone extends StatefulWidget {
-  const AddCupone({Key key}) : super(key: key);
+  const AddCupone({Key? key}) : super(key: key);
   @override
   _AddCuponeState createState() => _AddCuponeState();
 }
 
 class _AddCuponeState extends State<AddCupone> {
   Services _services = Services();
-  Future<List<Location>> _locationList;
-   AppState _appState;
+  Future<List<Location>>? _locationList;
+   AppState? _appState;
   bool _initialRun = true;
-  String _cupone;
+  String? _cupone;
 
 
 
@@ -125,13 +125,13 @@ class _AddCuponeState extends State<AddCupone> {
 
 
                     var results = await _services.get(
-                        'https://qtaapp.com/api/addCupone?user_id=${_appState.currentUser.userId}&cupone_value=$_cupone&lang=${_appState.currentLang}');
+                        'https://qtaapp.com/api/addCupone?user_id=${_appState!.currentUser.userId}&cupone_value=$_cupone&lang=${_appState!.currentLang}');
 
                     if (results['response'] == '1') {
 
-                      _appState.setCurrentCupone(_cupone);
+                      _appState!.setCurrentCupone(_cupone!);
                       Navigator.pop(context);
-                      print(_appState.cupone);
+                      print(_appState!.cupone);
                       showToast( results['message'], context);
                     } else {
 

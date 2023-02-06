@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
@@ -27,23 +28,23 @@ import 'package:qitea/components/store_card/store_card_item.dart';
 import 'package:qitea/screens/home/components/slider_images.dart';
 
 class Home1Screen extends StatefulWidget {
-  Home1Screen({Key key}) : super(key: key);
+  Home1Screen({Key? key}) : super(key: key);
 
   @override
   _Home1ScreenState createState() => _Home1ScreenState();
 }
 
 class _Home1ScreenState extends State<Home1Screen> {
-  double _height;
-  double _width;
-  Future<List<Category>> _categoriesList;
-  Future<List<Store>> _storeList;
+  double _height=0;
+  double _width=0;
+  Future<List<Category>>? _categoriesList;
+  Future<List<Store>>? _storeList;
   Services _services = Services();
   bool _enableSearch = false;
   String _categoryId = '1';
-  StoreState _storeState;
-  LocationState _locationState;
-  AppState _appState;
+  StoreState? _storeState;
+  LocationState? _locationState;
+  AppState? _appState;
   bool _initialRun = true;
 
 
@@ -57,8 +58,8 @@ class _Home1ScreenState extends State<Home1Screen> {
 
   Future<List<Category>> _getCategories() async {
     String language =  await SharedPreferencesHelper.getUserLang();
-    Map<String, dynamic> results = await _services.get(Utils.SUBCATEGORIES_URL+ language+"&cat_id=${_appState.selectedCat.mtgerCatId}");
-    List categoryList = List<Category>();
+    Map<dynamic, dynamic> results = await _services.get(Utils.SUBCATEGORIES_URL+ language+"&cat_id=${_appState!.selectedCat.mtgerCatId}");
+    List categoryList = <Category>[];
     if (results['response'] == '1') {
       Iterable iterable = results['cats'];
       categoryList = iterable.map((model) => Category.fromJson(model)).toList();
@@ -66,22 +67,22 @@ class _Home1ScreenState extends State<Home1Screen> {
     } else {
       print('error');
     }
-    return categoryList;
+    return categoryList as FutureOr<List<Category>>;
   }
 
   Future<List<Store>> _getStores(String query) async {
-    Map<String, dynamic> results =
+    Map<dynamic, dynamic> results =
         await _services.get(Utils.BASE_URL + query);
-    List<Store> storeList = List<Store>();
+    List<Store> storeList = <Store>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
       storeList = iterable.map((model) => Store.fromJson(model)).toList();
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
 // app favourite list on consume on it
         for (int i = 0; i < storeList.length; i++) {
           print('id: ${storeList[i].mtgerId} : favourite ${storeList[i].isAddToFav}');
-          _storeState.setIsFavourite(
-              storeList[i].mtgerId, storeList[i].isAddToFav);
+          _storeState!.setIsFavourite(
+              storeList[i].mtgerId!, storeList[i].isAddToFav!);
         }
       }
     } else {
@@ -99,34 +100,34 @@ class _Home1ScreenState extends State<Home1Screen> {
             return Consumer<AppState>(builder: (context, appState, child) {
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                         onTap: () {
-                          _appState.setSelectedSub(snapshot.data[index]);
-                          print(_appState.selectedCat.mtgerCatId);
-                          print(_appState.selectedSub.mtgerCatId);
+                          _appState!.setSelectedSub(snapshot.data![index]);
+                          print(_appState!.selectedCat.mtgerCatId);
+                          print(_appState!.selectedSub.mtgerCatId);
                           setState(() {
-                            for (int i = 0; i < snapshot.data.length; i++) {
-                              snapshot.data[i].isSelected = false;
+                            for (int i = 0; i < snapshot.data!.length; i++) {
+                              snapshot.data![i].isSelected = false;
                             }
-                            snapshot.data[index].isSelected = true;
+                            snapshot.data![index].isSelected = true;
                             if (index == 0) {
 
-                              if (_appState.currentUser != null) {
+                              if (_appState!.currentUser != null) {
                                 _storeList = _getStores(
-                                    'show_mtager_cat_filter?page=1&cat=${_appState.selectedCat.mtgerCatId}&sub=0&filter=${_appState.filter}&lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+                                    'show_mtager_cat_filter?page=1&cat=${_appState!.selectedCat.mtgerCatId}&sub=0&filter=${_appState!.filter}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               } else {
                                 _storeList =
-                                    _getStores('show_mtager_cat_filter?page=1&cat=${_appState.selectedCat.mtgerCatId}&sub=0&filter=${_appState.filter}&lang=${_appState.currentLang}&user_id=0&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+                                    _getStores('show_mtager_cat_filter?page=1&cat=${_appState!.selectedCat.mtgerCatId}&sub=0&filter=${_appState!.filter}&lang=${_appState!.currentLang}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               }
                             } else {
-                              if (_appState.currentUser != null) {
+                              if (_appState!.currentUser != null) {
                                 _storeList = _getStores(
-                                    'show_mtager_cat_filter?lang=${_appState.currentLang}&page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&sub=${snapshot.data[index].mtgerCatId}&user_id=${_appState.currentUser.userId}&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+                                    'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${snapshot.data![index].mtgerCatId}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               } else {
                                 _storeList = _getStores(
-                                    'show_mtager_cat_filter?lang=${_appState.currentLang}&page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&sub=${snapshot.data[index].mtgerCatId}&user_id=0&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+                                    'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${snapshot.data![index].mtgerCatId}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               }
                             }
 
@@ -138,7 +139,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                           EdgeInsets.symmetric(vertical: 10, horizontal: 7),
                           decoration: BoxDecoration(
 
-                            borderRadius: snapshot.data[index].isSelected
+                            borderRadius: snapshot.data![index].isSelected!
                                 ? BorderRadius.circular(15.0)
                                 : BorderRadius.circular(0),
                           ),
@@ -147,16 +148,16 @@ class _Home1ScreenState extends State<Home1Screen> {
                               Container(
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   child: Image.network(
-                                    snapshot.data[index].mtgerCatPhoto,
+                                    snapshot.data![index].mtgerCatPhoto!,
                                     height: 24,
                                     width: 32,
                                   )),
                               Container(
                                   margin: EdgeInsets.only(left: 5,right: 5),
                                   child: Text(
-                                    snapshot.data[index].mtgerCatName,
+                                    snapshot.data![index].mtgerCatName!,
                                     style: TextStyle(
-                                        color: snapshot.data[index].isSelected
+                                        color: snapshot.data![index].isSelected!
                                             ? cText
                                             : cHintColor,
                                         fontSize: 12),
@@ -186,13 +187,13 @@ class _Home1ScreenState extends State<Home1Screen> {
           future: _storeList,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data.length > 0) {
+              if (snapshot.data!.length > 0) {
                 return ListView.builder(
-                    itemCount: snapshot.data.length,
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                           onTap: () {
-                            _storeState.setCurrentStore(snapshot.data[index]);
+                            _storeState!.setCurrentStore(snapshot.data![index]);
                             Navigator.pushNamed(context, '/store_screen');
                           },
                           child:  Container(
@@ -263,12 +264,12 @@ class _Home1ScreenState extends State<Home1Screen> {
       _appState = Provider.of<AppState>(context);
       _locationState = Provider.of<LocationState>(context);
 
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
 
         _storeList = _getStores(
-            'show_mtager_cat_filter?page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+            'show_mtager_cat_filter?page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
       } else {
-        _storeList = _getStores('show_mtager_cat_filter?page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&lang=${_appState.currentLang}&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}');
+        _storeList = _getStores('show_mtager_cat_filter?page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&lang=${_appState!.currentLang}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
       }
     }
   }
@@ -317,12 +318,12 @@ class _Home1ScreenState extends State<Home1Screen> {
                               setState(() {
 
 
-                                if (_appState.currentUser != null) {
+                                if (_appState!.currentUser != null) {
                                   _storeList = _getStores(
-                                      'show_mtager_cat_filter?lang=${_appState.currentLang}&page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&sub=${_appState.selectedSub.mtgerCatId}&user_id=${_appState.currentUser.userId}&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}&text=$text');
+                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub.mtgerCatId}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
                                 } else {
                                   _storeList = _getStores(
-                                      'show_mtager_cat_filter?lang=${_appState.currentLang}&page=1&filter=${_appState.filter}&cat=${_appState.selectedCat.mtgerCatId}&sub=${_appState.selectedSub.mtgerCatId}&user_id=0&user_mapx=${_locationState.locationLatitude}&user_mapy=${_locationState.locationlongitude}&text=$text');
+                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub.mtgerCatId}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
                                 }
 
 
@@ -376,11 +377,11 @@ class _Home1ScreenState extends State<Home1Screen> {
                       left: 0,
                       right: 0,
                       child: GradientAppBar(
-                        appBarTitle: _appState.selectedCatName,
+                        appBarTitle: _appState!.selectedCatName,
                         leading: IconButton(
                           icon: Image.asset("assets/images/back.png"),
                           onPressed: () {
-                            _appState.setCurrentFilter(1);
+                            _appState!.setCurrentFilter(1);
 
                             Navigator.pushNamed(context, '/navigation');
                           },

@@ -44,16 +44,16 @@ import 'package:qitea/components/app_repo/progress_indicator_state.dart';
 import 'package:qitea/components/progress_indicator_component/progress_indicator_component.dart';
 
 class FilterStores extends StatefulWidget {
-  const FilterStores({Key key}) : super(key: key);
+  const FilterStores({Key? key}) : super(key: key);
   @override
   _FilterStoresState createState() => _FilterStoresState();
 }
 
 class _FilterStoresState extends State<FilterStores> {
   Services _services = Services();
-  Future<List<Location>> _locationList;
-   AppState _appState;
-   ProgressIndicatorState _progressIndicatorState;
+  Future<List<Location>>? _locationList;
+   AppState? _appState;
+   ProgressIndicatorState? _progressIndicatorState;
   bool _initialRun = true;
 
 
@@ -112,7 +112,7 @@ class _FilterStoresState extends State<FilterStores> {
                       child: Text("الكل"),
                       onTap: (){
 
-                        _appState.setCurrentFilter(1);
+                        _appState!.setCurrentFilter(1);
                        Navigator.pop(context);
                         Navigator.pushReplacementNamed(
                             context, '/home1_screen');
@@ -131,7 +131,7 @@ class _FilterStoresState extends State<FilterStores> {
                     title: GestureDetector(
                       child: Text("ابجديا"),
                       onTap: (){
-                        _appState.setCurrentFilter(2);
+                        _appState!.setCurrentFilter(2);
                         Navigator.pop(context);
                         Navigator.pushReplacementNamed(
                             context, '/home1_screen');
@@ -149,7 +149,7 @@ class _FilterStoresState extends State<FilterStores> {
                     title: GestureDetector(
                       child: Text("الاعلى تقييما"),
                       onTap: (){
-                        _appState.setCurrentFilter(3);
+                        _appState!.setCurrentFilter(3);
                         Navigator.pop(context);
 
                         Navigator.pushReplacementNamed(
@@ -169,7 +169,7 @@ class _FilterStoresState extends State<FilterStores> {
                     title: GestureDetector(
                       child: Text("الاقرب اليك"),
                       onTap: (){
-                        _appState.setCurrentFilter(4);
+                        _appState!.setCurrentFilter(4);
                         Navigator.pop(context);
 
                         Navigator.pushReplacementNamed(

@@ -13,9 +13,9 @@ import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class FavouriteStoreItem extends StatefulWidget {
-  final FavouriteStore favouriteStore;
+  final FavouriteStore? favouriteStore;
 
-  const FavouriteStoreItem({Key key, this.favouriteStore}) : super(key: key);
+  const FavouriteStoreItem({Key? key, this.favouriteStore}) : super(key: key);
   @override
   _StoreCardItemState createState() => _StoreCardItemState();
 }
@@ -36,7 +36,7 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 child: Image.network(
-                  widget.favouriteStore.mtgerPhoto,
+                  widget.favouriteStore!.mtgerPhoto!,
                   width: constraints.maxWidth * 0.2,
                   height: constraints.maxHeight,
                 ),
@@ -55,7 +55,7 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
                     margin: EdgeInsets.only(top: 5),
                     height: constraints.maxHeight * 0.3,
                     child: Text(
-                      widget.favouriteStore.mtgerName,
+                      widget.favouriteStore!.mtgerName!,
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
                     ),
@@ -75,7 +75,7 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
                           )),
                         ),
                         Text(
-                          widget.favouriteStore.mtgerCat,
+                          widget!.favouriteStore!.mtgerCat!,
                           style: TextStyle(fontSize: 13),
                         )
                       ],
@@ -89,7 +89,7 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
                         size: 20,
                       ),
                       Text(
-                        widget.favouriteStore.mtgerAdress,
+                        widget!.favouriteStore!.mtgerAdress!,
                         style:
                             TextStyle(fontSize: 13, color: Color(0xffC5C5C5)),
                       )
@@ -112,7 +112,7 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
                 onPressed: () async {
                   progressIndicatorState.setIsLoading(true);
                   var results = await _services.get(
-                      'https://qtaapp.com/api/delete_save_ads?mtger_id=${widget.favouriteStore.mtgerId}&user_id=${appState.currentUser.userId}&lang=${appState.currentLang}');
+                      'https://qtaapp.com/api/delete_save_ads?mtger_id=${widget.favouriteStore!.mtgerId}&user_id=${appState.currentUser.userId}&lang=${appState.currentLang}');
                   progressIndicatorState.setIsLoading(false);
                   if (results['response'] == '1') {
                     showToast(results['message'], context);

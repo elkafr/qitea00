@@ -15,7 +15,7 @@ class HomeAppBar extends StatefulWidget {
 
 class _HomeAppBarState extends State<HomeAppBar> {
   bool _initialRun = true;
-  AppState _appState;
+  AppState? _appState;
   Services _services = Services();
 
   @override
@@ -41,7 +41,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               color: cPrimaryColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey[500],
+                    color: Colors.grey.withOpacity(500),
                     offset: Offset(0.0, 1.5),
                     blurRadius: 1.5,
                   ),

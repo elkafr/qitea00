@@ -20,9 +20,9 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 
 class AppDrawer extends StatelessWidget {
-  double _width, _height;
+  double _width=0, _height=0;
 
-  AppState _appState;
+  AppState? _appState;
 
   Widget _buildAppDrawer(BuildContext context) {
     _width = MediaQuery.of(context).size.width;

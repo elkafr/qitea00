@@ -23,23 +23,23 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
 class AddBankScreen extends StatefulWidget {
-  AddBankScreen({Key key}) : super(key: key);
+  AddBankScreen({Key? key}) : super(key: key);
 
   @override
   _AddBankScreenState createState() => _AddBankScreenState();
 }
 
 class _AddBankScreenState extends State<AddBankScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _bankTitle, _bankName, _bankAcount, _bankIban;
+  String? _bankTitle, _bankName, _bankAcount, _bankIban;
   Services _services = Services();
-  AppState _appState;
-  ProgressIndicatorState _progressIndicatorState;
+  AppState? _appState;
+  ProgressIndicatorState? _progressIndicatorState;
 
 
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -62,7 +62,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed.
-    _focusNode.dispose();
+    _focusNode!.dispose();
     super.dispose();
   }
 
@@ -92,7 +92,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 ),
                 hintTxt: "اسم البنك",
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return "فضلا ادخال اسم البنك";
                   }
                   return null;
@@ -121,7 +121,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 ),
                 hintTxt: "اسم صاحب الجساب",
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return "فضلا ادخال اسم صاحب الحساب";
                   }
                   return null;
@@ -152,7 +152,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 ),
                 hintTxt: "رقم الحساب",
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return "فضلا ادخال رقم الحساب";
                   }
                   return null;
@@ -182,7 +182,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 ),
                 hintTxt: "رقم الايبان",
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return "فضلا ادخال رقم الايبان";
                   }
                   return null;
@@ -203,13 +203,13 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 btnColor: cLightLemon,
                 btnLbl: AppLocalizations.of(context).send,
                 onPressedFunction: () async {
-                  if (_formKey.currentState.validate()) {
-                    _progressIndicatorState.setIsLoading(true);
+                  if (_formKey.currentState!.validate()) {
+                    _progressIndicatorState!.setIsLoading(true);
 
                     var results = await _services.get(
-                      '${Utils.BASE_URL}add_bank?bank_title=$_bankTitle&bank_name=$_bankName&bank_acount=$_bankAcount&bank_iban=$_bankIban&bank_user=${_appState.currentUser.userId}&lang=${_appState.currentLang}',
+                      '${Utils.BASE_URL}add_bank?bank_title=$_bankTitle&bank_name=$_bankName&bank_acount=$_bankAcount&bank_iban=$_bankIban&bank_user=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}',
                     );
-                    _progressIndicatorState.setIsLoading(false);
+                    _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                       showToast(results['message'], context);
                       Navigator.push(
@@ -253,7 +253,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                   right: 0,
                   child: GradientAppBar(
                     appBarTitle: "اضافة حساب بنكي",
-                    leading: _appState.currentLang == 'ar'
+                    leading: _appState!.currentLang == 'ar'
                         ? IconButton(
                       icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                       onPressed: () {
@@ -261,7 +261,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                       },
                     )
                         : Container(),
-                    trailing: _appState.currentLang == 'en'
+                    trailing: _appState!.currentLang == 'en'
                         ? IconButton(
                       icon: Icon(
                         Icons.arrow_back_ios,

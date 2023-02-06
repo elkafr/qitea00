@@ -42,17 +42,17 @@ import 'package:qitea/components/app_repo/progress_indicator_state.dart';
 import 'package:qitea/components/progress_indicator_component/progress_indicator_component.dart';
 
 class AddNote extends StatefulWidget {
-  const AddNote({Key key}) : super(key: key);
+  const AddNote({Key? key}) : super(key: key);
   @override
   _AddNoteState createState() => _AddNoteState();
 }
 
 class _AddNoteState extends State<AddNote> {
   Services _services = Services();
-  Future<List<Location>> _locationList;
-   AppState _appState;
+  Future<List<Location>>? _locationList;
+   AppState? _appState;
   bool _initialRun = true;
-  String _note;
+  String? _note;
 
 
 
@@ -123,9 +123,9 @@ class _AddNoteState extends State<AddNote> {
                   btnLbl: "إضافة ",
                   onPressedFunction: (){
 
-                    _appState.setCurrentNote(_note);
+                    _appState!.setCurrentNote(_note!);
                     Navigator.pop(context);
-                    print(_appState.note);
+                    print(_appState!.note);
 
                   },
                 ),

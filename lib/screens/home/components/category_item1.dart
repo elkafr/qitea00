@@ -8,12 +8,12 @@ import 'package:qitea/utils/app_colors.dart';
 
 
 class CategoryItem1 extends StatelessWidget {
-  final Category category;
-  final AnimationController animationController;
-  final Animation animation;
+  final Category? category;
+  final AnimationController? animationController;
+  final Animation? animation;
 
 
-  const CategoryItem1({Key key, this.category, this.animationController, this.animation}) : super(key: key);
+  const CategoryItem1({Key? key, this.category, this.animationController, this.animation}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -42,7 +42,7 @@ class CategoryItem1 extends StatelessWidget {
                   Positioned(
                       top: -10,
                       left: -10,
-                      child: Image.network(category.mtgerCatPhoto)
+                      child: Image.network(category!.mtgerCatPhoto!)
                   ),
 
                   Container(
@@ -53,15 +53,15 @@ class CategoryItem1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(category.mtgerCatName,style: TextStyle(
-                            color: cText,fontSize: category.mtgerCatName.length > 1 ?15 : 15,
+                        Text(category!.mtgerCatName!,style: TextStyle(
+                            color: cText,fontSize: category!.mtgerCatName!.length > 1 ?15 : 15,
                             fontWeight: FontWeight.bold
                         ),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
                         Padding(padding: EdgeInsets.all(3)),
-                        Text(category.mtgerCatDetails,style: TextStyle(
+                        Text(category!.mtgerCatDetails!,style: TextStyle(
                             color: cHintColor,fontSize: 12,
                             fontWeight: FontWeight.bold
                         ),

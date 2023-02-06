@@ -107,7 +107,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                 ),
                 hintTxt: AppLocalizations.of(context).name,
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return AppLocalizations.of(context).nameValidation;
                   }
                   return null;
@@ -131,7 +131,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                   ),
                   hintTxt: AppLocalizations.of(context).email,
                   validationFunc: (value) {
-                    if (!isEmail(value)) {
+                    if (!isEmail(value!)) {
                       return AppLocalizations.of(context).emailValidation;
                     }
                     return null;
@@ -158,7 +158,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                       _messageTitle = text.toString();
                     },
                     validationFunc: (value) {
-                      if (value.trim().length == 0) {
+                      if (value!.trim().length == 0) {
                         return AppLocalizations.of(context).textValidation;
                       }
                       return null;
@@ -184,7 +184,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                       _messageContent = text.toString();
                     },
                     validationFunc: (value) {
-                      if (value.trim().length == 0) {
+                      if (value!.trim().length == 0) {
                         return AppLocalizations.of(context).textValidation;
                       }
                       return null;

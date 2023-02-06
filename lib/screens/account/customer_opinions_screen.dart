@@ -25,13 +25,13 @@ class CustomerOpinionsScreen extends StatefulWidget {
 class _CustomerOpinionsScreenState extends State<CustomerOpinionsScreen> {
   double _height = 0, _width = 0;
   bool _initialRun = true;
-  AppState _appState;
+  AppState? _appState;
   Services _services = Services();
-  Future<List<CustomerOpinion>> _customerOpinionList;
+  Future<List<CustomerOpinion>>? _customerOpinionList;
 
   Future<List<CustomerOpinion>> _getCustomerOpinionList() async {
-    Map<String, dynamic> results = await _services
-        .get('${Utils.CUSTOMER_OPINIONS_URL}lang=${_appState.currentLang}');
+    Map<dynamic, dynamic> results = await _services
+        .get('${Utils.CUSTOMER_OPINIONS_URL}lang=${_appState!.currentLang}');
     List<CustomerOpinion> customerOpinionList = List<CustomerOpinion>();
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
