@@ -33,6 +33,27 @@ import 'package:qitea/locale/localization.dart';
 import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import '../../components/badge_tab_bar.dart';
+
+
+
+
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:provider/provider.dart';
+
 
 
 class BottomNavigation extends StatefulWidget {
@@ -48,8 +69,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   LocationData? _locData;
   LocationState? _locationState;
   Services _services = Services();
-  ValueNotifier<int> notificationCounterValueNotifer =
-  ValueNotifier(0);
+
   Future<String>? _termsContent;
 
   Future<String> _getTermsContent() async {
@@ -66,6 +86,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
   new FlutterLocalNotificationsPlugin();
+  ValueNotifier<int> notificationCounterValueNotifer = ValueNotifier(0);
+
   void _iOSPermission() {
     _firebaseMessaging.requestPermission(sound: true, badge: true, alert: true);
     // _firebaseMessaging.onIosSettingsRegistered
@@ -73,46 +95,36 @@ class _BottomNavigationState extends State<BottomNavigation> {
     //   print("Settings registered: $settings");
     // });
   }
-
-
   void _firebaseCloudMessagingListeners() {
     var android = new AndroidInitializationSettings('mipmap/ic_launcher');
-    var ios = new IOSInitializationSettings();
+    var ios = new DarwinInitializationSettings();
     var platform = new InitializationSettings(android: android, iOS: ios);
-    _flutterLocalNotificationsPlugin.initialize(platform);
+
+    _flutterLocalNotificationsPlugin.initialize(platform,
+        onDidReceiveNotificationResponse : selectNotification);
 
     if (Platform.isIOS) _iOSPermission();
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        print('on message $message');
-        print("onMessage: $message");
-        notificationCounterValueNotifer.value++;
-        notificationCounterValueNotifer.notifyListeners();
-        FlutterAppBadger.updateBadgeCount(notificationCounterValueNotifer.value+1);
-        _showNotification(message);
-      },
-      onResume: (Map<String, dynamic> message) async {
-        print('on resume $message');
+    FirebaseMessaging.onMessage.listen((event) {
+      print('on message ${event.data}');
+      print("onMessage: ${event.data}");
+      notificationCounterValueNotifer.value++;
 
-        _navigationState!.upadateNavigationIndex(2);
-        Navigator.pushReplacementNamed(context, '/navigation');
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print('on launch $message');
-
-        _navigationState!.upadateNavigationIndex(2);
-        Navigator.pushReplacementNamed(context, '/navigation');
-      },
-    );
+      FlutterAppBadger.updateBadgeCount(
+          notificationCounterValueNotifer.value + 1);
+      _showNotification(event.data);
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      _navigationState!.upadateNavigationIndex(2);
+      Navigator.pushReplacementNamed(context, '/navigation');
+    });
   }
 
   _showNotification(Map<String, dynamic> message) async {
     var android = new AndroidNotificationDetails(
       'channel id',
       "CHANNLE NAME",
-      "channelDescription",
     );
-    var iOS = new IOSNotificationDetails();
+    var iOS = new DarwinNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
    /* await _flutterLocalNotificationsPlugin.show(
         0,
@@ -141,6 +153,17 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
     ).then((value) => setState(() {}));
 
+  }
+
+
+
+  void selectNotification(String? payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: $payload');
+// Here you can check notification payload and redirect user to the respective screen
+      _navigationState!.upadateNavigationIndex(2);
+      Navigator.pushReplacementNamed(context, '/navigation');
+    }
   }
 
   Future<Null> _checkIsLogin() async {
