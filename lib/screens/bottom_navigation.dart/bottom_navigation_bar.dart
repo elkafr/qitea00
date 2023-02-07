@@ -54,7 +54,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:provider/provider.dart';
 
-
+import 'package:firebase_core/firebase_core.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -101,7 +101,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     var platform = new InitializationSettings(android: android, iOS: ios);
 
     _flutterLocalNotificationsPlugin.initialize(platform,
-        onDidReceiveNotificationResponse : selectNotification);
+        onDidReceiveNotificationResponse : selectNotification as void Function(NotificationResponse));
 
     if (Platform.isIOS) _iOSPermission();
     FirebaseMessaging.onMessage.listen((event) {
