@@ -387,7 +387,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
       //  .locationlongitude);
       // var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
       // var first = addresses.first;
-      _progressIndicatorState.setIsLoading(false);
+      _progressIndicatorState!.setIsLoading!(false);
       // _locationState.setCurrentAddress(first.addressLine);
 
       // print("${first.featureName} : ${first.addressLine}");
@@ -450,7 +450,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    child: Text(_locationState.address!,
+                    child: Text(_locationState!.address!,
                         style: TextStyle(
                             height: 1.5,
                             color: cPrimaryColor,
@@ -1027,7 +1027,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             RatingBar.builder(
-                              initialRating: double.parse(order.carttMtgerRate),
+                              initialRating: double.parse(order!.carttMtgerRate!),
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -1708,7 +1708,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                           flex: 1,
                         ),
                         Text(
-                          order.carttPrice + " ريال ",
+                          order.carttPrice! + " ريال ",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -1801,7 +1801,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
                         color: cWhite),
-                    btnLbl: AppLocalizations.of(context).cancelOrder,
+                    btnLbl: AppLocalizations.of(context)!.cancelOrder,
                     onPressedFunction: () {
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(
@@ -2201,13 +2201,13 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                           SizedBox(
                                             height: _width * .02,
                                           ),
-                                          snapshot.data[index].offerType == 0
+                                          snapshot.data![index].offerType == 0
                                               ? Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: <Widget>[
-                                                    Text(snapshot.data[index]
+                                                    Text(snapshot.data![index]
                                                         .requestLabel1
                                                         .toString()),
                                                     Text(" سعر " +
@@ -2289,7 +2289,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                       onTap: () {
                                                                                         Navigator.pop(context);
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                      child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                   Container(
                                                                                     width: 1,
                                                                                     height: 30,
@@ -2316,7 +2316,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                           showErrorDialog(results['message'], context);
                                                                                         }
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                      child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                 ],
                                                                               )
                                                                             ],
@@ -2327,7 +2327,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                               },
                                                             )
                                                           : (snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice1Act ==
                                                                   1
@@ -2347,7 +2347,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                 )
                                               : Column(
                                                   children: <Widget>[
-                                                    snapshot.data[index]
+                                                    snapshot.data![index]
                                                                 .requestPrice1Offer1 !=
                                                             0
                                                         ? Row(
@@ -2356,12 +2356,12 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     .spaceBetween,
                                                             children: <Widget>[
                                                               Text(snapshot
-                                                                  .data[index]
+                                                                  .data![index]
                                                                   .requestPrice1Label1
                                                                   .toString()),
                                                               Text(" سعر " +
                                                                   snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice1Offer1
                                                                       .toString() +
@@ -2429,7 +2429,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                 onTap: () {
                                                                                                   Navigator.pop(context);
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                             Container(
                                                                                               width: 1,
                                                                                               height: 30,
@@ -2457,7 +2457,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     showErrorDialog(results['message'], context);
                                                                                                   }
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                           ],
                                                                                         )
                                                                                       ],
@@ -2467,7 +2467,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                               });
                                                                         },
                                                                       )
-                                                                    : (snapshot.data[index].requestPrice1Offer1Act ==
+                                                                    : (snapshot.data![index].requestPrice1Offer1Act ==
                                                                             1
                                                                         ? Icon(
                                                                             Icons.check_circle,
@@ -2490,7 +2490,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     SizedBox(
                                                       height: _width * .02,
                                                     ),
-                                                    snapshot.data[index]
+                                                    snapshot.data![index]
                                                                 .requestPrice1Offer2 !=
                                                             0
                                                         ? Row(
@@ -2499,12 +2499,12 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     .spaceBetween,
                                                             children: <Widget>[
                                                               Text(snapshot
-                                                                  .data[index]
+                                                                  .data![index]
                                                                   .requestPrice1Label2
                                                                   .toString()),
                                                               Text(" سعر " +
                                                                   snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice1Offer2
                                                                       .toString() +
@@ -2572,7 +2572,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                 onTap: () {
                                                                                                   Navigator.pop(context);
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                             Container(
                                                                                               width: 1,
                                                                                               height: 30,
@@ -2609,7 +2609,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                               });
                                                                         },
                                                                       )
-                                                                    : (snapshot.data[index].requestPrice1Offer2Act ==
+                                                                    : (snapshot.data![index].requestPrice1Offer2Act ==
                                                                             1
                                                                         ? Icon(
                                                                             Icons.check_circle,
@@ -2646,7 +2646,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   .toString()),
                                                               Text(" سعر " +
                                                                   snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice1Offer3
                                                                       .toString() +
@@ -2656,7 +2656,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     Alignment
                                                                         .center,
                                                                 child: snapshot
-                                                                            .data[
+                                                                            .data![
                                                                                 index]
                                                                             .requestPrice1Offer3Act ==
                                                                         0
@@ -2714,7 +2714,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                 onTap: () {
                                                                                                   Navigator.pop(context);
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                             Container(
                                                                                               width: 1,
                                                                                               height: 30,
@@ -2741,7 +2741,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     showErrorDialog(results['message'], context);
                                                                                                   }
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                           ],
                                                                                         )
                                                                                       ],
@@ -2751,7 +2751,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                               });
                                                                         },
                                                                       )
-                                                                    : (snapshot.data[index].requestPrice1Offer3Act ==
+                                                                    : (snapshot.data![index].requestPrice1Offer3Act ==
                                                                             1
                                                                         ? Icon(
                                                                             Icons.check_circle,
@@ -2806,7 +2806,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                 ),
                                           order.carttNumber == "2" ||
                                                   order.carttNumber == "3"
-                                              ? snapshot.data[index]
+                                              ? snapshot.data![index]
                                                           .offerType ==
                                                       0
                                                   ? Row(
@@ -2815,11 +2815,11 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                               .spaceBetween,
                                                       children: <Widget>[
                                                         Text(snapshot
-                                                            .data[index]
+                                                            .data![index]
                                                             .requestLabel2
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data[index]
+                                                            snapshot.data![index]
                                                                 .requestPrice2
                                                                 .toString() +
                                                             " ريال "),
@@ -2827,7 +2827,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice2Act ==
                                                                   0
@@ -2896,7 +2896,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -2923,7 +2923,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -2934,7 +2934,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   },
                                                                 )
                                                               : (snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice2Act ==
                                                                       1
@@ -2955,7 +2955,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     )
                                                   : Column(
                                                       children: <Widget>[
-                                                        snapshot.data[index]
+                                                        snapshot.data![index]
                                                                     .requestPrice2Offer1 !=
                                                                 0
                                                             ? Row(
@@ -2965,13 +2965,13 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                 children: <
                                                                     Widget>[
                                                                   Text(snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice2Label1
                                                                       .toString()),
                                                                   Text(" سعر " +
                                                                       snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice2Offer1
                                                                           .toString() +
@@ -2980,7 +2980,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     alignment:
                                                                         Alignment
                                                                             .center,
-                                                                    child: snapshot.data[index].requestPrice2Offer1Act ==
+                                                                    child: snapshot.data![index].requestPrice2Offer1Act ==
                                                                             0
                                                                         ? GestureDetector(
                                                                             child:
@@ -3027,7 +3027,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3054,7 +3054,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3064,7 +3064,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                   });
                                                                             },
                                                                           )
-                                                                        : (snapshot.data[index].requestPrice2Offer1Act ==
+                                                                        : (snapshot.data![index].requestPrice2Offer1Act ==
                                                                                 1
                                                                             ? Icon(
                                                                                 Icons.check_circle,
@@ -3084,7 +3084,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                         height:
                                                                             0),
                                                               ),
-                                                        snapshot.data[index]
+                                                        snapshot.data![index]
                                                                     .requestPrice2Offer2 !=
                                                                 0
                                                             ? Row(
@@ -3094,13 +3094,13 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                 children: <
                                                                     Widget>[
                                                                   Text(snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice2Label2
                                                                       .toString()),
                                                                   Text(" سعر " +
                                                                       snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice2Offer2
                                                                           .toString() +
@@ -3109,7 +3109,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     alignment:
                                                                         Alignment
                                                                             .center,
-                                                                    child: snapshot.data[index].requestPrice2Offer2Act ==
+                                                                    child: snapshot.data![index].requestPrice2Offer2Act ==
                                                                             0
                                                                         ? GestureDetector(
                                                                             child:
@@ -3156,7 +3156,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3183,7 +3183,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3193,7 +3193,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                   });
                                                                             },
                                                                           )
-                                                                        : (snapshot.data[index].requestPrice2Offer2Act ==
+                                                                        : (snapshot.data![index].requestPrice2Offer2Act ==
                                                                                 1
                                                                             ? Icon(
                                                                                 Icons.check_circle,
@@ -3213,7 +3213,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                         height:
                                                                             0),
                                                               ),
-                                                        snapshot.data[index]
+                                                        snapshot.data![index]
                                                                     .requestPrice2Offer3 !=
                                                                 0
                                                             ? Row(
@@ -3285,7 +3285,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3312,7 +3312,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3377,7 +3377,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                   style: TextStyle(height: 0),
                                                 ),
                                           order.carttNumber == "3"
-                                              ? snapshot.data[index]
+                                              ? snapshot.data![index]
                                                           .offerType ==
                                                       0
                                                   ? Row(
@@ -3467,7 +3467,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3494,7 +3494,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3505,7 +3505,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   },
                                                                 )
                                                               : (snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice3Act ==
                                                                       1
@@ -3598,7 +3598,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3625,7 +3625,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3665,13 +3665,13 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                 children: <
                                                                     Widget>[
                                                                   Text(snapshot
-                                                                      .data[
+                                                                      .data![
                                                                           index]
                                                                       .requestPrice3Label2
                                                                       .toString()),
                                                                   Text(" سعر " +
                                                                       snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice3Offer2
                                                                           .toString() +
@@ -3727,7 +3727,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3754,7 +3754,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3800,7 +3800,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                       .toString()),
                                                                   Text(" سعر " +
                                                                       snapshot
-                                                                          .data[
+                                                                          .data![
                                                                               index]
                                                                           .requestPrice3Offer3
                                                                           .toString() +
@@ -3809,7 +3809,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     alignment:
                                                                         Alignment
                                                                             .center,
-                                                                    child: snapshot.data[index].requestPrice3Offer3Act ==
+                                                                    child: snapshot.data![index].requestPrice3Offer3Act ==
                                                                             0
                                                                         ? GestureDetector(
                                                                             child:
@@ -3856,7 +3856,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     onTap: () {
                                                                                                       Navigator.pop(context);
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                                    child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                                 Container(
                                                                                                   width: 1,
                                                                                                   height: 30,
@@ -3883,7 +3883,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                         showErrorDialog(results['message'], context);
                                                                                                       }
                                                                                                     },
-                                                                                                    child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                    child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                               ],
                                                                                             )
                                                                                           ],
@@ -3893,7 +3893,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                   });
                                                                             },
                                                                           )
-                                                                        : (snapshot.data[index].requestPrice3Offer3Act ==
+                                                                        : (snapshot.data![index].requestPrice3Offer3Act ==
                                                                                 1
                                                                             ? Icon(
                                                                                 Icons.check_circle,
@@ -3995,7 +3995,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           context);
                                                                     },
                                                                     child: Text(
-                                                                        AppLocalizations.of(context)
+                                                                        AppLocalizations.of(context)!
                                                                             .cancel,
                                                                         style: TextStyle(
                                                                             fontSize:
@@ -4049,7 +4049,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                       }
                                                                     },
                                                                     child: Text(
-                                                                        AppLocalizations.of(context)
+                                                                        AppLocalizations.of(context)!
                                                                             .ok,
                                                                         style: TextStyle(
                                                                             fontSize:
@@ -4313,7 +4313,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                               onTap: () {
                                                                                 Navigator.pop(context);
                                                                               },
-                                                                              child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                              child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                           Container(
                                                                             width:
                                                                                 1,
@@ -4339,7 +4339,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                 }
                                                                                 Navigator.pop(context);
                                                                               },
-                                                                              child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                              child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                         ],
                                                                       )
                                                                     ],

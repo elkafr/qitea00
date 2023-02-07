@@ -114,7 +114,7 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
 
 
   bool checkMtgerRegisterValidation(BuildContext context,
-      {File? imgFile, City userCity}) {
+      {File? imgFile, City? userCity}) {
     if (imgFile == null) {
       showToast("يجب اختيار صورة من السجل التجاري ", context);
       return false;

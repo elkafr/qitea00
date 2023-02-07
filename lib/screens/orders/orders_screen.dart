@@ -62,7 +62,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         ),
       ),
-      title:Text( AppLocalizations.of(context).orders,style: TextStyle(color: cBlack,fontSize: 15,fontWeight: FontWeight.bold),)
+      title:Text( AppLocalizations.of(context)!.orders,style: TextStyle(color: cBlack,fontSize: 15,fontWeight: FontWeight.bold),)
     );
 
     return  NetworkIndicator( child:PageContainer(

@@ -27,7 +27,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           onTap: () {
       
             SharedPreferencesHelper.setUserLang('ar');
-            helper.onLocaleChanged(new Locale('ar'));
+            helper!.onLocaleChanged!(new Locale('ar'));
             _appState!.setCurrentLanguage('ar');
           },
           child: Row(
@@ -37,7 +37,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 child: Image.asset('assets/images/arabic.png'),
               ),
               Text(
-                AppLocalizations.of(context).arabic,
+                AppLocalizations.of(context)!.arabic,
                 style: TextStyle(color: cBlack, fontSize: 15),
               )
             ],
@@ -50,7 +50,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           onTap: () {
            
             SharedPreferencesHelper.setUserLang('en');
-            helper.onLocaleChanged(new Locale('en'));
+            helper!.onLocaleChanged!(new Locale('en'));
             _appState!.setCurrentLanguage('en');
           },
           child: Row(
@@ -60,7 +60,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 child: Image.asset('assets/images/english.png'),
               ),
               Text(
-               AppLocalizations.of(context).english,
+               AppLocalizations.of(context)!.english,
                 style: TextStyle(color: cBlack, fontSize: 15),
               )
             ],
@@ -86,7 +86,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             left: 0,
             right: 0,
             child: GradientAppBar(
-                appBarTitle: AppLocalizations.of(context).language,
+                appBarTitle: AppLocalizations.of(context)!.language,
                  leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon:Image.asset('assets/images/back.png'),
                 onPressed: () {

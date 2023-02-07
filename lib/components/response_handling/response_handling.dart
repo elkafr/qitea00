@@ -36,7 +36,7 @@ handleUnauthenticated( BuildContext context ) {
           return ResponseAlertDialog(
             alertTitle: 'عفواً',
             alertMessage: message,
-            alertBtn: AppLocalizations.of(context).ok,
+            alertBtn: AppLocalizations.of(context)!.ok,
             onPressedAlertBtn: () {
     
             },

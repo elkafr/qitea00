@@ -546,7 +546,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                   
                   hintTxt: "اسم النشاط التجاري",
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
+                    if (value!.trim().length == 0) {
                       return "فضلا ادخال اسم النشاط التجاري";
                     }
                     return null;
@@ -575,7 +575,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
 
                   hintTxt: "اسم المالك",
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
+                    if (value!.trim().length == 0) {
                       return "فضلا ادخال اسم المالك";
                     }
                     return null;
@@ -595,10 +595,10 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
               iconIsImage: true,
                   suffixIcon:  Image.asset("assets/images/sa.png"),
               imagePath: 'assets/images/call.png', 
-              hintTxt: AppLocalizations.of(context).phoneNo,
+              hintTxt: AppLocalizations.of(context)!.phoneNo,
               validationFunc: (value) {
-               if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).phonoNoValidation;
+               if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.phonoNoValidation;
                     }
 
                if (value.trim().length != 9) {
@@ -619,10 +619,10 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                 ),
                 child: CustomTextFormField(
                  prefixIcon:  Icon(Icons.mail),
-                  hintTxt: AppLocalizations.of(context).email,
+                  hintTxt: AppLocalizations.of(context)!.email,
                   validationFunc: (value) {
-                    if (!isEmail(value)) {
-                      return AppLocalizations.of(context).emailValidation;
+                    if (!isEmail(value!)) {
+                      return AppLocalizations.of(context)!.emailValidation;
                     }
                     return null;
                   },
@@ -771,18 +771,18 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                                             onTap: () {
 
 
-                                              if(x.contains(snapshot.data[index].markaId)){
+                                              if(x!.contains(snapshot.data![index].markaId)){
 
                                                setState(() {
-                                                 x.remove(snapshot.data[index].markaId);
-                                                 stringList = x.join(",");
+                                                 x!.remove(snapshot.data![index].markaId);
+                                                 stringList = x!.join(",");
                                                  _appState!.setMarkaa(stringList);
                                                });
 
                                               }else{
                                                 setState(() {
-                                                  x.add(snapshot.data![index].markaId!);
-                                                  stringList = x.join(",");
+                                                  x!.add(snapshot.data![index].markaId!);
+                                                  stringList = x!.join(",");
                                                   _appState!.setMarkaa(stringList);
                                                 });
                                               }
@@ -804,7 +804,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                                                 border: Border.all(
                                                   color: cPrimaryColor,
                                                 ),
-                                                color: x!.contains(snapshot.data[index].markaId.toString())?cPrimaryColor:Colors.white,
+                                                color: x!.contains(snapshot.data![index].markaId.toString())?cPrimaryColor:Colors.white,
 
                                               ),
 
@@ -900,7 +900,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                       _userPassword = text.toString();
                     },
                     validationFunc: (value) {
-                      if (value.trim().length < 4) {
+                      if (value!.trim().length < 4) {
                         return AppLocalizations.of(context)!.passwordValidation;
                       }
                       return null;
@@ -920,7 +920,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                     inputData: TextInputType.text,
                  
                     validationFunc: (value) {
-                    if (value.trim().length < 4) {
+                    if (value!.trim().length < 4) {
                         return AppLocalizations.of(context)!.passwordValidation;
                   
                       } else if (value != _userPassword) {
@@ -1090,7 +1090,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
 
 
                     } else {
-                      showErrorDialog(AppLocalizations.of(context).acceptTerms, context);
+                      showErrorDialog(AppLocalizations.of(context)!.acceptTerms, context);
                     }
                   }
                 },

@@ -201,7 +201,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
               height: 60,
               child: CustomButton(
                 btnColor: cLightLemon,
-                btnLbl: AppLocalizations.of(context).send,
+                btnLbl: AppLocalizations.of(context)!.send,
                 onPressedFunction: () async {
                   if (_formKey.currentState!.validate()) {
                     _progressIndicatorState!.setIsLoading(true);

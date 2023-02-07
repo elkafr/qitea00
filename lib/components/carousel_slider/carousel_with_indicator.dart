@@ -18,7 +18,7 @@ List<T> map<T>(List list, Function handler) {
 }
 
 class CarouselWithIndicator extends StatefulWidget {
-  final List<SliderModel> imgList;
+  final List<SliderModel>? imgList;
 
   const CarouselWithIndicator({ @required  this.imgList});
   @override

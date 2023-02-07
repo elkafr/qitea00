@@ -107,7 +107,7 @@ void didChangeDependencies() {
             left: 0,
             right: 0,
             child: GradientAppBar(
-              appBarTitle: AppLocalizations.of(context).terms,
+              appBarTitle: AppLocalizations.of(context)!.terms,
             leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {

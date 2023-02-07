@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class PageContainer extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   const PageContainer({this.child});
 
   @override

@@ -373,7 +373,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       //  .locationlongitude);
       // var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
       // var first = addresses.first;
-      _progressIndicatorState.setIsLoading(false);
+      _progressIndicatorState!.setIsLoading(false);
       // _locationState.setCurrentAddress(first.addressLine);
 
       // print("${first.featureName} : ${first.addressLine}");
@@ -1847,7 +1847,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                 },
                                                                 child: Text(
                                                                     AppLocalizations.of(
-                                                                            context)
+                                                                            context)!
                                                                         .cancel,
                                                                     style: TextStyle(
                                                                         fontSize:
@@ -1904,7 +1904,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                 },
                                                                 child: Text(
                                                                     AppLocalizations.of(
-                                                                            context)
+                                                                            context)!
                                                                         .ok,
                                                                     style: TextStyle(
                                                                         fontSize:
@@ -2074,7 +2074,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                               Navigator.pop(context);
                                                                             },
                                                                             child:
-                                                                                Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                         Container(
                                                                           width:
                                                                               1,
@@ -2105,7 +2105,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                               }
                                                                             },
                                                                             child:
-                                                                                Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                       ],
                                                                     )
                                                                   ],
@@ -2218,7 +2218,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                       onTap: () {
                                                                                         Navigator.pop(context);
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                      child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                   Container(
                                                                                     width: 1,
                                                                                     height: 30,
@@ -2245,7 +2245,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           showErrorDialog(results['message'], context);
                                                                                         }
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                      child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                 ],
                                                                               )
                                                                             ],
@@ -2366,7 +2366,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                       onTap: () {
                                                                                         Navigator.pop(context);
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                      child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                   Container(
                                                                                     width: 1,
                                                                                     height: 30,
@@ -2392,7 +2392,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           showErrorDialog(results['message'], context);
                                                                                         }
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                      child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                 ],
                                                                               )
                                                                             ],
@@ -2513,7 +2513,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                       onTap: () {
                                                                                         Navigator.pop(context);
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                      child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                   Container(
                                                                                     width: 1,
                                                                                     height: 30,
@@ -2539,7 +2539,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           showErrorDialog(results['message'], context);
                                                                                         }
                                                                                       },
-                                                                                      child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                      child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                 ],
                                                                               )
                                                                             ],
@@ -2691,7 +2691,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                 onTap: () {
                                                                                   Navigator.pop(context);
                                                                                 },
-                                                                                child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                             Container(
                                                                               width: 1,
                                                                               height: 30,
@@ -2717,7 +2717,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                     showErrorDialog(results['message'], context);
                                                                                   }
                                                                                 },
-                                                                                child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                           ],
                                                                         )
                                                                       ],
@@ -2830,7 +2830,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -2856,7 +2856,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -2976,7 +2976,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3002,7 +3002,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3122,7 +3122,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3148,7 +3148,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3215,7 +3215,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         style: TextStyle(height: 0),
                                       ),
                                 order.carttNumber == "3"
-                                    ? snapshot.data.offerType == 0
+                                    ? snapshot.data!.offerType == 0
                                         ? Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -3302,7 +3302,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                 onTap: () {
                                                                                   Navigator.pop(context);
                                                                                 },
-                                                                                child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                             Container(
                                                                               width: 1,
                                                                               height: 30,
@@ -3328,7 +3328,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                     showErrorDialog(results['message'], context);
                                                                                   }
                                                                                 },
-                                                                                child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                           ],
                                                                         )
                                                                       ],
@@ -3338,7 +3338,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                               });
                                                         },
                                                       )
-                                                    : (snapshot.data
+                                                    : (snapshot.data!
                                                                 .requestPrice3Act ==
                                                             1
                                                         ? Icon(
@@ -3441,7 +3441,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3467,7 +3467,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3587,7 +3587,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3613,7 +3613,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3733,7 +3733,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                           onTap: () {
                                                                                             Navigator.pop(context);
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
+                                                                                          child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor, fontFamily: 'segoeui', fontWeight: FontWeight.w500))),
                                                                                       Container(
                                                                                         width: 1,
                                                                                         height: 30,
@@ -3759,7 +3759,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                               showErrorDialog(results['message'], context);
                                                                                             }
                                                                                           },
-                                                                                          child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                          child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                     ],
                                                                                   )
                                                                                 ],
@@ -3867,7 +3867,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           child: Text(
                                                               AppLocalizations
                                                                       .of(
-                                                                          context)
+                                                                          context)!
                                                                   .cancel,
                                                               style: TextStyle(
                                                                   fontSize: 14,
@@ -3920,7 +3920,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           },
                                                           child: Text(
                                                               AppLocalizations.of(
-                                                                      context)
+                                                                      context)!
                                                                   .ok,
                                                               style: TextStyle(
                                                                   fontSize: 14,
@@ -4179,7 +4179,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           flex: 1,
                         ),
                         Text(
-                          order.carttPrice + " ريال ",
+                          order.carttPrice! + " ريال ",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -4271,7 +4271,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
                         color: cWhite),
-                    btnLbl: AppLocalizations.of(context).cancelOrder,
+                    btnLbl: AppLocalizations.of(context)!.cancelOrder,
                     onPressedFunction: () {
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(

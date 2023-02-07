@@ -60,7 +60,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           Container(
               height: _height * 0.1,
               child: _buildRow(
-                  AppLocalizations.of(context).name,
+                  AppLocalizations.of(context)!.name,
                   appState.currentUser.userName!=null?appState.currentUser.userName:"",
                   Icon(
                     Icons.person,
@@ -70,7 +70,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               height: _height * 0.1,
               color: Color(0xffFBF6F6),
               child: _buildRow(
-                  AppLocalizations.of(context).email,
+                  AppLocalizations.of(context)!.email,
                   appState.currentUser.userEmail!=null?appState.currentUser.userEmail:appState.currentUser.userEmail,
                   Icon(
                     Icons.email,
@@ -79,7 +79,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           Container(
               height: _height * 0.1,
               child: _buildRow(
-                  AppLocalizations.of(context).phoneNo,
+                  AppLocalizations.of(context)!.phoneNo,
                   appState.currentUser.userPhone,
                   Icon(
                     Icons.phone,
@@ -109,7 +109,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     width: _width * 0.46,
                     child: CustomButton(
 
-                        btnLbl: AppLocalizations.of(context).editInfo,
+                        btnLbl: AppLocalizations.of(context)!.editInfo,
                         btnStyle: TextStyle(color: cWhite, fontSize: 12.0),
                         defaultMargin: false,
                         onPressedFunction: () {
@@ -127,7 +127,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                         defaultMargin: false,
                         btnStyle: TextStyle(color: cLightLemon, fontSize: 12.0),
 
-                        btnLbl: AppLocalizations.of(context).editPassword,
+                        btnLbl: AppLocalizations.of(context)!.editPassword,
                         btnColor: cWhite,
                         onPressedFunction: () {
                           Navigator.push(
@@ -162,7 +162,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             left: 0,
             right: 0,
             child: GradientAppBar(
-              appBarTitle: AppLocalizations.of(context).personalInfo,
+              appBarTitle: AppLocalizations.of(context)!.personalInfo,
               leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {

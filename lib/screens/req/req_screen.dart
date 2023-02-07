@@ -171,7 +171,7 @@ class _ReqScreenState extends State<ReqScreen> {
                   });
             } else {
               return NoData(
-                message:  AppLocalizations.of(context).noResults,
+                message:  AppLocalizations.of(context)!.noResults,
               );
             }
           } else if (snapshot.hasError) {

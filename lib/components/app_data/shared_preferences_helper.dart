@@ -5,7 +5,7 @@ class SharedPreferencesHelper {
   static read(String key) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString(key) != null) {
-      return json.decode(prefs.getString(key));
+      return json.decode(prefs.getString(key)!);
     } else {
       return null;
     }
@@ -47,10 +47,10 @@ class SharedPreferencesHelper {
 ///-----------------
   ///Save boolean values
   ///------------------
-  static bool getBoolean(String key, SharedPreferences prefs) {
-    return prefs.containsKey(key) ? prefs.getBool(key ?? false) : false;
+  static Future<bool?> getBoolean(String key) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey(key) ? prefs.getBool(key) : false;
   }
-
   static Future<bool> saveBoolean(
       String key, bool value, SharedPreferences prefs) {
     return prefs.setBool(key, value);

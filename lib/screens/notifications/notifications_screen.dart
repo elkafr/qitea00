@@ -111,7 +111,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                           .data![index].messageAdsId!);
 
 
-                                      snapshot.data[index].messageSenderType=="mtger"?_appState!.setCurrentOfferMtger(snapshot
+                                      snapshot.data![index].messageSenderType=="mtger"?_appState!.setCurrentOfferMtger(snapshot
                                           .data![index].messageSenderId!):_appState!.setCurrentOfferDriver(snapshot
                                           .data![index].messageSenderId!);
 

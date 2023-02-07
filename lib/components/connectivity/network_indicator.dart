@@ -3,7 +3,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:qitea/locale/localization.dart';
 
 class NetworkIndicator extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
   const NetworkIndicator({this.child});
   @override
   _NetworkIndicatorState createState() => _NetworkIndicatorState();
@@ -28,7 +28,7 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
             Container(
                 margin: EdgeInsets.only(top: 10),
                 child: Text(
-                  AppLocalizations.of(context).sorryNoInternet,
+                  AppLocalizations.of(context)!.sorryNoInternet,
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'segoeui',
@@ -37,7 +37,7 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
             Container(
                 margin: EdgeInsets.only(top: height * 0.025),
                 child: Text(
-                  AppLocalizations.of(context).scanRouter,
+                  AppLocalizations.of(context)!.scanRouter,
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey[400],
@@ -47,7 +47,7 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
             Container(
                 margin: EdgeInsets.only(top: height * 0.025),
                 child: Text(
-                  AppLocalizations.of(context).reconnectInternet,
+                  AppLocalizations.of(context)!.reconnectInternet,
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey[400],
@@ -60,16 +60,14 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
                     horizontal: MediaQuery.of(context).size.width * 0.25,
                     vertical: height * 0.02),
                 child: Builder(
-                    builder: (context) => RaisedButton(
+                    builder: (context) => TextButton(
                           onPressed: () {},
-                          elevation: 500,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(25.0)),
-                          color: Theme.of(context).primaryColor,
+
+
                           child: Container(
                               alignment: Alignment.center,
                               child: Text(
-                                AppLocalizations.of(context).updateScreen,
+                                AppLocalizations.of(context)!.updateScreen,
                                 style: TextStyle(
                                     fontFamily: 'segoeui',
                                     color: Colors.white,
@@ -116,7 +114,7 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
         }
       },
       builder: (BuildContext context) {
-        return widget.child;
+        return widget!.child!;
       },
     );
   }

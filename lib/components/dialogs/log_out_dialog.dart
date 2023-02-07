@@ -5,9 +5,9 @@ import 'package:qitea/components/app_repo/app_state.dart';
 import 'package:qitea/locale/localization.dart';
 
 class LogoutDialog extends StatelessWidget {
-  final String alertMessage;
+  final String? alertMessage;
 
-  const LogoutDialog({Key key, this.alertMessage}) : super(key: key);
+  const LogoutDialog({Key? key, this.alertMessage}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
@@ -18,7 +18,7 @@ class LogoutDialog extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Text(
-              alertMessage,
+              alertMessage!,
               textAlign: TextAlign.center,
               style:
                   TextStyle(fontSize: 15, height: 1.5, fontFamily: 'segoeui'),
@@ -40,7 +40,7 @@ class LogoutDialog extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Text(AppLocalizations.of(context).cancel,
+                    child: Text(AppLocalizations.of(context)!.cancel,
                         style: TextStyle(
                             fontSize: 14,
                             color: Theme.of(context).primaryColor,
@@ -55,11 +55,11 @@ class LogoutDialog extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                       SharedPreferencesHelper.remove("user");
-                      appState.setCurrentUser(null);
+                      appState!.setCurrentUser(null);
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/login_screen', (Route<dynamic> route) => false);
                     },
-                    child: Text(AppLocalizations.of(context).ok,
+                    child: Text(AppLocalizations.of(context)!.ok,
                         style: TextStyle(
                             fontSize: 14,
                             fontFamily: 'segoeui',

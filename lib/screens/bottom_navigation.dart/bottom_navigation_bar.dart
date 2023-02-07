@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qitea/components/app_data/shared_preferences_helper.dart';
@@ -133,7 +134,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             onPressed: () {
               Navigator.of(context).pop();
 
-              message['notification']['title']=="تنويه باتمام الدفع"?_navigationState.upadateNavigationIndex(1):_navigationState.upadateNavigationIndex(2);
+              message['notification']['title']=="تنويه باتمام الدفع"?_navigationState!.upadateNavigationIndex(1):_navigationState!.upadateNavigationIndex(2);
               Navigator.pushReplacementNamed(context, '/navigation');
             },
           ),
@@ -147,7 +148,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     var userData = await SharedPreferencesHelper.read("user");
 
     if (userData != null) {
-      _appState.setCurrentUser(User.fromJson(userData));
+      _appState!.setCurrentUser(User.fromJson(userData));
       _firebaseCloudMessagingListeners();
     }
   }
@@ -179,15 +180,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Future<void> _getCurrentUserLocation() async {
 
     _locData = await Location().getLocation();
-    print(_locData.latitude);
-    print(_locData.longitude);
-      _locationState.setLocationLatitude(_locData.latitude);
-      _locationState.setLocationlongitude(_locData.longitude);
-      List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
-          _locationState.locationLatitude, _locationState
+    print(_locData!.latitude);
+    print(_locData!.longitude);
+      _locationState!.setLocationLatitude(_locData!.latitude!);
+      _locationState!.setLocationlongitude(_locData!.longitude!);
+      List<Placemark> placemark = await placemarkFromCoordinates(
+          _locationState!.locationLatitude, _locationState!
           .locationlongitude);
-      _locationState.setCurrentAddress(placemark[0].name + '  ' + placemark[0].administrativeArea + ' '
-          + placemark[0].country);
+      _locationState!.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea !+ ' '
+          + placemark[0].country!);
       //  final coordinates = new Coordinates(_locationState.locationLatitude, _locationState
       //  .locationlongitude);
       // var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
@@ -230,11 +231,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
           key: _scaffoldKey, //
 
           drawer: MainDrawer(),
-      body: _navigationState.selectedContent,
+      body: _navigationState!.selectedContent,
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: _navigationState.navigationIndex==0?Image.asset("assets/images/home.png",color: cLightLemon,):Image.asset("assets/images/home.png",color: cPrimaryColor,),
+            icon: _navigationState!.navigationIndex==0?Image.asset("assets/images/home.png",color: cLightLemon,):Image.asset("assets/images/home.png",color: cPrimaryColor,),
             title: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Text(
@@ -326,11 +327,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
 
         ],
-        currentIndex: _navigationState.navigationIndex,
+        currentIndex: _navigationState!.navigationIndex,
         selectedItemColor: cPrimaryColor,
         unselectedItemColor: Color(0xFFC4C4C4),
         onTap: (int index) {
-          _navigationState.upadateNavigationIndex(index);
+          _navigationState!.upadateNavigationIndex(index);
           if(index==2){
             notificationCounterValueNotifer.value=0;
           }

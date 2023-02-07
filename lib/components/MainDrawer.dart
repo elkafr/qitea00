@@ -79,8 +79,8 @@ class MainDrawer extends StatefulWidget {
 class _MainDrawer extends State<MainDrawer> {
   double _height = 0 , _width = 0;
 
-  AppState _appState;
-  NavigationState _navigationState;
+  AppState? _appState;
+  NavigationState? _navigationState;
   bool _initialRun = true;
 
   @override
@@ -119,7 +119,7 @@ class _MainDrawer extends State<MainDrawer> {
 
                     DrawerHeader(
                       child: Consumer<AppState>(builder: (context, appState, child) {
-                        return  _appState.currentUser == null
+                        return  _appState!.currentUser == null
                             ?
                         Container(
                           alignment: Alignment.centerRight,
@@ -162,7 +162,7 @@ class _MainDrawer extends State<MainDrawer> {
                                   builder: (context,authProvider,child){
                                     return CircleAvatar(
                                       backgroundColor: cLightLemon,
-                                      backgroundImage: NetworkImage(_appState.currentUser.userPhoto!=null?_appState.currentUser.userPhoto:""),
+                                      backgroundImage: NetworkImage(_appState!.currentUser.userPhoto!=null?_appState!.currentUser!.userPhoto!:""),
                                       maxRadius: 40,
                                     );
                                   }
@@ -173,11 +173,11 @@ class _MainDrawer extends State<MainDrawer> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.all(4)),
-                                  Text(_appState.currentUser.userName,style: TextStyle(color: cWhite,fontSize: 18)),
-                                  _appState.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cLightLemon,fontSize: 16),):Row(
+                                  Text(_appState!.currentUser!.userName!,style: TextStyle(color: cWhite,fontSize: 18)),
+                                  _appState!.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cLightLemon,fontSize: 16),):Row(
                                     children: <Widget>[
                                       RatingBar.builder(
-                                        initialRating:  double.parse(_appState.currentUser.userRate!=null?_appState.currentUser.userRate:"0"),
+                                        initialRating:  double.parse(_appState!.currentUser!.userRate!=null?_appState!.currentUser!.userRate!:"0"),
                                         minRating: 1,
                                         direction: Axis.horizontal,
                                         allowHalfRating: true,
@@ -188,7 +188,7 @@ class _MainDrawer extends State<MainDrawer> {
                                           Icons.star,
                                           color: Colors.amber,
                                         ),
-
+onRatingUpdate: (w){},
                                       ),
 
 
@@ -206,7 +206,7 @@ class _MainDrawer extends State<MainDrawer> {
                                       ),
                                     ),
                                     padding: EdgeInsets.only(right: 11,left: 11,top: 6,bottom: 6),
-                                    child: Text(_appState.currentUser.userType=="driver"?"مندوب":_appState.currentUser.userType=="mtger"?"تاجر":"مستخدم",style: TextStyle(color: Colors.white,fontSize: 15),),
+                                    child: Text(_appState!.currentUser.userType=="driver"?"مندوب":_appState!.currentUser.userType=="mtger"?"تاجر":"مستخدم",style: TextStyle(color: Colors.white,fontSize: 15),),
 
                                   )
                                 ],
@@ -227,12 +227,12 @@ class _MainDrawer extends State<MainDrawer> {
 
                     ListTile(
                       leading:Image.asset("assets/images/home.png"),
-                      title: Text(AppLocalizations.of(context).home,
+                      title: Text(AppLocalizations.of(context)!.home,
                         style: TextStyle(
                             color: cWhite,fontSize: 15
                         ), ),
                       onTap: (){
-                        _navigationState.upadateNavigationIndex(0);
+                        _navigationState!.upadateNavigationIndex(0);
                         Navigator.pushReplacementNamed(context, '/navigation');
                       },
                     ),
@@ -240,7 +240,7 @@ class _MainDrawer extends State<MainDrawer> {
 
                     ListTile(
                       leading:Image.asset("assets/images/about.png"),
-                      title: Text(AppLocalizations.of(context).about,
+                      title: Text(AppLocalizations.of(context)!.about,
                         style: TextStyle(
                             color: cWhite,fontSize: 15
                         ), ),
@@ -278,7 +278,7 @@ class _MainDrawer extends State<MainDrawer> {
                       ): Container();
                     }), */
 
-                    _appState.currentUser==null || (_appState.currentUser!=null && _appState.currentUser.userType!="driver")?ListTile(
+                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser.userType!="driver")?ListTile(
                       leading:Image.asset("assets/images/user.png"),
                       title: Text("التسجيل كمندوب",style: TextStyle(
                           color:Colors.white,fontSize: 15
@@ -291,7 +291,7 @@ class _MainDrawer extends State<MainDrawer> {
                       },
                     ):Text("",style: TextStyle(height: 0),),
 
-                    _appState.currentUser==null || (_appState.currentUser!=null && _appState.currentUser.userType!="mtger")?ListTile(
+                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser.userType!="mtger")?ListTile(
                       leading:Image.asset("assets/images/home.png"),
                       title: Text("التسجيل كبائع",style: TextStyle(
                           color: Colors.white,fontSize: 15
@@ -307,7 +307,7 @@ class _MainDrawer extends State<MainDrawer> {
 
                     ListTile(
                       leading:Image.asset("assets/images/about.png"),
-                      title: Text( AppLocalizations.of(context).terms,style: TextStyle(
+                      title: Text( AppLocalizations.of(context)!.terms,style: TextStyle(
                           color:Colors.white,fontSize: 15
                       ), ),
                       onTap: (){
@@ -319,7 +319,7 @@ class _MainDrawer extends State<MainDrawer> {
                     ),
                     ListTile(
                       leading:Image.asset("assets/images/contact.png"),
-                      title: Text( AppLocalizations.of(context).contactUs,style: TextStyle(
+                      title: Text( AppLocalizations.of(context)!.contactUs,style: TextStyle(
                           color: Colors.white,fontSize: 15
                       ), ),
                       onTap: (){
@@ -341,7 +341,7 @@ class _MainDrawer extends State<MainDrawer> {
                           size: 22,
                         ),
                         title: Text(
-                          AppLocalizations.of(context).logOut,
+                          AppLocalizations.of(context)!.logOut,
                           style: TextStyle(
                               color: cWhite,fontSize: 15
                           ),
@@ -352,7 +352,7 @@ class _MainDrawer extends State<MainDrawer> {
                               context: context,
                               builder: (_) {
                                 return LogoutDialog(
-                                  alertMessage: AppLocalizations.of(context).wantToLogout,
+                                  alertMessage: AppLocalizations.of(context)!.wantToLogout,
                                 );
                               });
                         },
@@ -367,7 +367,7 @@ class _MainDrawer extends State<MainDrawer> {
                           ),
                         ),
                         title: Text(
-                            AppLocalizations.of(context).enter,
+                            AppLocalizations.of(context)!.enter,
                             style: TextStyle(
                                 color: cWhite,fontSize: 15
                             )

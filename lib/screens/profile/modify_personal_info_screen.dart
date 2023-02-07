@@ -79,10 +79,10 @@ class _ModifyPersonalInformationScreenState
                           size: 24,
                         ),
                       ),
-                      hintTxt: AppLocalizations.of(context).name,
+                      hintTxt: AppLocalizations.of(context)!.name,
                       validationFunc: (value) {
                         if (value!.trim().length == 0) {
-                          return AppLocalizations.of(context).nameValidation;
+                          return AppLocalizations.of(context)!.nameValidation;
                         }
                         return null;
                       },
@@ -104,10 +104,10 @@ class _ModifyPersonalInformationScreenState
                           size: 24,
                         ),
                       ),
-                      hintTxt: AppLocalizations.of(context).phoneNo,
+                      hintTxt: AppLocalizations.of(context)!.phoneNo,
                       validationFunc: (value) {
                       if (value!.trim().length == 0) {
-                          return AppLocalizations.of(context).phonoNoValidation;
+                          return AppLocalizations.of(context)!.phonoNoValidation;
                         }
                         return null;
                       },
@@ -129,10 +129,10 @@ class _ModifyPersonalInformationScreenState
                           size: 24,
                         ),
                       ),
-                      hintTxt: AppLocalizations.of(context).email,
+                      hintTxt: AppLocalizations.of(context)!.email,
                       validationFunc: (value) {
                         if (!isEmail(value!)) {
-                          return AppLocalizations.of(context).emailValidation;
+                          return AppLocalizations.of(context)!.emailValidation;
                         }
                         return null;
                       },
@@ -224,7 +224,7 @@ class _ModifyPersonalInformationScreenState
                         left: _width * 0.025, right: _width * 0.025),
                   height: 60,
                   child: CustomButton(
-                    btnLbl: AppLocalizations.of(context).save,
+                    btnLbl: AppLocalizations.of(context)!.save,
                     onPressedFunction: () async {
                       if (_formKey.currentState!.validate()) {
                         _progressIndicatorState!.setIsLoading(true);
@@ -292,7 +292,7 @@ class _ModifyPersonalInformationScreenState
             left: 0,
             right: 0,
             child: GradientAppBar(
-              appBarTitle: AppLocalizations.of(context).editInfo,
+              appBarTitle: AppLocalizations.of(context)!.editInfo,
              leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {

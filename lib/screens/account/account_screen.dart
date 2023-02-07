@@ -400,7 +400,7 @@ Widget _buildBodyItem(){
                 left: 0,
                 right: 0,
                 child: GradientAppBar(
-                  appBarTitle:  AppLocalizations.of(context).account,
+                  appBarTitle:  AppLocalizations.of(context)!.account,
 trailing: _appState!.currentUser != null?Container(
   padding: EdgeInsets.only(left: _width*.06,top: _width*.03),
   child: Row(
@@ -424,7 +424,7 @@ trailing: _appState!.currentUser != null?Container(
               context: context,
               builder: (_) {
                 return LogoutDialog(
-                  alertMessage: AppLocalizations.of(context).wantToLogout,
+                  alertMessage: AppLocalizations.of(context)!.wantToLogout,
                 );
               });
         },

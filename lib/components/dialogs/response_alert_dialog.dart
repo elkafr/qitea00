@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ResponseAlertDialog extends StatelessWidget {
-  final String alertTitle;
-  final String alertMessage;
-  final String alertBtn;
-  final Function onPressedAlertBtn; 
+  final String? alertTitle;
+  final String? alertMessage;
+  final String? alertBtn;
+  final Function? onPressedAlertBtn;
   const ResponseAlertDialog(
-      {Key key, this.alertTitle, this.alertMessage, this.alertBtn, this.onPressedAlertBtn})
+      {Key? key, this.alertTitle, this.alertMessage, this.alertBtn, this.onPressedAlertBtn})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class ResponseAlertDialog extends StatelessWidget {
           children: <Widget>[
             Center(
                 child: Text(
-              alertTitle,
-              style: Theme.of(context).textTheme.title,
+              alertTitle!,
+              style: Theme.of(context).textTheme!.title,
             )),
             SizedBox(
               height: 10,
             ),
             Text(
-              alertMessage,
+              alertMessage!,
               style: TextStyle(fontSize: 14),
             ),
             SizedBox(
@@ -42,9 +42,9 @@ class ResponseAlertDialog extends StatelessWidget {
             GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
-                  onPressedAlertBtn();
+                  onPressedAlertBtn!();
                 },
-                child: Text(alertBtn,
+                child: Text(alertBtn!,
                     style: TextStyle(color: Theme.of(context).primaryColor)))
           ],
         ),

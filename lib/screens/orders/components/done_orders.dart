@@ -119,7 +119,7 @@ class _DoneOrdersState extends State<DoneOrders> {
                
           } else {
             return NoData(
-              message: AppLocalizations.of(context).noResults,
+              message: AppLocalizations.of(context)!.noResults,
             );
           }
         } else if (snapshot.hasError) {

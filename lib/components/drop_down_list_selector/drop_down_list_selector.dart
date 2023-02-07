@@ -4,16 +4,16 @@ import 'package:qitea/utils/app_colors.dart';
 
 
 class DropDownListSelector extends StatefulWidget {
-  final List<dynamic> dropDownList;
-  final String hint;
+  final List<dynamic>? dropDownList;
+  final String? hint;
   final dynamic value;
-  final Function onChangeFunc;
-  final bool elementHasDefaultMargin;
-   final Function validationFunc;
-   final bool availableErrorMsg;
+  final Function? onChangeFunc;
+  final bool? elementHasDefaultMargin;
+   final Function? validationFunc;
+   final bool? availableErrorMsg;
 
   const DropDownListSelector(
-      {Key key,
+      {Key? key,
       this.dropDownList,
       this.hint,
       this.value,
@@ -30,7 +30,7 @@ class _DropDownListSelectorState extends State<DropDownListSelector> {
   @override
   Widget build(BuildContext context) {
     return  FormField<String>(
-      validator: widget.validationFunc,
+      validator: widget!.validationFunc as String Function(dynamic)?,
    
       builder: (
           FormFieldState<String> state,
@@ -42,7 +42,7 @@ class _DropDownListSelectorState extends State<DropDownListSelector> {
         height: 60,
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * 0.03),
-        margin: widget.elementHasDefaultMargin
+        margin: widget!.elementHasDefaultMargin!
             ? EdgeInsets.only(right:  MediaQuery.of(context).size.width * 0.05,left:  MediaQuery.of(context).size.width * 0.05)
             : EdgeInsets.symmetric(horizontal: 0),
         decoration: BoxDecoration(
@@ -53,7 +53,7 @@ class _DropDownListSelectorState extends State<DropDownListSelector> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[300],
+              color: Colors.grey.withOpacity(300),
               blurRadius: 25.0, // has the effect of softening the shadow
               spreadRadius: 5.0, // has the effect of extending the shadow
               offset: Offset(
@@ -69,7 +69,7 @@ class _DropDownListSelectorState extends State<DropDownListSelector> {
             isExpanded: true,
 
             hint: Text(
-              widget.hint,
+              widget.hint!,
               style: TextStyle(
                   color: cHintColor,
                   fontSize: 14,
@@ -82,19 +82,19 @@ class _DropDownListSelectorState extends State<DropDownListSelector> {
                 color: cBlack,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'segoeui'),
-            items: widget.dropDownList,
-            onChanged: widget.onChangeFunc,
+            items: widget.dropDownList as List<DropdownMenuItem<dynamic>>?,
+            onChanged: widget.onChangeFunc as void Function(dynamic)?,
             value: widget.value,
           ),
     )),
 
-           widget.availableErrorMsg ? Container(
+           widget!.availableErrorMsg! ? Container(
               height: 10,
-              margin:  widget.elementHasDefaultMargin
+              margin:  widget!.elementHasDefaultMargin!
             ? EdgeInsets.only(right:  MediaQuery.of(context).size.width * 0.05,left:  MediaQuery.of(context).size.width * 0.05)
             : EdgeInsets.symmetric(horizontal: 0),
               child: Text(
-                state.hasError ? state.errorText : '',
+                state.hasError ? state!.errorText! : '',
                 style:
                     TextStyle(color: Colors.redAccent.shade700, fontSize: 12.0),
               ),

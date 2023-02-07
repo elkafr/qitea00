@@ -6,8 +6,8 @@ import 'package:qitea/components/app_repo/progress_indicator_state.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class ProgressIndicatorComponent extends StatelessWidget {
-  final bool isLoading;
-  const ProgressIndicatorComponent({Key key, this.isLoading}) : super(key: key);
+  final bool? isLoading;
+  const ProgressIndicatorComponent({Key? key, this.isLoading}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<ProgressIndicatorState>(

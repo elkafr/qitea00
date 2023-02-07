@@ -53,14 +53,14 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                       
                     imagePath: 'assets/images/key.png',
                     iconIsImage: true,
-                        hintTxt: AppLocalizations.of(context).oldPassword,
+                        hintTxt: AppLocalizations.of(context)!.oldPassword,
                         inputData: TextInputType.text,
                         onChangedFunc: (String text) {
                           _oldUserPassword = text.toString();
                         },
                         validationFunc: (value) {
                          if (value!.trim().length < 4) {
-                            return AppLocalizations.of(context).passwordValidation;
+                            return AppLocalizations.of(context)!.passwordValidation;
                           }
                           return null;
                         })),
@@ -75,14 +75,14 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                           isPassword: true,
                     imagePath: 'assets/images/key.png',
                     iconIsImage: true,
-                        hintTxt: AppLocalizations.of(context).newPassword,
+                        hintTxt: AppLocalizations.of(context)!.newPassword,
                         inputData: TextInputType.text,
                         onChangedFunc: (String text) {
                           _newUserPassword = text.toString();
                         },
                         validationFunc: (value) {
                           if (value!.trim().length < 4) {
-                            return AppLocalizations.of(context).passwordValidation;
+                            return AppLocalizations.of(context)!.passwordValidation;
                           }
                           return null;
                         })),
@@ -97,14 +97,14 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                         isPassword: true,
                     imagePath: 'assets/images/key.png',
                     iconIsImage: true,
-                        hintTxt: AppLocalizations.of(context).confirmNewPassword,
+                        hintTxt: AppLocalizations.of(context)!.confirmNewPassword,
                         inputData: TextInputType.text,
                         onChangedFunc: (String text) {},
                         validationFunc: (value) {
                           if (value!.trim().length < 4) {
-                            return AppLocalizations.of(context).passwordValidation;
+                            return AppLocalizations.of(context)!.passwordValidation;
                           } else if (value != _newUserPassword) {
-                            return  AppLocalizations.of(context).passwordNotIdentical;
+                            return  AppLocalizations.of(context)!.passwordNotIdentical;
                           }
                           return null;
                         })),
@@ -115,7 +115,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                       left: _width * 0.025, right: _width * 0.025),
                   height: 60,
                   child: CustomButton(
-                    btnLbl: AppLocalizations.of(context).save,
+                    btnLbl: AppLocalizations.of(context)!.save,
                     onPressedFunction: () async {
                       if (_formKey.currentState!.validate()) {
                         _progressIndicatorState!.setIsLoading(true);
@@ -163,7 +163,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
             left: 0,
             right: 0,
             child: GradientAppBar(
-              appBarTitle: AppLocalizations.of(context).editPassword,
+              appBarTitle: AppLocalizations.of(context)!.editPassword,
               leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {

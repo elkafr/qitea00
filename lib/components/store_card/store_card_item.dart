@@ -9,9 +9,9 @@ import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class StoreCardItem extends StatefulWidget {
-  final Store store;
+  final Store? store;
 
-  const StoreCardItem({Key key, this.store}) : super(key: key);
+  const StoreCardItem({Key? key, this.store}) : super(key: key);
   @override
   _StoreCardItemState createState() => _StoreCardItemState();
 }
@@ -34,7 +34,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                   child: ClipOval(
                     child: Image.network(
-                      widget.store.mtgerPhoto,
+                      widget.store!.mtgerPhoto!,
                       width: constraints.maxWidth * 0.2,
                       height: constraints.maxHeight* 0.8,
                       fit: BoxFit.fill,
@@ -61,7 +61,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                           Image.asset("assets/images/star.png"),
                           Padding(padding: EdgeInsets.all(3)),
                           Text(
-                            widget.store.mtgerRate,
+                            widget.store!.mtgerRate!,
                             style:
                             TextStyle(color: cText, fontSize: 13),
                           )
@@ -72,7 +72,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                       margin: EdgeInsets.only(top: 3),
                       height: constraints.maxHeight * 0.23,
                       child: Text(
-                        widget.store.mtgerName,
+                        widget.store!.mtgerName!,
                         style:
                         TextStyle(fontSize: 15,color: cText),
                       ),
@@ -81,7 +81,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                       margin: EdgeInsets.only(bottom: 3),
                       height: constraints.maxHeight * 0.2,
                       child:  Text(
-                        widget.store.mtgerAdress,
+                        widget.store!.mtgerAdress!,
                         style: TextStyle(fontSize: 13,color: cHintColor),
                       ),
                     ),
@@ -90,7 +90,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                         Image.asset("assets/images/km.png"),
                         Padding(padding: EdgeInsets.all(2)),
                         Text(
-                          widget.store.distance.toString()+" كم",
+                          widget.store!.distance!.toString()+" كم",
                           style:
                           TextStyle(fontSize: 14, color: cText),
                         ),
@@ -100,7 +100,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                         Image.asset("assets/images/time.png"),
                         Padding(padding: EdgeInsets.all(2)),
                         Text(
-                          widget.store.fromTime.toString()+"-"+widget.store.toTime.toString(),
+                          widget.store!.fromTime!.toString()+"-"+widget.store!.toTime.toString(),
                           style:
                           TextStyle(fontSize: 14, color: cText),
                         ),
@@ -109,7 +109,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                         Image.asset("assets/images/tawsil.png"),
                         Padding(padding: EdgeInsets.all(2)),
                         Text(
-                          widget.store.deliveryPrice.toString()+" SR",
+                          widget.store!.deliveryPrice.toString()+" SR",
                           style:
                           TextStyle(fontSize: 14, color: cText),
                         )
@@ -137,10 +137,10 @@ class _StoreCardItemState extends State<StoreCardItem> {
                     )
                   : Consumer<StoreState>(builder: (context, storeState, child) {
                       print(
-                          'id ${widget.store.mtgerId} value ${storeState.isFavouriteList[widget.store.mtgerId]}');
+                          'id ${widget.store!.mtgerId} value ${storeState.isFavouriteList[widget.store!.mtgerId]}');
                       return IconButton(
                           icon: storeState
-                                      .isFavouriteList[widget.store.mtgerId] ==
+                                      .isFavouriteList[widget.store!.mtgerId] ==
                                   1
                               ? SpinKitPumpingHeart(
                                   color: cPrimaryColor,
@@ -152,24 +152,24 @@ class _StoreCardItemState extends State<StoreCardItem> {
                                 ),
                           onPressed: () async {
                             print(
-                                ' before :value ${storeState.isFavouriteList[widget.store.mtgerId]}');
+                                ' before :value ${storeState.isFavouriteList[widget.store!.mtgerId]}');
                           
                         
                             print(
-                                ' after :value ${storeState.isFavouriteList[widget.store.mtgerId]}');
+                                ' after :value ${storeState.isFavouriteList[widget.store!.mtgerId]}');
                       if (storeState
-                                    .isFavouriteList[widget.store.mtgerId] ==
+                                    .isFavouriteList[widget.store!.mtgerId] ==
                                 1) {
                               print('you should delete');
                               await _services.get(
-                                  'https://qtaapp.com/api/delete_save_ads?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store.mtgerId}');
+                                  'https://qtaapp.com/api/delete_save_ads?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store!.mtgerId}');
                             } else {
                               print('you should add');
                               await _services.get(
-                                  'https://qtaapp.com/api/add_fav?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store.mtgerId}');
+                                  'https://qtaapp.com/api/add_fav?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store!.mtgerId}');
                             }
                                 storeState.updateChangesOnFavouriteList(
-                                widget.store.mtgerId);
+                                widget.store!.mtgerId!);
       
                           });
                     })),
@@ -187,7 +187,7 @@ class _StoreCardItemState extends State<StoreCardItem> {
                       bottomRight: Radius.circular(4.00),
                     ),
                     border: Border.all(color: cPrimaryColor)),
-                child: Text(widget.store.state),
+                child: Text(widget.store!.state!),
               ),
             left: _appState.currentLang == 'ar' ? 0 : constraints.maxWidth *0.82,
             right: _appState.currentLang != 'ar' ? 0 : constraints.maxWidth *0.82,

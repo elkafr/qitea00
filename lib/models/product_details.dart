@@ -6,7 +6,7 @@ class ProductDetails {
     String? adsMtgerContent;
     bool? isAddToCart;
     String? adsMtgerPhoto;
-    List<MtgerDetail> mtgerDetails;
+    List<MtgerDetail>? mtgerDetails;
 
     ProductDetails({
         this.adsMtgerId,
@@ -38,14 +38,14 @@ class ProductDetails {
         "ads_mtger_content": adsMtgerContent,
         "is_add_to_cart": isAddToCart,
         "ads_mtger_photo": adsMtgerPhoto,
-        "mtger_details": List<dynamic>.from(mtgerDetails.map((x) => x.toJson())),
+        "mtger_details": List<dynamic>.from(mtgerDetails!.map((x) => x.toJson())),
     };
 }
 
 class MtgerDetail {
-    String id;
-    String name;
-    String photo;
+    String? id;
+    String? name;
+    String? photo;
 
     MtgerDetail({
         this.id,

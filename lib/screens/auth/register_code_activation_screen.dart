@@ -29,11 +29,11 @@ class RegisterCodeActivationScreen extends StatefulWidget {
 class _RegisterCodeActivationScreenState
     extends State<RegisterCodeActivationScreen> with TickerProviderStateMixin {
   String _activationCode = '';
-  double _height, _width;
+  double _height=0, _width=0;
   Services _services = Services();
-  AppState _appState;
-  NavigationState _navigationState;
-  ProgressIndicatorState _progressIndicatorState;
+  AppState? _appState;
+  NavigationState? _navigationState;
+  ProgressIndicatorState? _progressIndicatorState;
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   Widget _buildPinView() {
@@ -79,7 +79,7 @@ class _RegisterCodeActivationScreenState
                 left: _width * 0.1, right: _width * 0.1, top: _height * 0.05),
             child: Center(
                 child: Text(
-              AppLocalizations.of(context).enterCodeToActivateAccount,
+              AppLocalizations.of(context)!.enterCodeToActivateAccount,
               style: TextStyle(
                 color: cBlack,
                 fontSize: 17
@@ -122,14 +122,14 @@ class _RegisterCodeActivationScreenState
 
                  _firebaseMessaging.getToken().then((token) async {
                    //       print('mobile token $token');
-                   _progressIndicatorState.setIsLoading(true);
+                   _progressIndicatorState!.setIsLoading(true);
                    var results = await _services.get(
-                     '${Utils.SENDCODE_URL}?user_phone=${_appState.phoneSend}&token=${_appState.tokenSend}&lang=${_appState.currentLang}&key=$cKey',
+                     '${Utils.SENDCODE_URL}?user_phone=${_appState!.phoneSend}&token=${_appState!.tokenSend}&lang=${_appState!.currentLang}&key=$cKey',
                    );
-                   _progressIndicatorState.setIsLoading(false);
+                   _progressIndicatorState!.setIsLoading(false);
                    if (results['response'] == '1') {
                      showToast(results['message'], context);
-                     _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
+                     _appState!.setCurrentUser(User(userId:results['user_id'].toString() ));
                      // Navigator.pushNamed(context, '/register_code_activation_screen' );
                    } else {
                      showErrorDialog(results['message'], context);
@@ -155,18 +155,18 @@ class _RegisterCodeActivationScreenState
               horizontal: _width * 0.01,
             ),
             child: CustomButton(
-                btnLbl: AppLocalizations.of(context).activation,
+                btnLbl: AppLocalizations.of(context)!.activation,
                 btnColor: cLightLemon,
                 onPressedFunction: () async {
-                  _progressIndicatorState.setIsLoading(true);
+                  _progressIndicatorState!.setIsLoading(true);
                   var results = await _services.get(
-                      'https://qtaapp.com/api/active_code?user_id=${_appState.phone111}&user_code=$_activationCode&lang=${_appState.currentLang}');
-                  _progressIndicatorState.setIsLoading(false);
+                      'https://qtaapp.com/api/active_code?user_id=${_appState!.phone111}&user_code=$_activationCode&lang=${_appState!.currentLang}');
+                  _progressIndicatorState!.setIsLoading(false);
                   if (results['response'] == '1') {
 
-                    _appState.setCurrentUser(
+                    _appState!.setCurrentUser(
                         User.fromJson(results['user_details']));
-                    _navigationState.upadateNavigationIndex(0);
+                    _navigationState!.upadateNavigationIndex(0);
                     Navigator.pushReplacementNamed(context, '/navigation');
                     showToast(results['message'], context);
 
@@ -208,7 +208,7 @@ class _RegisterCodeActivationScreenState
                 left: 0,
                 right: 0,
                 child: GradientAppBar(
-                  appBarTitle: AppLocalizations.of(context).activateCode,
+                  appBarTitle: AppLocalizations.of(context)!.activateCode,
                 
                   leading: IconButton(
                     icon: Image.asset(

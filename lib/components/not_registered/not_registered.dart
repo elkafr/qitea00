@@ -29,7 +29,7 @@ class NotRegistered extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: height*0.02),
             child: Text(
-             AppLocalizations.of(context).firstLogin,
+             AppLocalizations.of(context)!.firstLogin,
               style: TextStyle(
                   color: cBlack, fontWeight: FontWeight.w400, fontSize: 15 ,
                   fontFamily: 'segoeui'),
@@ -42,7 +42,7 @@ class NotRegistered extends StatelessWidget {
                 right: width * 0.15),
             height: 60,
             child: CustomButton(
-                btnLbl: AppLocalizations.of(context).login,
+                btnLbl: AppLocalizations.of(context)!.login,
                 onPressedFunction: () async {
                   Navigator.pushNamed(context, '/login_screen');
                 }),

@@ -84,7 +84,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   });
             } else {
               return NoData(
-                message:  AppLocalizations.of(context).noResults,
+                message:  AppLocalizations.of(context)!.noResults,
               );
             }
           } else if (snapshot.hasError) {
@@ -147,7 +147,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                 left: 0,
                 right: 0,
                 child: GradientAppBar(
-                  appBarTitle: AppLocalizations.of(context).favourite,
+                  appBarTitle: AppLocalizations.of(context)!.favourite,
                 
                   trailing: IconButton(
                     icon: Icon(

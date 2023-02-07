@@ -6,8 +6,7 @@ import 'package:qitea/screens/auth/register_screen.dart';
 import 'package:qitea/screens/bottom_navigation.dart/bottom_navigation_bar.dart';
 import 'package:qitea/screens/cart/cart_screen.dart';
 
-import 'package:qitea/screens/intro/our_vision.dart';
-import 'package:qitea/screens/intro/torf_city.dart';
+
 import 'package:qitea/screens/location/addLocation_screen.dart';
 import 'package:qitea/screens/notifications/notifications_screen.dart';
 
@@ -22,8 +21,6 @@ import 'package:qitea/screens/store/store_screen.dart';
 
 final routes = {
   '/': (context) => SplashScreen(),
-  '/our_vision':(context) => OurVision(),
-  '/torf_city' :(context) => TorfCity(),
   '/login_screen':(context) => LoginScreen(),
   '/password_recovery_screen':(context) => PasswordRecoveryScreen(),
   '/register_screen':(context) => RegisterScreen(),

@@ -4,11 +4,11 @@ import 'package:qitea/utils/app_colors.dart';
 
 class GradientAppBar extends StatelessWidget {
 
-  final String appBarTitle;
-  final Widget leading; 
-  final Widget trailing;
+  final String? appBarTitle;
+  final Widget? leading;
+  final Widget? trailing;
 
-  const GradientAppBar({Key key, this.appBarTitle, this.leading, this.trailing}) : super(key: key);
+  const GradientAppBar({Key? key, this.appBarTitle, this.leading, this.trailing}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return 
@@ -21,7 +21,7 @@ class GradientAppBar extends StatelessWidget {
 
 
           child: Center(
-            child: Text(appBarTitle,
+            child: Text(appBarTitle!,
              style: Theme.of(context).textTheme.display1
          ),
           ),

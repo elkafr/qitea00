@@ -50,7 +50,7 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                         color: cWhite),
-                    btnLbl: AppLocalizations.of(context).ok,
+                    btnLbl: AppLocalizations.of(context)!.ok,
                     onPressedFunction: () async {
                       widget.onPressedConfirmation!();
                     }),
@@ -67,7 +67,7 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
                           fontWeight: FontWeight.w400,
                           color: cPrimaryColor),
 
-                      btnLbl: AppLocalizations.of(context).cancel,
+                      btnLbl: AppLocalizations.of(context)!.cancel,
                       btnColor: cWhite,
                       onPressedFunction: () {
                         Navigator.pop(context);

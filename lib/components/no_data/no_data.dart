@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class NoData extends StatelessWidget {
-  final String message;
+  final String? message;
 
-  const NoData({Key key, this.message}) : super(key: key);
+  const NoData({Key? key, this.message}) : super(key: key);
   @override
   Widget build(BuildContext context) {
        final height =  MediaQuery.of(context).size.height;
@@ -23,7 +23,7 @@ class NoData extends StatelessWidget {
                           Container(
                               margin: EdgeInsets.only(top: height*0.02),
                                                       child: Text(
-                            message,
+                            message!,
                               style: TextStyle(
                                   color: cBlack,
                                   fontWeight: FontWeight.w400,

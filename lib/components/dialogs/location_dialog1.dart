@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
 import 'package:qitea/components/buttons/custom_button.dart';
@@ -180,10 +181,10 @@ class _LocationDialog1State extends State<LocationDialog1> {
   //              final coordinates = new Coordinates(
   //                _locationState.locationLatitude, _locationState
   //  .locationlongitude);
-   List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
+   List<Placemark> placemark = await placemarkFromCoordinates(
                  _locationState.locationLatitude, _locationState
    .locationlongitude);
-  _locationState.setCurrentAddress(placemark[0].name);
+  _locationState.setCurrentAddress(placemark[0].name!);
 
       //   var addresses = await Geocoder.local.findAddressesFromCoordinates(
       //     coordinates);
@@ -306,11 +307,11 @@ btnColor: cLightLemon,
             print(_position.target.longitude);
             _locationState.setLocationLatitude(_position.target.latitude);
             _locationState.setLocationlongitude(_position.target.longitude);
-               List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
+               List<Placemark> placemark = await placemarkFromCoordinates(
                  _locationState.locationLatitude, _locationState
    .locationlongitude);
-  _locationState.setCurrentAddress(placemark[0].name + '  ' + placemark[0].administrativeArea + ' '
-   + placemark[0].country);
+  _locationState.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
+   + placemark[0].country!);
   //              final coordinates = new Coordinates(
   //                _locationState.locationLatitude, _locationState
   //  .locationlongitude);

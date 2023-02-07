@@ -126,7 +126,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         padding: EdgeInsets.only(right: 10, left: 10),
                         child: Text(
-                          AppLocalizations.of(context).productDetails,
+                          AppLocalizations.of(context)!.productDetails,
                           style: TextStyle(
                               fontSize: 16,
                               color: cPrimaryColor,
@@ -136,7 +136,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         padding: EdgeInsets.only(right: 10, left: 10,top: 5),
                         child: Text(
-                         AppLocalizations.of(context).allProductDetails,
+                         AppLocalizations.of(context)!.allProductDetails,
                           style:
                               TextStyle(color: Color(0xffC5C5C5), fontSize: 13),
                         ),
@@ -247,7 +247,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                    Container(
                                      margin: EdgeInsets.symmetric(horizontal: 2),
                                      child: Text(
-                                       AppLocalizations.of(context).addToCart,
+                                       AppLocalizations.of(context)!.addToCart,
                                        style: TextStyle(
                                            color: cWhite,
                                            fontSize: 14,
@@ -276,7 +276,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                )),
                                            Container(
                                              child: Text(
-                                               AppLocalizations.of(context).sr,
+                                               AppLocalizations.of(context)!.sr,
                                                style: TextStyle(
                                                    color: cWhite,
                                                    fontSize: 13,

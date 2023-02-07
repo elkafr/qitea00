@@ -512,8 +512,8 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                   
                   hintTxt: "اسم المندوب",
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).nameValidation;
+                    if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.nameValidation;
                     }
                     return null;
                   },
@@ -532,13 +532,13 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
               iconIsImage: true,
                   suffixIcon:  Image.asset("assets/images/sa.png"),
               imagePath: 'assets/images/call.png', 
-              hintTxt: AppLocalizations.of(context).phoneNo,
+              hintTxt: AppLocalizations.of(context)!.phoneNo,
               validationFunc: (value) {
-               if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).phonoNoValidation;
+               if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.phonoNoValidation;
                     }
 
-               if (value.trim().length != 9) {
+               if (value!.trim().length != 9) {
                  return "يجب ان يكون  رقم الهاتف مكون من 9 ارقايم ويبدء ب 5 ";
                }
                 return null;
@@ -556,10 +556,10 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                 ),
                 child: CustomTextFormField(
                  prefixIcon:  Icon(Icons.mail),
-                  hintTxt: AppLocalizations.of(context).email,
+                  hintTxt: AppLocalizations.of(context)!.email,
                   validationFunc: (value) {
-                    if (!isEmail(value)) {
-                      return AppLocalizations.of(context).emailValidation;
+                    if (!isEmail(value!)) {
+                      return AppLocalizations.of(context)!.emailValidation;
                     }
                     return null;
                   },
@@ -631,11 +631,11 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
 
                   hintTxt: "رقم الهوية",
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
+                    if (value!.trim().length == 0) {
                       return "من فضلك ادخل رقم الهوية";
                     }
 
-                    if (value.trim().length !=10) {
+                    if (value!.trim().length !=10) {
                       return "رقم الهوية يجب ان يكون 10 ارقام فقط";
                     }
                     return null;
@@ -915,14 +915,14 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                        isPassword: true,
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
-                    hintTxt: AppLocalizations.of(context).password,
+                    hintTxt: AppLocalizations.of(context)!.password,
                     inputData: TextInputType.text,
                     onChangedFunc: (String text) {
                       _userPassword = text.toString();
                     },
                     validationFunc: (value) {
-                      if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                      if (value!.trim().length < 4) {
+                        return AppLocalizations.of(context)!.passwordValidation;
                       }
                       return null;
                     })),
@@ -937,15 +937,15 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                     isPassword: true,
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
-                    hintTxt: AppLocalizations.of(context).passwordVerify,
+                    hintTxt: AppLocalizations.of(context)!.passwordVerify,
                     inputData: TextInputType.text,
                  
                     validationFunc: (value) {
-                    if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                    if (value!.trim().length < 4) {
+                        return AppLocalizations.of(context)!.passwordValidation;
                   
                       } else if (value != _userPassword) {
-                        return AppLocalizations.of(context).passwordNotIdentical;
+                        return AppLocalizations.of(context)!.passwordNotIdentical;
                       }
                       return null;
                     })),
@@ -1004,9 +1004,9 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                                 fontFamily: 'segoeui',
                                 color: Colors.black),
                             children: <TextSpan>[
-                              new TextSpan(text: AppLocalizations.of(context).iAccept),
+                              new TextSpan(text: AppLocalizations.of(context)!.iAccept),
                               new TextSpan(
-                                  text: AppLocalizations.of(context).terms,
+                                  text: AppLocalizations.of(context)!.terms,
                                   style: new TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontWeight: FontWeight.bold,
@@ -1024,7 +1024,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
               height: 60,
               child: CustomButton(
                 btnColor: cLightLemon,
-                btnLbl: AppLocalizations.of(context).register,
+                btnLbl: AppLocalizations.of(context)!.register,
                 onPressedFunction: () async {
                   if (_formKey.currentState!.validate() &
                   checkDriverRegisterValidation(context,
@@ -1138,7 +1138,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
 
 
                     } else {
-                      showErrorDialog(AppLocalizations.of(context).acceptTerms, context);
+                      showErrorDialog(AppLocalizations.of(context)!.acceptTerms, context);
                     }
                   }
                 },

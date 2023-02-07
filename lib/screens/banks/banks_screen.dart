@@ -173,7 +173,7 @@ class _BanksScreenState extends State<BanksScreen> {
                   });
             } else {
               return NoData(
-                message:  AppLocalizations.of(context).noResults,
+                message:  AppLocalizations.of(context)!.noResults,
               );
             }
           } else if (snapshot.hasError) {

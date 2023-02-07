@@ -1512,7 +1512,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                           ),
                           child: CustomButton(
                             btnColor: cLightLemon,
-                              btnLbl: AppLocalizations.of(context).send,
+                              btnLbl: AppLocalizations.of(context)!.send,
                               onPressedFunction: () async {
 
 
