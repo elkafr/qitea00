@@ -254,8 +254,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
 
           BottomNavigationBarItem(
-            icon: _navigationState.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
-            title:  (_appState.currentUser!=null)?Padding(
+            icon: _navigationState!.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
+            title:  (_appState!.currentUser!=null)?Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: FutureBuilder<String>(
                     future: Provider.of<AppState>(context,

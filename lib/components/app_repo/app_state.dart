@@ -6,7 +6,7 @@ import 'package:qitea/services/access_api.dart';
 class AppState extends ChangeNotifier {
   User? _currentUser;
   Services _services = Services();
-  void setCurrentUser(User currentUser) {
+  void setCurrentUser(User? currentUser) {
     _currentUser = currentUser;
     notifyListeners();
   }

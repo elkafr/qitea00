@@ -143,11 +143,11 @@ class LocationDialog1 extends StatefulWidget {
 class _LocationDialog1State extends State<LocationDialog1> {
     Completer<GoogleMapController> _mapController = Completer();
   Set<Marker> _markers = Set();
-    LocationState _locationState;
-    ProgressIndicatorState _progressIndicatorState;
-    AppState _appState;
+    LocationState? _locationState;
+    ProgressIndicatorState? _progressIndicatorState;
+    AppState? _appState;
     Services _services = Services();
-     Marker _marker;
+     Marker? _marker;
     bool _initialRun = true;
 
     @override
@@ -176,15 +176,15 @@ class _LocationDialog1State extends State<LocationDialog1> {
            print('ismail');
             print(value.latitude);
             print(value.longitude);
-            _locationState.setLocationLatitude(value.latitude);
-            _locationState.setLocationlongitude(value.longitude);
+            _locationState?.setLocationLatitude(value.latitude);
+            _locationState?.setLocationlongitude(value.longitude);
   //              final coordinates = new Coordinates(
   //                _locationState.locationLatitude, _locationState
   //  .locationlongitude);
    List<Placemark> placemark = await placemarkFromCoordinates(
-                 _locationState.locationLatitude, _locationState
+                 _locationState!.locationLatitude, _locationState!
    .locationlongitude);
-  _locationState.setCurrentAddress(placemark[0].name!);
+  _locationState!.setCurrentAddress(placemark[0].name!);
 
       //   var addresses = await Geocoder.local.findAddressesFromCoordinates(
       //     coordinates);
@@ -194,11 +194,11 @@ class _LocationDialog1State extends State<LocationDialog1> {
           }),
         markerId: MarkerId('my marker'),
         // infoWindow: InfoWindow(title: widget.address),
-         position: LatLng(_locationState.locationLatitude, 
-         _locationState.locationlongitude),
+         position: LatLng(_locationState!.locationLatitude,
+         _locationState!.locationlongitude),
          flat: true
         );
-   _markers.add( _marker);
+   _markers.add( _marker!);
       
     return  LayoutBuilder(builder: (context,constraints){
  return AlertDialog(
@@ -236,8 +236,8 @@ class _LocationDialog1State extends State<LocationDialog1> {
         mapType: MapType.normal,
         // myLocationEnabled: true,
         initialCameraPosition: CameraPosition(
-            target: LatLng(_locationState.locationLatitude,
-                _locationState.locationlongitude),
+            target: LatLng(_locationState!.locationLatitude,
+                _locationState!.locationlongitude),
             zoom: 12),
         onMapCreated: (GoogleMapController controller) {
           _mapController.complete(controller);
@@ -247,7 +247,7 @@ class _LocationDialog1State extends State<LocationDialog1> {
              ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-              child: Text(_locationState.address,style: TextStyle(
+              child: Text(_locationState!.address,style: TextStyle(
                 height: 1.5,
                color: cPrimaryColor,fontSize: 13,fontWeight: FontWeight.w400
              )),
@@ -259,10 +259,10 @@ btnColor: cLightLemon,
                   btnLbl:"تاكيد",
                   onPressedFunction: () async {
                     Navigator.pop(context);
-                    _progressIndicatorState.setIsLoading(true);
+                    _progressIndicatorState!.setIsLoading(true);
                     var results = await _services.get(
-                        'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState.currentUser.userId}&request_cartt=${_appState.currentOfferCartt}&lang=${_appState.currentLang}');
-                    _progressIndicatorState.setIsLoading(false);
+                        'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState!.currentUser.userId}&request_cartt=${_appState!.currentOfferCartt}&lang=${_appState!.currentLang}');
+                    _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                       print(results['message']);
                       print(results['message']);
@@ -305,12 +305,12 @@ btnColor: cLightLemon,
     );
      print(_position.target.latitude);
             print(_position.target.longitude);
-            _locationState.setLocationLatitude(_position.target.latitude);
-            _locationState.setLocationlongitude(_position.target.longitude);
+            _locationState!.setLocationLatitude(_position.target.latitude);
+            _locationState!.setLocationlongitude(_position.target.longitude);
                List<Placemark> placemark = await placemarkFromCoordinates(
-                 _locationState.locationLatitude, _locationState
+                 _locationState!.locationLatitude, _locationState!
    .locationlongitude);
-  _locationState.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
+  _locationState!.setCurrentAddress(placemark[0].name! + '  ' + placemark[0].administrativeArea! + ' '
    + placemark[0].country!);
   //              final coordinates = new Coordinates(
   //                _locationState.locationLatitude, _locationState
@@ -319,7 +319,7 @@ btnColor: cLightLemon,
   //         coordinates);
   //       var first = addresses.first;
   //     _locationState.setCurrentAddress(first.addressLine);
-      print(_locationState.address);
+      print(_locationState!.address);
       if (!mounted) return;
     setState(() {});
   }

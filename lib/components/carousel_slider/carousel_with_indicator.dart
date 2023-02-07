@@ -32,12 +32,24 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   Widget build(BuildContext context) {
     return Stack(children: [
       CarouselSlider(
-        height: 184,
+
+
+
+        options: CarouselOptions(
+          height: 184,
           autoPlay: true,
+          onPageChanged:
+              (int index, CarouselPageChangedReason changeReason) {
+            setState(() {
+              _current = index;
+            });
+          },
+          enlargeCenterPage: true,
           viewportFraction: 1.0,
-           aspectRatio: MediaQuery.of(context).size.aspectRatio,
+          aspectRatio: MediaQuery.of(context).size.aspectRatio,
+        ),
           items: map<Widget>(
-            widget.imgList,
+            widget.imgList!,
             (index, i) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
@@ -52,11 +64,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
               );
             },
           ).toList(),
-          onPageChanged: (index) {
-            setState(() {
-              _current = index;
-            });
-          },
+
         ),
     
       Positioned(
@@ -65,7 +73,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: map<Widget>(
-            widget.imgList,
+            widget!.imgList!,
             (index, url) {
               // return   Container(
               //   alignment: Alignment.center,

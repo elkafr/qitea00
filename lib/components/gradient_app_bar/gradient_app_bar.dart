@@ -29,12 +29,12 @@ class GradientAppBar extends StatelessWidget {
         Positioned(
          
           right: 0,
-          child: leading!= null ? leading : Container(),
+          child: leading!= null ? leading! : Container(),
         )
 , 
 Positioned(
   left: 0,
-  child:  trailing != null ? trailing : Container(),
+  child:  trailing != null ? trailing! : Container(),
 
 )
         //  IconButton(

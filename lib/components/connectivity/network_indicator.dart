@@ -93,7 +93,7 @@ class _NetworkIndicatorState extends State<NetworkIndicator> {
           final appBar = AppBar(
               backgroundColor: Theme.of(context).primaryColor,
               title: Text(
-                AppLocalizations.of(context).aouonTuraif,
+                AppLocalizations.of(context)!.aouonTuraif,
                 style: TextStyle(
                     color: Color(0xffFFFFFF),
                     fontFamily: 'segoeui',

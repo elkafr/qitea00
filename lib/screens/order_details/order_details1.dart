@@ -2371,7 +2371,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                     Alignment
                                                                         .center,
                                                                 child: snapshot
-                                                                            .data[
+                                                                            .data![
                                                                                 index]
                                                                             .requestPrice1Offer1Act ==
                                                                         0
@@ -2632,7 +2632,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     SizedBox(
                                                       height: _width * .02,
                                                     ),
-                                                    snapshot.data[index]
+                                                    snapshot.data![index]
                                                                 .requestPrice1Offer3 !=
                                                             0
                                                         ? Row(
