@@ -523,7 +523,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   Widget _buildBodyItem(Order order) {
     print("333333333333333333333333");
-    print(_appState.currentOfferDriver);
+    print(_appState!.currentOfferDriver);
     print("333333333333333333333333");
 
     return SingleChildScrollView(
