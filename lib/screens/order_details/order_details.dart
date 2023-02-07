@@ -601,7 +601,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       horizontal: _width * 0.04,
                                       vertical: _height * 0.01),
                                   child: Text(
-                                    order.carttMarkaName,
+                                    order.carttMarkaName!,
                                     style: TextStyle(
                                         fontSize: 15,
                                         color: cOmarColor,
@@ -1024,6 +1024,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         Icons.star,
                                         color: Colors.amber,
                                       ),
+                                      onRatingUpdate: (d){},
                                     ),
                                   ],
                                 )
@@ -1350,6 +1351,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 Icons.star,
                                 color: Colors.amber,
                               ),
+                              onRatingUpdate: (c){},
                             ),
                           ],
                         )
@@ -1542,7 +1544,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             width: 2, height: 35, color: Colors.grey[200]),
                         Row(
                           children: <Widget>[
-                            Text(order.carttPrice,
+                            Text(order.carttPrice!,
                                 style: TextStyle(color: cPrimaryColor)),
                             Padding(padding: EdgeInsets.all(3)),
                             Text(
@@ -1591,7 +1593,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             width: 2, height: 35, color: Colors.grey[200]),
                         Row(
                           children: <Widget>[
-                            Text(order.carttPrice1,
+                            Text(order.carttPrice1!,
                                 style: TextStyle(color: cPrimaryColor)),
                             Padding(padding: EdgeInsets.all(3)),
                             Text(
@@ -1958,7 +1960,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey[300],
+                          color: Colors.grey.withOpacity(300),
                           blurRadius:
                               12.0, // has the effect of softening the shadow
                           spreadRadius:
@@ -2113,7 +2115,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           });
                                                     },
                                                   )
-                                                : (snapshot.data
+                                                : (snapshot.data!
                                                             .requestPrice1Act ==
                                                         1
                                                     ? Icon(
@@ -2229,7 +2231,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                                         Navigator.pop(context);
 
                                                                                         _progressIndicatorState!.setIsLoading(true);
-                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer1Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
+                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer1Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
 
                                                                                         _progressIndicatorState!.setIsLoading(false);
                                                                                         if (results['response'] == '1') {
@@ -2253,7 +2255,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                     });
                                                               },
                                                             )
-                                                          : (snapshot.data
+                                                          : (snapshot.data!
                                                                       .requestPrice1Offer1Act ==
                                                                   1
                                                               ? Icon(
@@ -2277,13 +2279,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           SizedBox(
                                             height: _width * .02,
                                           ),
-                                          snapshot.data.requestPrice1Offer2 != 0
+                                          snapshot.data!.requestPrice1Offer2 != 0
                                               ? Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: <Widget>[
-                                                    Text(snapshot.data
+                                                    Text(snapshot.data!
                                                         .requestPrice1Label2
                                                         .toString()),
                                                     Text(" سعر " +
@@ -2376,9 +2378,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                         Navigator.pop(context);
 
-                                                                                        _progressIndicatorState.setIsLoading(true);
-                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer2Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                        _progressIndicatorState.setIsLoading(false);
+                                                                                        _progressIndicatorState!.setIsLoading(true);
+                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer2Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                        _progressIndicatorState!.setIsLoading(false);
                                                                                         if (results['response'] == '1') {
                                                                                           showToast(results['message'], context);
 
@@ -2400,7 +2402,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                     });
                                                               },
                                                             )
-                                                          : (snapshot.data
+                                                          : (snapshot.data!
                                                                       .requestPrice1Offer2Act ==
                                                                   1
                                                               ? Icon(
@@ -2424,24 +2426,24 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           SizedBox(
                                             height: _width * .02,
                                           ),
-                                          snapshot.data.requestPrice1Offer3 != 0
+                                          snapshot.data!.requestPrice1Offer3 != 0
                                               ? Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: <Widget>[
-                                                    Text(snapshot.data
+                                                    Text(snapshot.data!
                                                         .requestPrice1Label3
                                                         .toString()),
                                                     Text(" سعر " +
-                                                        snapshot.data
+                                                        snapshot.data!
                                                             .requestPrice1Offer3
                                                             .toString() +
                                                         " ريال "),
                                                     Container(
                                                       alignment:
                                                           Alignment.center,
-                                                      child: snapshot.data
+                                                      child: snapshot.data!
                                                                   .requestPrice1Offer3Act ==
                                                               0
                                                           ? GestureDetector(
@@ -2523,9 +2525,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                         Navigator.pop(context);
 
-                                                                                        _progressIndicatorState.setIsLoading(true);
-                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer3Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                        _progressIndicatorState.setIsLoading(false);
+                                                                                        _progressIndicatorState!.setIsLoading(true);
+                                                                                        var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice1Offer3Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                        _progressIndicatorState!.setIsLoading(false);
                                                                                         if (results['response'] == '1') {
                                                                                           showToast(results['message'], context);
 
@@ -2547,7 +2549,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                     });
                                                               },
                                                             )
-                                                          : (snapshot.data
+                                                          : (snapshot.data!
                                                                       .requestPrice1Offer3Act ==
                                                                   1
                                                               ? Icon(
@@ -2602,20 +2604,20 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       ),
                                 order.carttNumber == "2" ||
                                         order.carttNumber == "3"
-                                    ? snapshot.data.offerType == 0
+                                    ? snapshot.data!.offerType == 0
                                         ? Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
-                                              Text(snapshot.data.requestLabel2
+                                              Text(snapshot.data!.requestLabel2
                                                   .toString()),
                                               Text(" سعر " +
-                                                  snapshot.data.requestPrice2
+                                                  snapshot.data!.requestPrice2
                                                       .toString() +
                                                   " ريال "),
                                               Container(
                                                 alignment: Alignment.center,
-                                                child: snapshot.data
+                                                child: snapshot.data!
                                                             .requestPrice2Act ==
                                                         0
                                                     ? GestureDetector(
@@ -2701,9 +2703,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                   Navigator.pop(context);
 
-                                                                                  _progressIndicatorState.setIsLoading(true);
-                                                                                  var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                  _progressIndicatorState.setIsLoading(false);
+                                                                                  _progressIndicatorState!.setIsLoading(true);
+                                                                                  var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                  _progressIndicatorState!.setIsLoading(false);
                                                                                   if (results['response'] == '1') {
                                                                                     showToast(results['message'], context);
 
@@ -2725,7 +2727,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                               });
                                                         },
                                                       )
-                                                    : (snapshot.data
+                                                    : (snapshot.data!
                                                                 .requestPrice2Act ==
                                                             1
                                                         ? Icon(
@@ -2741,7 +2743,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           )
                                         : Column(
                                             children: <Widget>[
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice2Offer1 !=
                                                       0
                                                   ? Row(
@@ -2749,18 +2751,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice2Label1
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice2Offer1
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice2Offer1Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -2840,9 +2842,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer1Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer1Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -2864,7 +2866,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice2Offer1Act ==
                                                                       1
                                                                   ? Icon(
@@ -2887,7 +2889,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                       style:
                                                           TextStyle(height: 0),
                                                     ),
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice2Offer2 !=
                                                       0
                                                   ? Row(
@@ -2895,18 +2897,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice2Label2
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice2Offer2
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice2Offer2Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -2986,9 +2988,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer2Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer2Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -3010,7 +3012,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice2Offer2Act ==
                                                                       1
                                                                   ? Icon(
@@ -3033,7 +3035,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                       style:
                                                           TextStyle(height: 0),
                                                     ),
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice2Offer3 !=
                                                       0
                                                   ? Row(
@@ -3041,18 +3043,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice2Label3
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice2Offer3
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice2Offer3Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -3132,9 +3134,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer3Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice2Offer3Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -3156,7 +3158,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice2Offer3Act ==
                                                                       1
                                                                   ? Icon(
@@ -3218,15 +3220,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
-                                              Text(snapshot.data.requestLabel3
+                                              Text(snapshot.data!.requestLabel3
                                                   .toString()),
                                               Text(" سعر " +
-                                                  snapshot.data.requestPrice3
+                                                  snapshot.data!.requestPrice3
                                                       .toString() +
                                                   " ريال "),
                                               Container(
                                                 alignment: Alignment.center,
-                                                child: snapshot.data
+                                                child: snapshot.data!
                                                             .requestPrice3Act ==
                                                         0
                                                     ? GestureDetector(
@@ -3312,9 +3314,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                   Navigator.pop(context);
 
-                                                                                  _progressIndicatorState.setIsLoading(true);
-                                                                                  var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                  _progressIndicatorState.setIsLoading(false);
+                                                                                  _progressIndicatorState!.setIsLoading(true);
+                                                                                  var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                  _progressIndicatorState!.setIsLoading(false);
                                                                                   if (results['response'] == '1') {
                                                                                     showToast(results['message'], context);
 
@@ -3352,7 +3354,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           )
                                         : Column(
                                             children: <Widget>[
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice3Offer1 !=
                                                       0
                                                   ? Row(
@@ -3360,18 +3362,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice3Label1
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice3Offer1
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice3Offer1Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -3451,9 +3453,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer1Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer1Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -3475,7 +3477,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice3Offer1Act ==
                                                                       1
                                                                   ? Icon(
@@ -3498,7 +3500,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                       style:
                                                           TextStyle(height: 0),
                                                     ),
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice3Offer2 !=
                                                       0
                                                   ? Row(
@@ -3506,18 +3508,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice3Label2
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice3Offer2
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice3Offer2Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -3597,9 +3599,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer2Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer2Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -3621,7 +3623,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice3Offer2Act ==
                                                                       1
                                                                   ? Icon(
@@ -3644,7 +3646,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                       style:
                                                           TextStyle(height: 0),
                                                     ),
-                                              snapshot.data
+                                              snapshot.data!
                                                           .requestPrice3Offer3 !=
                                                       0
                                                   ? Row(
@@ -3652,18 +3654,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: <Widget>[
-                                                        Text(snapshot.data
+                                                        Text(snapshot.data!
                                                             .requestPrice3Label3
                                                             .toString()),
                                                         Text(" سعر " +
-                                                            snapshot.data
+                                                            snapshot.data!
                                                                 .requestPrice3Offer3
                                                                 .toString() +
                                                             " ريال "),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          child: snapshot.data
+                                                          child: snapshot.data!
                                                                       .requestPrice3Offer3Act ==
                                                                   0
                                                               ? GestureDetector(
@@ -3743,9 +3745,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                                                                                             Navigator.pop(context);
 
-                                                                                            _progressIndicatorState.setIsLoading(true);
-                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer3Act&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                                                            _progressIndicatorState.setIsLoading(false);
+                                                                                            _progressIndicatorState!.setIsLoading(true);
+                                                                                            var results = await _services.get('https://qtaapp.com/api/acceptRequest?lang=ar&type=requestPrice3Offer3Act&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                                            _progressIndicatorState!.setIsLoading(false);
                                                                                             if (results['response'] == '1') {
                                                                                               showToast(results['message'], context);
 
@@ -3767,7 +3769,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                         });
                                                                   },
                                                                 )
-                                                              : (snapshot.data
+                                                              : (snapshot.data!
                                                                           .requestPrice3Offer3Act ==
                                                                       1
                                                                   ? Icon(
@@ -3886,13 +3888,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           onTap: () async {
                                                             Navigator.pop(
                                                                 context);
-                                                            _progressIndicatorState
+                                                            _progressIndicatorState!
                                                                 .setIsLoading(
                                                                     true);
                                                             var results =
                                                                 await _services.get(
-                                                                    'https://qtaapp.com/api/acceptOffer?cartt_id=${snapshot.data.offerCartt}&offer_id=${snapshot.data.offerId}&lang=${_appState.currentLang}');
-                                                            _progressIndicatorState
+                                                                    'https://qtaapp.com/api/acceptOffer?cartt_id=${snapshot.data!.offerCartt}&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                            _progressIndicatorState!
                                                                 .setIsLoading(
                                                                     false);
                                                             if (results[
@@ -3985,18 +3987,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         width: _width,
                                         child: CancelOrderBottomSheet(
                                           onPressedConfirmation: () async {
-                                            _progressIndicatorState
+                                            _progressIndicatorState!
                                                 .setIsLoading(true);
                                             var results = await _services.get(
-                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState.currentLang}');
-                                            _progressIndicatorState
+                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                            _progressIndicatorState!
                                                 .setIsLoading(false);
                                             if (results['response'] == '1') {
                                               showToast(
                                                   results['message'], context);
                                               Navigator.pop(context);
-                                              _tabState.upadateInitialIndex(1);
-                                              _navigationState
+                                              _tabState!.upadateInitialIndex(1);
+                                              _navigationState!
                                                   .upadateNavigationIndex(1);
                                               Navigator.pushReplacementNamed(
                                                   context, '/navigation');
@@ -4035,18 +4037,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Mada"),
                                                 onTap: () async {
-                                                  _progressIndicatorState
+                                                  _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
-                                                      "https://qtaapp.com/site/request?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState.currentUser.userId}");
-                                                  _progressIndicatorState
+                                                      "https://qtaapp.com/site/request?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState!.currentUser.userId}");
+                                                  _progressIndicatorState!
                                                       .setIsLoading(false);
                                                   if (results['status'] ==
                                                       true) {
-                                                    _appState.setCurrentUrl(
+                                                    _appState!.setCurrentUrl(
                                                         results['id']);
                                                     print("Sssss");
-                                                    print(_appState.url);
+                                                    print(_appState!.url);
                                                     print("Sssss");
                                                     Navigator.push(
                                                         context,
@@ -4066,18 +4068,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Visa"),
                                                 onTap: () async {
-                                                  _progressIndicatorState
+                                                  _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
-                                                      "https://qtaapp.com/site/request1?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState.currentUser.userId}");
-                                                  _progressIndicatorState
+                                                      "https://qtaapp.com/site/request1?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState!.currentUser.userId}");
+                                                  _progressIndicatorState!
                                                       .setIsLoading(false);
                                                   if (results['status'] ==
                                                       true) {
-                                                    _appState.setCurrentUrl(
+                                                    _appState!.setCurrentUrl(
                                                         results['id']);
                                                     print("Sssss");
-                                                    print(_appState.url);
+                                                    print(_appState!.url);
                                                     print("Sssss");
                                                     Navigator.push(
                                                         context,
@@ -4097,18 +4099,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Master"),
                                                 onTap: () async {
-                                                  _progressIndicatorState
+                                                  _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
-                                                      "https://qtaapp.com/site/request1?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState.currentUser.userId}");
-                                                  _progressIndicatorState
+                                                      "https://qtaapp.com/site/request1?amount=${order.carttTotal}&currency=SAR&paymentType=DB&cartt_id=${order.carttId}&user_id=${_appState!.currentUser.userId}");
+                                                  _progressIndicatorState!
                                                       .setIsLoading(false);
                                                   if (results['status'] ==
                                                       true) {
-                                                    _appState.setCurrentUrl(
+                                                    _appState!.setCurrentUrl(
                                                         results['id']);
                                                     print("Sssss");
-                                                    print(_appState.url);
+                                                    print(_appState!.url);
                                                     print("Sssss");
                                                     Navigator.push(
                                                         context,
@@ -4144,8 +4146,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             // التوصيل لعنوانى - التوصيل لعنوان المختلف
 
             order.carttDone == 2 &&
-                    _appState.currentOfferCartt != "0" &&
-                    _appState.currentOfferMtger != ""
+                    _appState!.currentOfferCartt != "0" &&
+                    _appState!.currentOfferMtger != ""
                 ? Container(
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(
@@ -4189,17 +4191,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ),
 
             order.carttDone == 2 &&
-                    _appState.currentOfferCartt != "0" &&
-                    _appState.currentOfferMtger != ""
+                    _appState!.currentOfferCartt != "0" &&
+                    _appState!.currentOfferMtger != ""
                 ? Container(
                     child: CustomButton(
                       btnColor: cLightLemon,
                       btnLbl: "التوصيل لعنواني",
                       onPressedFunction: () async {
-                        _progressIndicatorState.setIsLoading(true);
+                        _progressIndicatorState!.setIsLoading(true);
                         var results = await _services.get(
-                            'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState.currentUser.userId}&request_cartt=${order.carttId}&request_mapx=${_locationState.locationLatitude}&request_mapy=${_locationState.locationlongitude}&lang=${_appState.currentLang}');
-                        _progressIndicatorState.setIsLoading(false);
+                            'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState!.currentUser.userId}&request_cartt=${order.carttId}&request_mapx=${_locationState!.locationLatitude}&request_mapy=${_locationState!.locationlongitude}&lang=${_appState!.currentLang}');
+                        _progressIndicatorState!.setIsLoading(false);
                         if (results['response'] == '1') {
                           print(results['message']);
                           print(results['message']);
@@ -4222,10 +4224,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ),
 
             order.carttDone == 2 &&
-                    _appState.currentOfferCartt != "0" &&
-                    _appState.currentOfferMtger != ""
+                    _appState!.currentOfferCartt != "0" &&
+                    _appState!.currentOfferMtger != ""
                 ? Container(
-                    child: _locationState.anotherAdress == "0"
+                    child: _locationState!.anotherAdress == "0"
                         ? CustomButton(
                             btnColor: cPrimaryColor,
                             btnLbl: "التوصيل لعنوان مختلف",
@@ -4237,10 +4239,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             btnColor: cLightLemon,
                             btnLbl: "تم تاكيد الاختيار اضغط للارسال للتوصيل",
                             onPressedFunction: () async {
-                              _progressIndicatorState.setIsLoading(true);
+                              _progressIndicatorState!.setIsLoading(true);
                               var results = await _services.get(
-                                  'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState.currentUser.userId}&request_cartt=${order.carttId}&request_mapx=${_locationState.locationLatitude}&request_mapy=${_locationState.locationlongitude}&lang=${_appState.currentLang}');
-                              _progressIndicatorState.setIsLoading(false);
+                                  'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState!.currentUser.userId}&request_cartt=${order.carttId}&request_mapx=${_locationState!.locationLatitude}&request_mapy=${_locationState!.locationlongitude}&lang=${_appState!.currentLang}');
+                              _progressIndicatorState!.setIsLoading(false);
                               if (results['response'] == '1') {
                                 print(results['message']);
                                 print(results['message']);
@@ -4254,7 +4256,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               } else {
                                 showErrorDialog(results['message'], context);
                               }
-                              _locationState.setAnotherAdress("0");
+                              _locationState!.setAnotherAdress("0");
                             },
                           ),
                   )
@@ -4282,15 +4284,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               width: _width,
                               child: CancelOrderBottomSheet(
                                 onPressedConfirmation: () async {
-                                  _progressIndicatorState.setIsLoading(true);
+                                  _progressIndicatorState!.setIsLoading(true);
                                   var results = await _services.get(
-                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState.currentLang}');
-                                  _progressIndicatorState.setIsLoading(false);
+                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                  _progressIndicatorState!.setIsLoading(false);
                                   if (results['response'] == '1') {
                                     showToast(results['message'], context);
                                     Navigator.pop(context);
-                                    _tabState.upadateInitialIndex(1);
-                                    _navigationState.upadateNavigationIndex(1);
+                                    _tabState!.upadateInitialIndex(1);
+                                    _navigationState!.upadateNavigationIndex(1);
                                     Navigator.pushReplacementNamed(
                                         context, '/navigation');
                                   } else {
@@ -4440,12 +4442,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                     onPressedFunction:
                                                         () async {
                                                       Navigator.pop(context);
-                                                      _progressIndicatorState
+                                                      _progressIndicatorState!
                                                           .setIsLoading(true);
                                                       var results =
                                                           await _services.get(
-                                                              'https://qtaapp.com/api/rate_driver?lang=ar&user_id=${_appState.currentUser.userId}&rate_cartt=${order.carttId}&rate_driver=${order.carttDriverId}&rate_value=$_rateValue&lang=${_appState.currentLang}');
-                                                      _progressIndicatorState
+                                                              'https://qtaapp.com/api/rate_driver?lang=ar&user_id=${_appState!.currentUser.userId}&rate_cartt=${order.carttId}&rate_driver=${order.carttDriverId}&rate_value=$_rateValue&lang=${_appState!.currentLang}');
+                                                      _progressIndicatorState!
                                                           .setIsLoading(false);
                                                       if (results['response'] ==
                                                           '1') {
@@ -4562,12 +4564,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                     onPressedFunction:
                                                         () async {
                                                       Navigator.pop(context);
-                                                      _progressIndicatorState
+                                                      _progressIndicatorState!
                                                           .setIsLoading(true);
                                                       var results =
                                                           await _services.get(
-                                                              'https://qtaapp.com/api/rate_mtger?lang=ar&user_id=${_appState.currentUser.userId}&rate_cartt=${order.carttId}&rate_mtger=${order.carttMtgerId}&rate_value=$_rateValue&lang=${_appState.currentLang}');
-                                                      _progressIndicatorState
+                                                              'https://qtaapp.com/api/rate_mtger?lang=ar&user_id=${_appState!.currentUser.userId}&rate_cartt=${order.carttId}&rate_mtger=${order.carttMtgerId}&rate_value=$_rateValue&lang=${_appState!.currentLang}');
+                                                      _progressIndicatorState!
                                                           .setIsLoading(false);
                                                       if (results['response'] ==
                                                           '1') {
@@ -4631,15 +4633,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           print('ismail');
           print(value.latitude);
           print(value.longitude);
-          _locationState.setLocationLatitude(value.latitude);
-          _locationState.setLocationlongitude(value.longitude);
+          _locationState!.setLocationLatitude(value.latitude);
+          _locationState!.setLocationlongitude(value.longitude);
           //              final coordinates = new Coordinates(
           //                _locationState.locationLatitude, _locationState
           //  .locationlongitude);
-          List<Placemark> placemark = await Geolocator()
-              .placemarkFromCoordinates(_locationState.locationLatitude,
-                  _locationState.locationlongitude);
-          _locationState.setCurrentAddress(placemark[0].name);
+          List<Placemark> placemark = await placemarkFromCoordinates(_locationState!.locationLatitude,
+                  _locationState!.locationlongitude);
+          _locationState!.setCurrentAddress(placemark[0].name!);
 
           //   var addresses = await Geocoder.local.findAddressesFromCoordinates(
           //     coordinates);
@@ -4650,9 +4651,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         markerId: MarkerId('my marker'),
         // infoWindow: InfoWindow(title: widget.address),
         position: LatLng(
-            _locationState.locationLatitude, _locationState.locationlongitude),
+            _locationState!.locationLatitude, _locationState!.locationlongitude),
         flat: true);
-    _markers.add(_marker);
+    _markers.add(_marker!);
 
     return NetworkIndicator(
         child: PageContainer(
@@ -4666,18 +4667,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     if (snapshot.hasData) {
                       return Stack(
                         children: <Widget>[
-                          _buildBodyItem(snapshot.data),
+                          _buildBodyItem(snapshot.data!),
                           Positioned(
                             top: 0,
                             left: 0,
                             right: 0,
                             child: GradientAppBar(
-                              appBarTitle: "طلب رقم : " + _orderState.carttId,
-                              leading: (snapshot.data.carttDone == 0 ||
-                                          snapshot.data.carttDone == 1 ||
-                                          snapshot.data.carttDone == 2 ||
-                                          snapshot.data.carttDone == 3) &&
-                                      snapshot.data.carttPay == 0
+                              appBarTitle: "طلب رقم : " + _orderState!.carttId,
+                              leading: (snapshot.data!.carttDone == 0 ||
+                                          snapshot.data!.carttDone == 1 ||
+                                          snapshot.data!.carttDone == 2 ||
+                                          snapshot.data!.carttDone == 3) &&
+                                      snapshot.data!.carttPay == 0
                                   ? Container(
                                       width: _width * .45,
                                       margin: EdgeInsets.only(
@@ -4713,12 +4714,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                   child: CancelOrderBottomSheet(
                                                     onPressedConfirmation:
                                                         () async {
-                                                      _progressIndicatorState
+                                                      _progressIndicatorState!
                                                           .setIsLoading(true);
                                                       var results =
                                                           await _services.get(
-                                                              'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data.carttId}&lang=${_appState.currentLang}');
-                                                      _progressIndicatorState
+                                                              'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data!.carttId}&lang=${_appState!.currentLang}');
+                                                      _progressIndicatorState!
                                                           .setIsLoading(false);
                                                       if (results['response'] ==
                                                           '1') {
@@ -4726,10 +4727,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             results['message'],
                                                             context);
                                                         Navigator.pop(context);
-                                                        _tabState
+                                                        _tabState!
                                                             .upadateInitialIndex(
                                                                 1);
-                                                        _navigationState
+                                                        _navigationState!
                                                             .upadateNavigationIndex(
                                                                 1);
                                                         Navigator
@@ -4752,7 +4753,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       "",
                                       style: TextStyle(height: 0),
                                     ),
-                              trailing: _appState.currentLang == 'ar'
+                              trailing: _appState!.currentLang == 'ar'
                                   ? IconButton(
                                       icon: Transform.rotate(
                                         angle: 180 * math.pi / 180,
@@ -4765,7 +4766,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        _locationState.setAnotherAdress("0");
+                                        _locationState!.setAnotherAdress("0");
                                         Navigator.pop(context);
                                       },
                                     )
