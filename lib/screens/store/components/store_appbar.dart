@@ -18,8 +18,8 @@ class StoreAppBar extends StatefulWidget {
 
 class _StoreAppBarState extends State<StoreAppBar> {
   bool _initialRun = true;
-  AppState _appState;
-  StoreState _storeState;
+  AppState? _appState;
+  StoreState? _storeState;
   Services _services = Services();
 
 
@@ -48,7 +48,7 @@ class _StoreAppBarState extends State<StoreAppBar> {
 
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey[500],
+                    color: Colors.grey.withOpacity(500),
                     offset: Offset(0.0, 1.5),
                     blurRadius: 1.5,
                   ),
@@ -57,7 +57,7 @@ class _StoreAppBarState extends State<StoreAppBar> {
             child: FittedBox(
                 fit: BoxFit.cover,
                 child: Image.network(
-                  storeState.currentStore.mtgerPhoto1,
+                  storeState.currentStore.mtgerPhoto1!,
                 )),
 
           ),
@@ -73,12 +73,12 @@ class _StoreAppBarState extends State<StoreAppBar> {
                   onPressed: () async{
 
                     
-                       if(_storeState.isAddToCart!=null){
+                       if(_storeState!.isAddToCart!=null){
 
 
 
                          var results = await _services.get(
-                             'https://qtaapp.com/api/do_delete_cart?user_id=${_appState.currentUser.userId}&lang=${_appState.currentLang}');
+                             'https://qtaapp.com/api/do_delete_cart?user_id=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}');
 
                          if (results['response'] == '1') {
 
@@ -89,7 +89,7 @@ class _StoreAppBarState extends State<StoreAppBar> {
                          }
 
 
-                         _storeState.setCurrentIsAddToCart(null);
+                         _storeState!.setCurrentIsAddToCart(null);
                          showDialog(
                              barrierDismissible: true,
                              context: context,
@@ -108,9 +108,9 @@ class _StoreAppBarState extends State<StoreAppBar> {
 
                   },
                 ),
-                Text(storeState.currentStore.mtgerName,
+                Text(storeState.currentStore.mtgerName!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.display1),
+                ),
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.all(6),
@@ -124,7 +124,7 @@ class _StoreAppBarState extends State<StoreAppBar> {
                         bottomRight: Radius.circular(4.00),
                       ),
                       border: Border.all(color: cPrimaryColor)),
-                  child: Text(storeState.currentStore.state),
+                  child: Text(storeState.currentStore.state!),
                 )
               ],
             ),

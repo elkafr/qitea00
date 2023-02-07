@@ -10,10 +10,10 @@ import 'package:qitea/screens/order_details/order_details.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class DoneOrder extends StatefulWidget {
-  final bool isCancelOrder;
-  final Order order;
+  final bool? isCancelOrder;
+  final Order? order;
 
-  const DoneOrder({Key key, this.isCancelOrder = false, this.order})
+  const DoneOrder({Key? key, this.isCancelOrder = false, this.order})
       : super(key: key);
   @override
   _DoneOrderState createState() => _DoneOrderState();
@@ -40,7 +40,7 @@ class _DoneOrderState extends State<DoneOrder> {
 
             boxShadow: [
               BoxShadow(
-                color: Colors.grey[300],
+                color: Colors.grey.withOpacity(300),
                 blurRadius: 25.0, // has the effect of softening the shadow
                 spreadRadius: 5.0, // has the effect of extending the shadow
                 offset: Offset(
@@ -70,7 +70,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            widget.order.carttMarkaName,
+                            widget.order!.carttMarkaName!,
                             style: TextStyle(
                                 fontSize: 15,
                                 color: cPrimaryColor,
@@ -84,7 +84,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            " رقم الطلب : "+widget.order.carttId,
+                            " رقم الطلب : "+widget.order!.carttId!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cPrimaryColor,
@@ -110,7 +110,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            widget.order.carttTypeeName,
+                            widget.order!.carttTypeeName!,
                             style: TextStyle(
                               fontSize: 15,
                               color: cPrimaryColor,
@@ -126,7 +126,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            " تاريخ الطلب : "+widget.order.carttDate,
+                            " تاريخ الطلب : "+widget.order!.carttDate!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cPrimaryColor,
@@ -156,7 +156,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            " موديل : "+widget.order.carttModelName,
+                            " موديل : "+widget.order!.carttModelName!,
                             style: TextStyle(
                               fontSize: 15,
                               color: cPrimaryColor,
@@ -172,7 +172,7 @@ class _DoneOrderState extends State<DoneOrder> {
                               horizontal: constraints.maxWidth * 0.04,
                               vertical: constraints.maxHeight * 0.04),
                           child: Text(
-                            " عدد القطع : "+widget.order.carttNumber,
+                            " عدد القطع : "+widget.order!.carttNumber!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cPrimaryColor,
@@ -208,7 +208,7 @@ class _DoneOrderState extends State<DoneOrder> {
                         Container(
                           margin: EdgeInsets.only(right: constraints.maxHeight * 0.04,top: constraints.maxHeight * 0.04),
                           child: Text(
-                            " رقم الهيكل : "+widget.order.carttHikal,
+                            " رقم الهيكل : "+widget.order!.carttHikal!,
                             style: TextStyle(
                                 fontSize: 13,
                                 color: cLightLemon,
@@ -231,7 +231,7 @@ class _DoneOrderState extends State<DoneOrder> {
                           ),
                           margin: EdgeInsets.only(left: constraints.maxWidth * 0.01,),
                           child: Text(
-                            widget.order.carttState,
+                            widget.order!.carttState!,
                             style: TextStyle(
                               fontSize: 13,
                               color: cPrimaryColor,

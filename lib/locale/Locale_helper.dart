@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 typedef void LocaleChangeCallback(Locale locale);
 
 class LocaleHelper extends ChangeNotifier {
-  LocaleChangeCallback onLocaleChanged;
+  LocaleChangeCallback? onLocaleChanged;
 
-  static final LocaleHelper _helper = new LocaleHelper._internal();
+  static final LocaleHelper? _helper = new LocaleHelper._internal();
   factory LocaleHelper() {
-    return _helper;
+    return _helper!;
   }
 
 LocaleHelper._internal();

@@ -241,7 +241,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         });
                   } else {
                     return NoData(
-                      message: AppLocalizations.of(context).noNotifications,
+                      message: AppLocalizations.of(context)!.noNotifications,
                     );
                   }
                 } else if (snapshot.hasError) {
@@ -290,7 +290,7 @@ leading: IconButton(
   onPressed: () => Scaffold.of(context).openDrawer(),
   tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
 ),
-                  appBarTitle: AppLocalizations.of(context).notifications,
+                  appBarTitle: AppLocalizations.of(context)!.notifications,
 trailing: _appState!.currentUser!=null?GestureDetector(
   child: Container(
     padding: EdgeInsets.all(12),

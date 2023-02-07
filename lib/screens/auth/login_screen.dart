@@ -85,15 +85,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: CustomTextFormField(
               iconIsImage: true,
               imagePath: 'assets/images/user.png',
-              hintTxt: AppLocalizations.of(context).phoneNo,
+              hintTxt: AppLocalizations.of(context)!.phoneNo,
               suffixIcon:  Image.asset("assets/images/sa.png"),
               validationFunc: (value) {
-               if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).phonoNoValidation;
+               if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.phonoNoValidation;
                     }
 
 
-               if (value.trim().length != 9) {
+               if (value!.trim().length != 9) {
                  return "يجب ان يكون  رقم الهاتف مكون من 9 ارقايم ويبدء ب 5 ";
                }
                 return null;
@@ -116,10 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   isPassword: true,
                   iconIsImage: true,
                   imagePath: 'assets/images/password.png',
-                  hintTxt: AppLocalizations.of(context).password,
+                  hintTxt: AppLocalizations.of(context)!.password,
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).password;
+                    if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.password;
                     }
                     return null;
                   },

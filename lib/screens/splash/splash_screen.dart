@@ -12,20 +12,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  AppState _appState;
-  LocationState _locationState;
-  LocationData _locData;
+  AppState? _appState;
+  LocationState? _locationState;
+  LocationData? _locData;
   double _height = 0, _width = 0;
-  Animation<Offset> _offsetAnimation;
+  Animation<Offset>? _offsetAnimation;
   Future<void> _getCurrentUserLocation() async {
     _locData = await Location().getLocation();
     if(_locData != null){
-      print('lat' + _locData.latitude.toString());
-      print('longitude' + _locData.longitude.toString());
+      print('lat' + _locData!.latitude!.toString());
+      print('longitude' + _locData!.longitude!.toString());
 
       setState(() {
-        _locationState.setLocationLatitude(_locData.latitude);
-        _locationState.setLocationlongitude(_locData.longitude);
+        _locationState!.setLocationLatitude(_locData!.latitude!);
+        _locationState!.setLocationlongitude(_locData!.longitude!);
       });
     }
   }
@@ -45,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _getLanguage() async {
     String currentLang = await SharedPreferencesHelper.getUserLang();
-    _appState.setCurrentLanguage(currentLang);
-    print('language: ${_appState.currentLang}');
+    _appState!.setCurrentLanguage(currentLang);
+    print('language: ${_appState!.currentLang}');
   }
 
   Future<Null> _checkIsFirstTime() async {

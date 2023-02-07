@@ -211,7 +211,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                     });
               } else {
                 return NoData(
-                  message: AppLocalizations.of(context).noResults,
+                  message: AppLocalizations.of(context)!.noResults,
                 );
               }
             } else if (snapshot.hasError) {
@@ -364,7 +364,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                                 size: 24,
                                 color: cPrimaryColor,
                               ),
-                              hintText: AppLocalizations.of(context).search,
+                              hintText: AppLocalizations.of(context)!.search,
                               errorStyle: TextStyle(fontSize: 12.0),
                               hintStyle: TextStyle(
                                   color: Color(0xffC5C5C5),

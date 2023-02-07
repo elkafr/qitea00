@@ -25,20 +25,20 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  double _height, _width;
-  ProgressIndicatorState _progressIndicatorState;
-  ProductState _productState;
+  double _height=0, _width=0;
+  ProgressIndicatorState? _progressIndicatorState;
+  ProductState? _productState;
   bool _initialRun = true;
   Services _services = Services();
-  Future<ProductDetails> _productDetails;
-  AppState _appState;
-  StoreState _storeState;
-  NavigationState _navigationState;
+  Future<ProductDetails>? _productDetails;
+  AppState? _appState;
+  StoreState? _storeState;
+  NavigationState? _navigationState;
   int amountt=1;
 
   Future<ProductDetails> _getProductDetails() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/show_mtger_ads?lang=${_appState.currentLang}&id=${_productState.currentProduct.adsMtgerId}');
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/show_mtger_ads?lang=${_appState!.currentLang}&id=${_productState!.currentProduct.adsMtgerId}');
     ProductDetails productDetails = ProductDetails();
     if (results['response'] == '1') {
       productDetails = ProductDetails.fromJson(results['details']);
@@ -78,7 +78,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(top: _height * 0.02),
                           child: Image.network(
-                            _productState.currentProduct.adsMtgerPhoto,
+                            _productState!.currentProduct!.adsMtgerPhoto!,
                             height: _height * 0.2,
                           ),
                         ),
@@ -86,7 +86,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         padding: EdgeInsets.all(15),
                         child: Text(
-                          snapshot.data.adsMtgerName,
+                          snapshot.data!.adsMtgerName!,
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w400),
                         ),
@@ -110,7 +110,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
                             ),
                             child: Text(
-                              snapshot.data.adsMtgerCat,
+                              snapshot.data!.adsMtgerCat!,
                               style: TextStyle(
                                   color: cText,
                                   fontSize: 14,
@@ -144,7 +144,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       Container(
                         margin: EdgeInsets.only(top: 15, right: 10, left: 10),
                         child: Text(
-                          snapshot.data.adsMtgerContent,
+                          snapshot.data!.adsMtgerContent!,
                           style: TextStyle(color: Color(0xffBEBEBE), fontSize: 15),
                         ),
                       ),
@@ -220,15 +220,15 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                              child:  GestureDetector(
                                onTap: () async {
-                                 if (_appState.currentUser != null) {
-                                   _progressIndicatorState.setIsLoading(true);
+                                 if (_appState!.currentUser != null) {
+                                   _progressIndicatorState!.setIsLoading(true);
                                    var results = await _services.get(
-                                     'https://qtaapp.com/api/add_cart?user_id=${_appState.currentUser.userId}&ads_id=${_productState.currentProduct.adsMtgerId}&amountt=$amountt&lang=${_appState.currentLang}',
+                                     'https://qtaapp.com/api/add_cart?user_id=${_appState!.currentUser.userId}&ads_id=${_productState!.currentProduct.adsMtgerId}&amountt=$amountt&lang=${_appState!.currentLang}',
                                    );
-                                   _progressIndicatorState.setIsLoading(false);
+                                   _progressIndicatorState!.setIsLoading(false);
                                    if (results['response'] == '1') {
 
-                                     _storeState.setCurrentIsAddToCart(1);
+                                     _storeState!.setCurrentIsAddToCart(1);
                                      Navigator.pushNamed(context, '/store_screen');
                                      showToast(results['message'], context);
                                    } else {
@@ -268,7 +268,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                    left: 5
                                                ),
                                                child: Text(
-                                                 snapshot.data.adsMtgerPrice,
+                                                 snapshot.data!.adsMtgerPrice!,
                                                  style: TextStyle(
                                                      fontSize: 14,
                                                      color: cWhite,
@@ -330,7 +330,7 @@ class _ProductScreenState extends State<ProductScreen> {
             right: 0,
             child: GradientAppBar(
                 appBarTitle: "",
-                  leading: _appState.currentLang == 'ar' ? IconButton(
+                  leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: IconButton(
                   icon: Image.asset("assets/images/back2.png"),
                   onPressed: () {
@@ -341,7 +341,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset("assets/images/back2.png"),
                 onPressed: () {
                   Navigator.pop(context);

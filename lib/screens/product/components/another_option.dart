@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class AnotherOption extends StatelessWidget {
-final String imgPath;
-final String title;
-final String value;
+final String? imgPath;
+final String? title;
+final String? value;
 
-  const AnotherOption({Key key, this.imgPath, this.title, this.value}) : super(key: key);
+  const AnotherOption({Key? key, this.imgPath, this.title, this.value}) : super(key: key);
  
   @override
   Widget build(BuildContext context) {
@@ -25,24 +25,24 @@ final String value;
                                 border: Border.all(color:Color(0xff015B2A).withOpacity(0.10) )),
        child: Row(
          children: <Widget>[
-           Image.asset(imgPath),
+           Image.asset(imgPath!),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10)
             ,
-            child:  Text( title,style: TextStyle(
+            child:  Text( title!,style: TextStyle(
              color: cBlack,fontSize: 14,
              fontWeight: FontWeight.w700
            ),),
           ),
           Spacer(),
 
-          Text(value,
+          Text(value!,
           style: TextStyle(
             color: cBlack,fontSize: 11,
             fontWeight: FontWeight.w400
           ),),
 
-          Icon(Icons.arrow_forward_ios ,size: 15,color: cAccentColor,)
+          Icon(Icons.arrow_forward_ios ,size: 15,color: Colors.green,)
           
          ],
        ),                         

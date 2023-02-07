@@ -4,9 +4,9 @@ import 'package:qitea/locale/localization.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class CancelOrderBottomSheet extends StatefulWidget {
-  final Function onPressedConfirmation;
+  final Function? onPressedConfirmation;
 
-  const CancelOrderBottomSheet({Key key, this.onPressedConfirmation})
+  const CancelOrderBottomSheet({Key? key, this.onPressedConfirmation})
       : super(key: key);
   @override
   _CancelOrderBottomSheetState createState() => _CancelOrderBottomSheetState();
@@ -52,7 +52,7 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
                         color: cWhite),
                     btnLbl: AppLocalizations.of(context).ok,
                     onPressedFunction: () async {
-                      widget.onPressedConfirmation();
+                      widget.onPressedConfirmation!();
                     }),
               ),
               Spacer(

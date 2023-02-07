@@ -27,21 +27,21 @@ class _ModifyPersonalInformationScreenState
     extends State<ModifyPersonalInformationScreen> {
   var _height, _width;
   final _formKey = GlobalKey<FormState>();
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
   Services _services = Services();
-  AppState _appState;
-  String _userEmail, _userName, _userPhone;
-  City _selectedCity;
+  AppState? _appState;
+  String? _userEmail, _userName, _userPhone;
+  City? _selectedCity;
   bool _initSelectedCity = true;
-  Future<List<City>> _cityList;
+  Future<List<City>>? _cityList;
 
   bool _initialRun = true;
 
 
   Future<List<City>> _getCityItems() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getcity?lang=${_appState.currentLang}');
-    List<City> cityList = List<City>();
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/getcity?lang=${_appState!.currentLang}');
+    List<City> cityList = <City>[];
     if (results['response'] == '1') {
       Iterable iterable = results['city'];
       cityList = iterable.map((model) => City.fromJson(model)).toList();
@@ -81,7 +81,7 @@ class _ModifyPersonalInformationScreenState
                       ),
                       hintTxt: AppLocalizations.of(context).name,
                       validationFunc: (value) {
-                        if (value.trim().length == 0) {
+                        if (value!.trim().length == 0) {
                           return AppLocalizations.of(context).nameValidation;
                         }
                         return null;
@@ -106,7 +106,7 @@ class _ModifyPersonalInformationScreenState
                       ),
                       hintTxt: AppLocalizations.of(context).phoneNo,
                       validationFunc: (value) {
-                      if (value.trim().length == 0) {
+                      if (value!.trim().length == 0) {
                           return AppLocalizations.of(context).phonoNoValidation;
                         }
                         return null;
@@ -131,7 +131,7 @@ class _ModifyPersonalInformationScreenState
                       ),
                       hintTxt: AppLocalizations.of(context).email,
                       validationFunc: (value) {
-                        if (!isEmail(value)) {
+                        if (!isEmail(value!)) {
                           return AppLocalizations.of(context).emailValidation;
                         }
                         return null;
@@ -150,16 +150,16 @@ class _ModifyPersonalInformationScreenState
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         if (snapshot.hasData) {
-                          var countryList = snapshot.data.map((item) {
+                          var countryList = snapshot.data!.map((item) {
                             return new DropdownMenuItem<City>(
-                              child: new Text(item.cityName),
+                              child: new Text(item.cityName!),
                               value: item,
                             );
                           }).toList();
                           if (_initSelectedCity) {
-                            for (int i = 0; i < snapshot.data.length; i++) {
-                              if (_appState.currentUser.userCityName == snapshot.data[i].cityName) {
-                                _selectedCity = snapshot.data[i];
+                            for (int i = 0; i < snapshot.data!.length; i++) {
+                              if (_appState!.currentUser!.userCityName == snapshot.data![i].cityName) {
+                                _selectedCity = snapshot.data![i];
                                 break;
                               }
                             }
@@ -210,7 +210,7 @@ class _ModifyPersonalInformationScreenState
                   // ),
                 ),
                 
-                _appState.currentUser.userType!="user"?Container(
+                _appState!.currentUser.userType!="user"?Container(
                   color: cLightLemon,
                   padding: EdgeInsets.all(10),
                   alignment: Alignment.center,
@@ -226,22 +226,22 @@ class _ModifyPersonalInformationScreenState
                   child: CustomButton(
                     btnLbl: AppLocalizations.of(context).save,
                     onPressedFunction: () async {
-                      if (_formKey.currentState.validate()) {
-                        _progressIndicatorState.setIsLoading(true);
+                      if (_formKey.currentState!.validate()) {
+                        _progressIndicatorState!.setIsLoading(true);
 
                         var results = await _services.get(
-                          'https://qtaapp.com/api/profile?user_email=$_userEmail&user_name=$_userName&user_phone=$_userPhone&user_city=${_selectedCity.cityId}&user_id=${_appState.currentUser.userId}&lang=${_appState.currentLang}',
+                          'https://qtaapp.com/api/profile?user_email=$_userEmail&user_name=$_userName&user_phone=$_userPhone&user_city=${_selectedCity!.cityId}&user_id=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}',
                         );
-                        _progressIndicatorState.setIsLoading(false);
+                        _progressIndicatorState!.setIsLoading(false);
                         if (results['response'] == '1') {
 
-                          _appState.updateUserEmail(_userEmail);
-                          _appState.updateUserName(_userName);
-                          _appState.updateUserPhone(_userPhone);
-                          _appState.updateUserCity(_selectedCity.cityId);
-                          _appState.updateUserCityName(_selectedCity.cityName);
+                          _appState!.updateUserEmail(_userEmail!);
+                          _appState!.updateUserName(_userName!);
+                          _appState!.updateUserPhone(_userPhone!);
+                          _appState!.updateUserCity(_selectedCity!.cityId!);
+                          _appState!.updateUserCityName(_selectedCity!.cityName!);
                               SharedPreferencesHelper.save(
-                                  "user", _appState.currentUser);
+                                  "user", _appState!.currentUser);
                                   showToast( results['message'], context);
                                   Navigator.pop(context);
                                   Navigator.pushReplacementNamed(context, '/personal_information_screen');
@@ -266,9 +266,9 @@ class _ModifyPersonalInformationScreenState
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      _userEmail = _appState.currentUser.userEmail;
-      _userName = _appState.currentUser.userName;
-      _userPhone = _appState.currentUser.userPhone;
+      _userEmail = _appState!.currentUser.userEmail;
+      _userName = _appState!.currentUser.userName;
+      _userPhone = _appState!.currentUser.userPhone;
       _cityList = _getCityItems();
     }
   }
@@ -293,13 +293,13 @@ class _ModifyPersonalInformationScreenState
             right: 0,
             child: GradientAppBar(
               appBarTitle: AppLocalizations.of(context).editInfo,
-             leading: _appState.currentLang == 'ar' ? IconButton(
+             leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);

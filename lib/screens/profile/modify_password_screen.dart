@@ -24,10 +24,10 @@ class ModifyPasswordScreen extends StatefulWidget {
 class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
   var _height, _width;
   final _formKey = GlobalKey<FormState>();
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
   Services _services = Services();
-  String _newUserPassword, _oldUserPassword;
-  AppState _appState;
+  String? _newUserPassword, _oldUserPassword;
+  AppState? _appState;
 
 
   Widget _buildBodyItem() {
@@ -59,7 +59,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                           _oldUserPassword = text.toString();
                         },
                         validationFunc: (value) {
-                         if (value.trim().length < 4) {
+                         if (value!.trim().length < 4) {
                             return AppLocalizations.of(context).passwordValidation;
                           }
                           return null;
@@ -81,7 +81,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                           _newUserPassword = text.toString();
                         },
                         validationFunc: (value) {
-                          if (value.trim().length < 4) {
+                          if (value!.trim().length < 4) {
                             return AppLocalizations.of(context).passwordValidation;
                           }
                           return null;
@@ -101,7 +101,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                         inputData: TextInputType.text,
                         onChangedFunc: (String text) {},
                         validationFunc: (value) {
-                          if (value.trim().length < 4) {
+                          if (value!.trim().length < 4) {
                             return AppLocalizations.of(context).passwordValidation;
                           } else if (value != _newUserPassword) {
                             return  AppLocalizations.of(context).passwordNotIdentical;
@@ -117,13 +117,13 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                   child: CustomButton(
                     btnLbl: AppLocalizations.of(context).save,
                     onPressedFunction: () async {
-                      if (_formKey.currentState.validate()) {
-                        _progressIndicatorState.setIsLoading(true);
+                      if (_formKey.currentState!.validate()) {
+                        _progressIndicatorState!.setIsLoading(true);
 
                         var results = await _services.get(
-                          'https://qtaapp.com//api/profile?user_pass2=$_oldUserPassword&user_pass=$_newUserPassword&user_pass1=$_newUserPassword&user_id=${appState.currentUser.userId}&lang=${_appState.currentLang}',
+                          'https://qtaapp.com//api/profile?user_pass2=$_oldUserPassword&user_pass=$_newUserPassword&user_pass1=$_newUserPassword&user_id=${appState.currentUser.userId}&lang=${_appState!.currentLang}',
                         );
-                        _progressIndicatorState.setIsLoading(false);
+                        _progressIndicatorState!.setIsLoading(false);
                         if (results['response'] == '1') {
                           showToast(results['message'], context);
                           Navigator.pop(context);
@@ -164,13 +164,13 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
             right: 0,
             child: GradientAppBar(
               appBarTitle: AppLocalizations.of(context).editPassword,
-              leading: _appState.currentLang == 'ar' ? IconButton(
+              leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);

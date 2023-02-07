@@ -804,12 +804,12 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                                                 border: Border.all(
                                                   color: cPrimaryColor,
                                                 ),
-                                                color: x.contains(snapshot.data[index].markaId.toString())?cPrimaryColor:Colors.white,
+                                                color: x!.contains(snapshot.data[index].markaId.toString())?cPrimaryColor:Colors.white,
 
                                               ),
 
 
-                                              child: Text(snapshot.data![index].markaName!,style: TextStyle(color: (x.contains(snapshot.data[index].markaId))?Colors.white:cPrimaryColor),),
+                                              child: Text(snapshot.data![index].markaName!,style: TextStyle(color: (x!.contains(snapshot.data![index].markaId))?Colors.white:cPrimaryColor),),
                                             ),
                                           );
                                         });
@@ -894,14 +894,14 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                        isPassword: true,
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
-                    hintTxt: AppLocalizations.of(context).password,
+                    hintTxt: AppLocalizations.of(context)!.password,
                     inputData: TextInputType.text,
                     onChangedFunc: (String text) {
                       _userPassword = text.toString();
                     },
                     validationFunc: (value) {
                       if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                        return AppLocalizations.of(context)!.passwordValidation;
                       }
                       return null;
                     })),
@@ -916,15 +916,15 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                     isPassword: true,
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
-                    hintTxt: AppLocalizations.of(context).passwordVerify,
+                    hintTxt: AppLocalizations.of(context)!.passwordVerify,
                     inputData: TextInputType.text,
                  
                     validationFunc: (value) {
                     if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                        return AppLocalizations.of(context)!.passwordValidation;
                   
                       } else if (value != _userPassword) {
-                        return AppLocalizations.of(context).passwordNotIdentical;
+                        return AppLocalizations.of(context)!.passwordNotIdentical;
                       }
                       return null;
                     })),
@@ -983,9 +983,9 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                                 fontFamily: 'segoeui',
                                 color: Colors.black),
                             children: <TextSpan>[
-                              new TextSpan(text: AppLocalizations.of(context).iAccept),
+                              new TextSpan(text: AppLocalizations.of(context)!.iAccept),
                               new TextSpan(
-                                  text: AppLocalizations.of(context).terms,
+                                  text: AppLocalizations.of(context)!.terms,
                                   style: new TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontWeight: FontWeight.bold,
@@ -1003,7 +1003,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
               height: 60,
               child: CustomButton(
                 btnColor: cLightLemon,
-                btnLbl: AppLocalizations.of(context).register,
+                btnLbl: AppLocalizations.of(context)!.register,
                 onPressedFunction: () async {
                   if (_formKey.currentState!.validate() &
                   checkMtgerRegisterValidation(context,

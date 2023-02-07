@@ -24,23 +24,23 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
 class AddReqScreen extends StatefulWidget {
-  AddReqScreen({Key key}) : super(key: key);
+  AddReqScreen({Key? key}) : super(key: key);
 
   @override
   _AddReqScreenState createState() => _AddReqScreenState();
 }
 
 class _AddReqScreenState extends State<AddReqScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _reqValue;
+  String? _reqValue;
   Services _services = Services();
-  AppState _appState;
-  ProgressIndicatorState _progressIndicatorState;
+  AppState? _appState;
+  ProgressIndicatorState? _progressIndicatorState;
 
 
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -63,7 +63,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed.
-    _focusNode.dispose();
+    _focusNode!.dispose();
     super.dispose();
   }
 
@@ -77,7 +77,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
               height: _height * 0.16,
             ),
 
-            Text("الرصيد الحالي : "+_appState.currentUser.userCredit+" SR ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: cPrimaryColor),),
+            Text("الرصيد الحالي : "+_appState!.currentUser!.userCredit!+" SR ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: cPrimaryColor),),
             SizedBox(
               height: _height * 0.04,
             ),
@@ -97,7 +97,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
                 ),
                 hintTxt: "المبلغ المطلوب",
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
+                  if (value!.trim().length == 0) {
                     return "فضلا ادخال المبلغ";
                   }
                   return null;
@@ -124,13 +124,13 @@ class _AddReqScreenState extends State<AddReqScreen> {
                 btnColor: cLightLemon,
                 btnLbl: AppLocalizations.of(context).send,
                 onPressedFunction: () async {
-                  if (_formKey.currentState.validate()) {
-                    _progressIndicatorState.setIsLoading(true);
+                  if (_formKey.currentState!.validate()) {
+                    _progressIndicatorState!.setIsLoading(true);
 
                     var results = await _services.get(
-                      '${Utils.BASE_URL}send_req?req_value=$_reqValue&user_id=${_appState.currentUser.userId}&req_type=${_appState.currentUser.userType}&lang=${_appState.currentLang}',
+                      '${Utils.BASE_URL}send_req?req_value=$_reqValue&user_id=${_appState!.currentUser.userId}&req_type=${_appState!.currentUser.userType}&lang=${_appState!.currentLang}',
                     );
-                    _progressIndicatorState.setIsLoading(false);
+                    _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                       showToast(results['message'], context);
                       Navigator.push(
@@ -174,7 +174,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
                   right: 0,
                   child: GradientAppBar(
                     appBarTitle: "طلب تحويل رصيد",
-                    leading: _appState.currentLang == 'ar'
+                    leading: _appState!.currentLang == 'ar'
                         ? IconButton(
                       icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                       onPressed: () {
@@ -182,7 +182,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
                       },
                     )
                         : Container(),
-                    trailing: _appState.currentLang == 'en'
+                    trailing: _appState!.currentLang == 'en'
                         ? IconButton(
                       icon: Icon(
                         Icons.arrow_back_ios,

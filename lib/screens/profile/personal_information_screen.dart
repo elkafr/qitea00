@@ -20,11 +20,11 @@ class PersonalInformationScreen extends StatefulWidget {
 }
 
 class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
-  double _height, _width;
-  AppState _appState;
+  double _height=0, _width=0;
+  AppState? _appState;
 
 
-  Widget _buildRow(String title, String value, Widget icon) {
+  Widget _buildRow(String title, String? value, Widget icon) {
     return Row(
       children: <Widget>[
        
@@ -39,7 +39,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
         ),
         Spacer(),
         Text(
-          value,
+          value!,
           style: TextStyle(
               color: cBlack, fontSize: 15, fontWeight: FontWeight.w400),
         ),
@@ -163,13 +163,13 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             right: 0,
             child: GradientAppBar(
               appBarTitle: AppLocalizations.of(context).personalInfo,
-              leading: _appState.currentLang == 'ar' ? IconButton(
+              leading: _appState!.currentLang == 'ar' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ) :Container(),
-              trailing: _appState.currentLang == 'en' ? IconButton(
+              trailing: _appState!.currentLang == 'en' ? IconButton(
                 icon: Image.asset('assets/images/back.png'),
                 onPressed: () {
                   Navigator.pop(context);

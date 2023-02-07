@@ -51,18 +51,18 @@ class ReqScreen extends StatefulWidget {
 }
 
 class _ReqScreenState extends State<ReqScreen> {
-  double _height, _width;
-  Future<List<Req>> _reqList;
+  double _height=0, _width=0;
+  Future<List<Req>>? _reqList;
   Services _services = Services();
-  StoreState _storeState;
-  AppState _appState;
+  StoreState? _storeState;
+  AppState? _appState;
   bool _initialRun = true;
-  NavigationState _navigationState;
-  ProgressIndicatorState _progressIndicatorState;
+  NavigationState? _navigationState;
+  ProgressIndicatorState? _progressIndicatorState;
   Future<List<Req>> _getReqList() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getreq?page=1&lang=${_appState.currentLang}&req_user=${_appState.currentUser.userId}');
-    List<Req> reqList = List<Req>();
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/getreq?page=1&lang=${_appState!.currentLang}&req_user=${_appState!.currentUser.userId}');
+    List<Req> reqList = <Req>[];
     if (results['response'] == '1') {
       Iterable iterable = results['req'];
       reqList = iterable.map((model) => Req.fromJson(model)).toList();
@@ -78,9 +78,9 @@ class _ReqScreenState extends State<ReqScreen> {
         future: _reqList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.length > 0) {
+            if (snapshot.data!.length > 0) {
               return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       width: _width,
@@ -96,7 +96,7 @@ class _ReqScreenState extends State<ReqScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey[300],
+                            color: Colors.grey.withOpacity(300),
                             blurRadius: 7.0, // has the effect of softening the shadow
                             spreadRadius: 3.0, // has the effect of extending the shadow
 
@@ -111,7 +111,7 @@ class _ReqScreenState extends State<ReqScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("تاريخ الطلب :"),
-                                  Text(snapshot.data[index].reqDate)
+                                  Text(snapshot.data![index].reqDate!)
                                 ],
                               ),
 
@@ -120,7 +120,7 @@ class _ReqScreenState extends State<ReqScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("المبلغ :"),
-                                  Text(snapshot.data[index].reqValue+" SR ")
+                                  Text(snapshot.data![index].reqValue!+" SR ")
                                 ],
                               ),
                               Divider(),
@@ -128,20 +128,20 @@ class _ReqScreenState extends State<ReqScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("حالة الطلب :"),
-                                  Text(snapshot.data[index].reqDone=="0"?"لم يتم التاكيد":"تم التاكيد")
+                                  Text(snapshot.data![index].reqDone=="0"?"لم يتم التاكيد":"تم التاكيد")
                                 ],
                               ),
 
 
                              SizedBox(height: 20,),
-                              snapshot.data[index].reqDone=="0"?CustomButton(
+                              snapshot.data![index].reqDone=="0"?CustomButton(
                                btnColor: cLightLemon,
                                btnLbl: "حذف الطلب",
                                onPressedFunction: () async{
-                                 _progressIndicatorState.setIsLoading(true);
+                                 _progressIndicatorState!.setIsLoading(true);
                                  var results = await _services.get(
-                                     'https://qtaapp.com/api/do_delete_req?id=${snapshot.data[index].reqId}&lang=${_appState.currentLang}');
-                                 _progressIndicatorState.setIsLoading(false);
+                                     'https://qtaapp.com/api/do_delete_req?id=${snapshot.data![index].reqId}&lang=${_appState!.currentLang}');
+                                 _progressIndicatorState!.setIsLoading(false);
                                  if (results['response'] == '1') {
                                    showToast(results['message'], context);
                                    _reqList = _getReqList();
@@ -157,7 +157,7 @@ class _ReqScreenState extends State<ReqScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("صورة التحويل :"),
-                                  Image.network(snapshot.data[index].reqPhoto,width: _width*.55,)
+                                  Image.network(snapshot.data![index].reqPhoto!,width: _width*.55,)
                                 ],
                               )
                             ],
@@ -211,7 +211,7 @@ class _ReqScreenState extends State<ReqScreen> {
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      if (_appState.currentUser != null) {
+      if (_appState!.currentUser != null) {
         _reqList = _getReqList();
       }
     }
@@ -244,7 +244,7 @@ class _ReqScreenState extends State<ReqScreen> {
                       color: cBlack,
                     ),
                     onPressed: () {
-                      _navigationState.upadateNavigationIndex(3);
+                      _navigationState!.upadateNavigationIndex(3);
                       Navigator.pushReplacementNamed(context, '/navigation');
                     },
                   ),

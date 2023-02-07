@@ -7,7 +7,7 @@ import 'package:qitea/models/product_details.dart';
 
 
 class AppLocalizations {
-  static AppLocalizations of(BuildContext context) {
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 

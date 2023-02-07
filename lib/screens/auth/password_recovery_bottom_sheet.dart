@@ -19,7 +19,7 @@ class PasswordRecoveryBottomSheet extends StatefulWidget {
 class _PasswordRecoveryBottomSheetState
     extends State<PasswordRecoveryBottomSheet> {
   String _userPhone = '';
-  ProgressIndicatorState _progressIndicatorState;
+  ProgressIndicatorState? _progressIndicatorState;
   Services _services = Services();
   
   @override
@@ -42,7 +42,7 @@ class _PasswordRecoveryBottomSheetState
                 horizontal: width *0.02,
                 vertical: height *0.02),
             child: Text(
-              AppLocalizations.of(context).sendMessageToMobile,
+              AppLocalizations.of(context)!.sendMessageToMobile,
               style: TextStyle(
                 color: cBlack,
                 fontSize: 15,
@@ -58,16 +58,16 @@ class _PasswordRecoveryBottomSheetState
               child:  CustomTextFormField(
               iconIsImage: true,
               imagePath: 'assets/images/call.png', 
-              hintTxt: AppLocalizations.of(context).phoneNo,
+              hintTxt: AppLocalizations.of(context)!.phoneNo,
 
                 suffixIcon:  Image.asset("assets/images/sa.png"),
                 validationFunc: (value) {
-                  if (value.trim().length == 0) {
-                    return AppLocalizations.of(context).phonoNoValidation;
+                  if (value!.trim().length == 0) {
+                    return AppLocalizations.of(context)!.phonoNoValidation;
                   }
 
 
-                  if (value.trim().length != 9) {
+                  if (value!.trim().length != 9) {
                     return "يجب ان يكون  رقم الهاتف مكون من 9 ارقايم ويبدء ب 5 ";
                   }
                   return null;
@@ -80,15 +80,15 @@ class _PasswordRecoveryBottomSheetState
           Container(
               height: 60,
               child: CustomButton(
-                btnLbl: AppLocalizations.of(context).send,
+                btnLbl: AppLocalizations.of(context)!.send,
                 btnColor: cLightLemon,
                 onPressedFunction: () async {
-                   _progressIndicatorState.setIsLoading(true);
+                   _progressIndicatorState!.setIsLoading(true);
                     
                     var results = await _services.get(
                       Utils.PASSWORD_RECOVERY_URL + '?user_phone=$_userPhone&lang=${appState.currentLang}' 
                     );
-                    _progressIndicatorState.setIsLoading(false);
+                    _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                    showToast(results['message'], context);
                    Navigator.pop(context);

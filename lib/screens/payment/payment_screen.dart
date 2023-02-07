@@ -26,24 +26,24 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
-  PaymentScreen({Key key}) : super(key: key);
+  PaymentScreen({Key? key}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
-  String _reqValue;
+  String? _reqValue;
   Services _services = Services();
-  AppState _appState;
-  ProgressIndicatorState _progressIndicatorState;
-  final Completer<WebViewController> _controller =
-  Completer<WebViewController>();
+  AppState? _appState;
+  ProgressIndicatorState? _progressIndicatorState;
 
-  FocusNode _focusNode;
+  late final WebViewController _controller;
+
+  FocusNode? _focusNode;
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -61,12 +61,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
     super.initState();
     _focusNode = FocusNode();
 
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.startsWith("https://qtaapp.com/site/hyper?id="+_appState!.url)) {
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse('https://flutter.dev'));
+
   }
 
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed.
-    _focusNode.dispose();
+    _focusNode!.dispose();
     super.dispose();
   }
 
@@ -75,15 +96,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     });
   }
-  Widget _buildBodyItem() {
-    return  WebView(
-      initialUrl: 'https://google.com',
-      onWebViewCreated: (WebViewController webViewController) {
-        _controller.complete(webViewController);
-      },
-    );
 
-  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -98,33 +115,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
               backgroundColor: Color(0xffF5F6F8),
               body: Stack(
                 children: <Widget>[
-                  WebView(
-
-                    initialUrl: "https://qtaapp.com/site/hyper?id="+_appState.url,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    onWebViewCreated: (WebViewController webViewController) {
-                      _controller.complete(webViewController);
-                    },
-
-                    navigationDelegate: (NavigationRequest request) {
-                      print('allowing navigation to $request');
-                      return NavigationDecision.navigate;
-                    },
-                    onPageStarted: (String url) {
-                      print('Page started loading: $url');
-                    },
-                    onPageFinished: (String url) {
-                      print('Page finished loading: $url');
-                    },
-                    gestureNavigationEnabled: true,
-                  ),
+                  WebViewWidget(controller: _controller),
                   Positioned(
                     top: 0,
                     left: 0,
                     right: 0,
                     child: GradientAppBar(
                       appBarTitle: "دفع الكتروني",
-                      leading: _appState.currentLang == 'ar'
+                      leading: _appState!.currentLang == 'ar'
                           ? IconButton(
                         icon: Image.asset('assets/images/back.png',color: cPrimaryColor,),
                         onPressed: () {
@@ -132,7 +130,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         },
                       )
                           : Container(),
-                      trailing: _appState.currentLang == 'en'
+                      trailing: _appState!.currentLang == 'en'
                           ? IconButton(
                         icon: Icon(
                           Icons.arrow_back_ios,

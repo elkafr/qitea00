@@ -23,30 +23,30 @@ import 'package:validators/validators.dart';
 import 'package:qitea/components/drop_down_list_selector/drop_down_list_selector.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
   final _formKey = GlobalKey<FormState>();
   String _userName = '', _userEmail = '', _userPhone = '', _userPassword = '';
-  City _selectedCity;
-  Future<List<City>> _cityList;
+  City? _selectedCity;
+  Future<List<City>>? _cityList;
   Services _services = Services();
-  ProgressIndicatorState _progressIndicatorState;
-  AppState _appState;
-  NavigationState _navigationState;
+  ProgressIndicatorState? _progressIndicatorState;
+  AppState? _appState;
+  NavigationState? _navigationState;
   bool _initialRun = true;
 
 
   Future<List<City>> _getCityItems() async {
-    Map<String, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getcity?lang=${_appState.currentLang}');
-    List<City> cityList = List<City>();
+    Map<dynamic, dynamic> results = await _services.get(
+        'https://qtaapp.com/api/getcity?lang=${_appState!.currentLang}');
+    List<City> cityList = <City>[];
     if (results['response'] == '1') {
       Iterable iterable = results['city'];
       cityList = iterable.map((model) => City.fromJson(model)).toList();
@@ -84,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: GestureDetector(
                 child: Text("تخطي",style: TextStyle(color: cOmarColor,fontSize: 14),),
                 onTap: (){
-                  _navigationState.upadateNavigationIndex(0);
+                  _navigationState!.upadateNavigationIndex(0);
                   Navigator.pushReplacementNamed(context, '/navigation');
                 },
               ),
@@ -130,10 +130,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       size: 24,
                     ),
                   
-                  hintTxt: AppLocalizations.of(context).name,
+                  hintTxt: AppLocalizations.of(context)!.name,
                   validationFunc: (value) {
-                    if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).nameValidation;
+                    if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.nameValidation;
                     }
                     return null;
                   },
@@ -152,10 +152,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               iconIsImage: true,
               imagePath: 'assets/images/call.png',
                   suffixIcon:  Image.asset("assets/images/sa.png"),
-              hintTxt: AppLocalizations.of(context).phoneNo,
+              hintTxt: AppLocalizations.of(context)!.phoneNo,
               validationFunc: (value) {
-               if (value.trim().length == 0) {
-                      return AppLocalizations.of(context).phonoNoValidation;
+               if (value!.trim().length == 0) {
+                      return AppLocalizations.of(context)!.phonoNoValidation;
                     }
 
                if (value.trim().length != 9) {
@@ -176,10 +176,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 child: CustomTextFormField(
                  prefixIcon:  Icon(Icons.mail),
-                  hintTxt: AppLocalizations.of(context).email,
+                  hintTxt: AppLocalizations.of(context)!.email,
                   validationFunc: (value) {
-                    if (!isEmail(value)) {
-                      return AppLocalizations.of(context).emailValidation;
+                    if (!isEmail(value!)) {
+                      return AppLocalizations.of(context)!.emailValidation;
                     }
                     return null;
                   },
@@ -201,9 +201,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.hasData) {
-                      var cityList = snapshot.data.map((item) {
+                      var cityList = snapshot.data!.map((item) {
                         return new DropdownMenuItem<City>(
-                          child: new Text(item.cityName),
+                          child: new Text(item.cityName!),
                           value: item,
                         );
                       }).toList();
@@ -245,14 +245,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
 
-                    hintTxt: AppLocalizations.of(context).password,
+                    hintTxt: AppLocalizations.of(context)!.password,
                     inputData: TextInputType.text,
                     onChangedFunc: (String text) {
                       _userPassword = text.toString();
                     },
                     validationFunc: (value) {
-                      if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                      if (value!.trim().length < 4) {
+                        return AppLocalizations.of(context)!.passwordValidation;
                       }
                       return null;
                     })),
@@ -267,15 +267,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     isPassword: true,
                     imagePath:'assets/images/key.png' ,
                  iconIsImage: true,
-                    hintTxt: AppLocalizations.of(context).passwordVerify,
+                    hintTxt: AppLocalizations.of(context)!.passwordVerify,
                     inputData: TextInputType.text,
                  
                     validationFunc: (value) {
-                    if (value.trim().length < 4) {
-                        return AppLocalizations.of(context).passwordValidation;
+                    if (value!.trim().length < 4) {
+                        return AppLocalizations.of(context)!.passwordValidation;
                   
                       } else if (value != _userPassword) {
-                        return AppLocalizations.of(context).passwordNotIdentical;
+                        return AppLocalizations.of(context)!.passwordNotIdentical;
                       }
                       return null;
                     })),
@@ -335,9 +335,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontFamily: 'segoeui',
                                 color: Colors.black),
                             children: <TextSpan>[
-                              new TextSpan(text: AppLocalizations.of(context).iAccept),
+                              new TextSpan(text: AppLocalizations.of(context)!.iAccept),
                               new TextSpan(
-                                  text: AppLocalizations.of(context).terms,
+                                  text: AppLocalizations.of(context)!.terms,
                                   style: new TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontWeight: FontWeight.bold,
@@ -355,26 +355,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 60,
               child: CustomButton(
                 btnColor: cLightLemon,
-                btnLbl: AppLocalizations.of(context).register,
+                btnLbl: AppLocalizations.of(context)!.register,
                 onPressedFunction: () async {
-                  if (_formKey.currentState.validate()) {
-                    if (_appState.acceptTerms) {
-                      _progressIndicatorState.setIsLoading(true);
+                  if (_formKey.currentState!.validate()) {
+                    if (_appState!.acceptTerms) {
+                      _progressIndicatorState!.setIsLoading(true);
                       print('$_userEmail');
                       print('$_userPassword');
                       var results = await _services.get(
-                          'https://qtaapp.com/api/register/?user_name=$_userName&user_phone=$_userPhone&user_email=$_userEmail&user_city=${_selectedCity.cityId}&user_pass=$_userPassword&lang=${_appState.currentLang}');
-                      _progressIndicatorState.setIsLoading(false);
+                          'https://qtaapp.com/api/register/?user_name=$_userName&user_phone=$_userPhone&user_email=$_userEmail&user_city=${_selectedCity!.cityId}&user_pass=$_userPassword&lang=${_appState!.currentLang}');
+                      _progressIndicatorState!.setIsLoading(false);
                       if (results['response'] == '1') {
                         showToast(results['message'], context);
                      //   _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
-                        _appState.setCurrentPhone111(results['user_id'].toString());
+                        _appState!.setCurrentPhone111(results['user_id'].toString());
                         Navigator.pushNamed(context, '/register_code_activation_screen' );
                       } else {
                         showErrorDialog(results['message'], context);
                       }
                     } else {
-                      showErrorDialog(AppLocalizations.of(context).acceptTerms, context);
+                      showErrorDialog(AppLocalizations.of(context)!.acceptTerms, context);
                     }
                   }
                 },

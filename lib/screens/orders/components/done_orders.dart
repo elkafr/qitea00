@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -21,28 +23,28 @@ class DoneOrders extends StatefulWidget {
 
 class _DoneOrdersState extends State<DoneOrders> {
  bool _initialRun = true;
-  AppState _appState;
-  OrderState _orderState;
+  AppState? _appState;
+  OrderState? _orderState;
   Services _services = Services();
-  Future<List<Order>> _orderList;
+  Future<List<Order>>? _orderList;
 
   Future<List<Order>> _getOrderList() async {
 
 
-    Map<String, dynamic> results = _appState.currentUser.userType=="user"?await _services.get(
-        'https://qtaapp.com/api/dis_buy?lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&page=1&done=1'):(_appState.currentUser.userType=="mtger"?await _services.get(
-        'https://qtaapp.com/api/mtger_dis_buy?lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&page=1&done=1'):await _services.get(
-        'https://qtaapp.com/api/driver_dis_buy?lang=${_appState.currentLang}&user_id=${_appState.currentUser.userId}&page=1&done=1'));
+    Map<dynamic, dynamic> results = _appState!.currentUser.userType=="user"?await _services.get(
+        'https://qtaapp.com/api/dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=1'):(_appState!.currentUser.userType=="mtger"?await _services.get(
+        'https://qtaapp.com/api/mtger_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=1'):await _services.get(
+        'https://qtaapp.com/api/driver_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=1'));
 
 
-    List orderList = List<Order>();
+    List orderList = <Order>[];
     if (results['response'] == '1') {
       Iterable iterable = results['result'];
       orderList = iterable.map((model) => Order.fromJson(model)).toList();
     } else {
       print('error');
     }
-    return orderList;
+    return orderList as FutureOr<List<Order>>;
   }
 
   @override
@@ -64,7 +66,7 @@ class _DoneOrdersState extends State<DoneOrders> {
       future: _orderList,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          if (snapshot.data.length > 0) {
+          if (snapshot.data!.length > 0) {
                   return Column(
                     children: <Widget>[
                       SizedBox(
@@ -74,26 +76,26 @@ class _DoneOrdersState extends State<DoneOrders> {
                        height: height - 180 ,
                         width: width,
                         child: ListView.builder(
-                            itemCount: snapshot.data.length,
+                            itemCount: snapshot.data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 onTap: (){
-                                  _orderState.setCarttId(snapshot.data[index].carttId);
+                                  _orderState!.setCarttId(snapshot.data![index].carttId!);
 
 
-                                  if(_appState.currentUser.userType=="user") {
+                                  if(_appState!.currentUser.userType=="user") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 OrderDetails1Screen()));
-                                  }else if(_appState.currentUser.userType=="mtger") {
+                                  }else if(_appState!.currentUser.userType=="mtger") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 MtgerOrderDetailsScreen()));
-                                  } else if(_appState.currentUser.userType=="driver") {
+                                  } else if(_appState!.currentUser.userType=="driver") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -106,7 +108,7 @@ class _DoneOrdersState extends State<DoneOrders> {
 
                                   height: height*.22,
                                   child: DoneOrder(
-                                    order: snapshot.data[index],
+                                    order: snapshot.data![index],
                                   ),
                                 ),
                               );

@@ -9,15 +9,15 @@ import 'package:qitea/components/safe_area/page_container.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class PasswordRecoveryScreen extends StatefulWidget {
-  PasswordRecoveryScreen({Key key}) : super(key: key);
+  PasswordRecoveryScreen({Key? key}) : super(key: key);
 
   @override
   _PasswordRecoveryScreenState createState() => _PasswordRecoveryScreenState();
 }
 
 class _PasswordRecoveryScreenState extends State<PasswordRecoveryScreen> {
-  double _height;
-  double _width;
+  double _height=0;
+  double _width=0;
 
   Widget _buildBodyItem() {
     return ListView(
