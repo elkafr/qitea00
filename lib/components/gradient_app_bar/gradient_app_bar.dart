@@ -22,7 +22,7 @@ class GradientAppBar extends StatelessWidget {
 
           child: Center(
             child: Text(appBarTitle!,
-             style: Theme.of(context).textTheme.display1
+
          ),
           ),
         ),

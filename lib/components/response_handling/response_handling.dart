@@ -45,8 +45,8 @@ handleUnauthenticated( BuildContext context ) {
   }
   
   showToast(String message, context) {
-  return Toast.show(message, context,
+  return Toast.show(message,
       backgroundColor: Theme.of(context).primaryColor,
-      duration: Toast.LENGTH_LONG,
-      gravity: Toast.BOTTOM);
+      duration: Toast.lengthLong,
+      gravity: Toast.bottom);
 }

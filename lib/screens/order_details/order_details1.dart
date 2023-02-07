@@ -28,7 +28,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -155,7 +155,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -240,7 +240,7 @@ import 'dart:io';
 import 'package:qitea/components/dialogs/location_dialog.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
+import 'package:location/location.dart' as gg;
 
 class OrderDetails1Screen extends StatefulWidget {
   @override
@@ -336,7 +336,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
 
   Future<void> _getCurrentUserLocation() async {
     _progressIndicatorState!.setIsLoading(true);
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
 
@@ -369,7 +369,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
 
   Future<void> _getCurrentUserLocation1() async {
     _progressIndicatorState!.setIsLoading(true);
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
 
@@ -378,7 +378,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
       _locationState!.setLocationlongitude(_locData!.longitude!);
       List<Placemark> placemark = await placemarkFromCoordinates(
           _locationState!.locationLatitude, _locationState!.locationlongitude);
-      _locationState!.setCurrentAddress(placemark[0].name +
+      _locationState!.setCurrentAddress(placemark[0].name! +
           '  ' +
           placemark[0].administrativeArea! +
           ' ' +
@@ -2599,7 +2599,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                                                     showErrorDialog(results['message'], context);
                                                                                                   }
                                                                                                 },
-                                                                                                child: Text(AppLocalizations.of(context).ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
+                                                                                                child: Text(AppLocalizations.of(context)!.ok, style: TextStyle(fontSize: 14, fontFamily: 'segoeui', color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500)))
                                                                                           ],
                                                                                         )
                                                                                       ],

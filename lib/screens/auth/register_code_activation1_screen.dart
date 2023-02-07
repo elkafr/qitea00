@@ -19,6 +19,8 @@ import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 import 'package:qitea/utils/utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 class RegisterCodeActivation1Screen extends StatefulWidget {
   @override
@@ -34,7 +36,7 @@ class _RegisterCodeActivation1ScreenState
   AppState? _appState;
   NavigationState? _navigationState;
   ProgressIndicatorState? _progressIndicatorState;
-  FirebaseMessaging? _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging? _firebaseMessaging = FirebaseMessaging.instance;
 
   Widget _buildPinView() {
     return Directionality(
@@ -42,15 +44,19 @@ class _RegisterCodeActivation1ScreenState
         child: PinCodeTextField(
           backgroundColor: Color(0xffF5F6F8),
           length: 4,
-          obsecureText: false,
-          inactiveColor: Theme.of(context).primaryColor,
-          selectedColor: Theme.of(context).primaryColor,
+          appContext: context,
+
           animationType: AnimationType.fade,
           animationDuration: Duration(milliseconds: 300),
-          borderRadius: BorderRadius.circular(5),
-          activeColor: Theme.of(context).primaryColor,
-          fieldWidth: 50,
-
+            pinTheme: PinTheme(
+              shape: PinCodeFieldShape.box,
+              borderRadius: BorderRadius.circular(5),
+              fieldHeight: 50,
+              fieldWidth: 40,
+              activeFillColor: Theme.of(context).primaryColor,
+              selectedColor: Theme.of(context).primaryColor,
+              inactiveColor: Theme.of(context).primaryColor,
+            ),
           onCompleted: (v) {
             print("Completed");
           },

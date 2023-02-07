@@ -1,4 +1,4 @@
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -88,8 +88,44 @@ import 'dart:io';
 import 'package:qitea/components/dialogs/location_dialog.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart' as gg;
+
+
+import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
+
+import 'package:provider/provider.dart';
+import 'package:qitea/components/app_data/shared_preferences_helper.dart';
+import 'package:qitea/components/app_repo/app_state.dart';
+import 'package:qitea/components/app_repo/navigation_state.dart';
+import 'package:qitea/components/connectivity/network_indicator.dart';
+import 'package:qitea/locale/localization.dart';
+import 'package:qitea/models/user.dart';
+import 'package:qitea/utils/app_colors.dart';
+import 'package:qitea/components/app_repo/location_state.dart';
+import 'package:qitea/components/MainDrawer.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 
+
+import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:qitea/components/app_repo/app_state.dart';
+import 'package:qitea/components/connectivity/network_indicator.dart';
+import 'package:qitea/components/gradient_app_bar/gradient_app_bar.dart';
+import 'package:qitea/components/safe_area/page_container.dart';
+import 'package:qitea/locale/localization.dart';
+import 'package:qitea/services/access_api.dart';
+import 'package:qitea/utils/app_colors.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 class MtgerRegisterScreen extends StatefulWidget {
   MtgerRegisterScreen({Key? key}) : super(key: key);
@@ -164,7 +200,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
 
   Future<void> _getCurrentUserLocation() async {
     _progressIndicatorState!.setIsLoading(true);
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:location/location.dart';
+import 'package:location/location.dart' as gg;
 import 'package:provider/provider.dart';
 import 'package:qitea/components/app_repo/app_state.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
@@ -28,7 +28,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -155,7 +155,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -240,7 +240,7 @@ import 'dart:io';
 import 'package:qitea/components/dialogs/location_dialog.dart';
 import 'package:qitea/components/app_repo/location_state.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
+import 'package:location/location.dart' as gg;
 
 class OrderDetailsScreen extends StatefulWidget {
   @override
@@ -307,8 +307,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   }
 
   Future<void> _getCurrentUserLocation() async {
+
     _progressIndicatorState!.setIsLoading(true);
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
 
@@ -355,7 +356,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   Future<void> _getCurrentUserLocation1() async {
     _progressIndicatorState!.setIsLoading(true);
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
 

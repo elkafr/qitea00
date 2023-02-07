@@ -200,7 +200,7 @@ onRatingUpdate: (w){},
                                   Container(
 
                                     decoration: BoxDecoration(
-                                      color: _appState.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
+                                      color: _appState!.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
                                       borderRadius: BorderRadius.all(
                                         const Radius.circular(15.00),
                                       ),

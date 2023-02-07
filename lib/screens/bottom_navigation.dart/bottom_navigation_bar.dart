@@ -17,8 +17,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart' as gg;
 import 'package:location/location.dart';
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -128,8 +128,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           subtitle: Text(message['notification']['body']),
         ),
         actions: <Widget>[
-          FlatButton(
-            color: cPrimaryColor,
+          TextButton(
             child: message['notification']['title']=="تنويه باتمام الدفع"?Text('الانتقال لطلباتي'):Text('موافق'),
             onPressed: () {
               Navigator.of(context).pop();
@@ -179,7 +178,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Future<void> _getCurrentUserLocation() async {
 
-    _locData = await Location().getLocation();
+    _locData = await gg.Location().getLocation();
     print(_locData!.latitude);
     print(_locData!.longitude);
       _locationState!.setLocationLatitude(_locData!.latitude!);
@@ -236,92 +235,25 @@ class _BottomNavigationState extends State<BottomNavigation> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==0?Image.asset("assets/images/home.png",color: cLightLemon,):Image.asset("assets/images/home.png",color: cPrimaryColor,),
-            title: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Text(
-                  AppLocalizations.of(context).home,
-                  style: TextStyle(fontSize: 14.0,color: cPrimaryColor,),
-                )),
+            label: AppLocalizations.of(context)!.home,
           ),
            BottomNavigationBarItem(
-            icon: _navigationState.navigationIndex==1?Image.asset("assets/images/orders.png",color: cLightLemon,):Image.asset("assets/images/orders.png",color: cPrimaryColor,),
-            title: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Text(
-               AppLocalizations.of(context).orders,
-                  style: TextStyle(fontSize: 14.0,color: cPrimaryColor,),
-                )),
+            icon: _navigationState!.navigationIndex==1?Image.asset("assets/images/orders.png",color: cLightLemon,):Image.asset("assets/images/orders.png",color: cPrimaryColor,),
+            label: AppLocalizations.of(context)!.orders,
           ),
 
           BottomNavigationBarItem(
-            icon: _navigationState!.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
-            title:  (_appState!.currentUser!=null)?Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: FutureBuilder<String>(
-                    future: Provider.of<AppState>(context,
-                        listen: false)
-                        .getUnreadNotify() ,
-                    builder: (context, snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                          return Center(
-                            child: SpinKitFadingCircle(color: cLightLemon),
-                          );
-                        case ConnectionState.active:
-                          return Text('');
-                        case ConnectionState.waiting:
-                          return Center(
-                            child: SpinKitFadingCircle(color: cLightLemon),
-                          );
-                        case ConnectionState.done:
-                          if (snapshot.hasError) {
-                            return null;
-                          } else {
-                            return   Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text( "الاشعارات",style: TextStyle(
-                                    color: cPrimaryColor,fontSize: 14
-                                ),),
+            icon:  _navigationState!.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
+            label: "الاشعارات",
 
-                                snapshot.data!="0"?Container(
-                                  alignment: Alignment.center,
-                                  width: 18,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.red),
 
-                                  child: Container(
 
-                                      child: Text( snapshot.data.toString(),style: TextStyle(
-                                          color: Colors.white,fontSize: 15,height: 1.6
-                                      ),)),
-                                ):Text("",style: TextStyle(height: 0),),
-                              ],
-                            );
-                          }
-                      }
-                      return Center(
-                        child: SpinKitFadingCircle(color: cLightLemon),
-                      );
-                    })):Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Text(
-                  "الاشعارات",
-                  style: TextStyle(fontSize: 14.0,color: cPrimaryColor),
-                )),
           ),
 
           BottomNavigationBarItem(
-            icon: _navigationState.navigationIndex==3?Image.asset("assets/images/user.png",color: cLightLemon,):Image.asset("assets/images/user.png",color: cPrimaryColor,),
+            icon: _navigationState!.navigationIndex==3?Image.asset("assets/images/user.png",color: cLightLemon,):Image.asset("assets/images/user.png",color: cPrimaryColor,),
 
-            title: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Text(
-                  _appState.currentLang=="ar"?"حسابي":"My account",
-                  style: TextStyle(fontSize: 14.0,color: cPrimaryColor,),
-                )),
+            label:_appState!.currentLang=="ar"?"حسابي":"My account",
           ),
 
 

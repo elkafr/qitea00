@@ -19,7 +19,6 @@ class ResponseAlertDialog extends StatelessWidget {
             Center(
                 child: Text(
               alertTitle!,
-              style: Theme.of(context).textTheme!.title,
             )),
             SizedBox(
               height: 10,

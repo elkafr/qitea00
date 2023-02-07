@@ -56,7 +56,7 @@ import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -1208,7 +1208,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                   "موقع المتجر / ",
                                   style: TextStyle(),
                                 ),
-                                FlatButton(
+                                TextButton(
                                   child: Text('اضغط هنا'),
                                   onPressed: () {
                                     launch(

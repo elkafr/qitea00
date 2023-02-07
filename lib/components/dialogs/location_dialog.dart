@@ -60,7 +60,7 @@ class _LocationDialogState extends State<LocationDialog> {
          _locationState!.locationlongitude),
          flat: true
         );
-   _markers.add( _marker);
+   _markers.add( _marker!);
       
     return  LayoutBuilder(builder: (context,constraints){
  return AlertDialog(

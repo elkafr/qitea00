@@ -31,7 +31,7 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
             margin:
                 EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.05),
             child: Text(
-              AppLocalizations.of(context).wantToCancelOrder,
+              AppLocalizations.of(context)!.wantToCancelOrder,
               style: TextStyle(
                   color: cBlack, fontSize: 17, fontWeight: FontWeight.w600),
             ),

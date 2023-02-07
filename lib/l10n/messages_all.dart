@@ -35,7 +35,7 @@ MessageLookupByLibrary _findExact(String localeName) {
     case 'ar':
       return messages_ar.messages;
     default:
-      return null;
+      return messages_ar.messages;
   }
 }
 
@@ -66,6 +66,6 @@ bool _messagesExistFor(String locale) {
 MessageLookupByLibrary _findGeneratedMessagesFor(String locale) {
   var actualLocale = Intl.verifiedLocale(locale, _messagesExistFor,
       onFailure: (_) => null);
-  if (actualLocale == null) return Null;
+  if (actualLocale == null) return null;
   return _findExact(actualLocale);
 }

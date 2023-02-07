@@ -20,7 +20,7 @@ class Services {
 
     return http
         .post(
-        Uri.encodeFull(url),
+        Uri.parse(url),
 
         body: json.encode(body),
         headers: header == null ? _headers : header
@@ -42,7 +42,7 @@ class Services {
   }
 
   Future<dynamic> postWithDio(String url,
-      {body, Map<String, String> headers}) async {
+      {body, Map<String, String>? headers}) async {
     var responseJson;
     try {
       final  response = await Dio().post(
@@ -51,7 +51,7 @@ class Services {
           options: Options(
             followRedirects: false,
             validateStatus: (status) {
-              return status < 500;
+              return status! < 500;
             },
             headers:headers,
           ));
@@ -63,9 +63,9 @@ class Services {
     return responseJson;
   }
 
-  Future<Map> get(String url,{Map<String, String> header}) async {
+  Future<Map> get(String url,{Map<String, String>? header}) async {
 
-    return http.get(Uri.encodeFull(url),
+    return http.get(Uri.parse(url),
         headers: header == null ? _headers : header
     ).then((http.Response response) {
       final int statusCode = response.statusCode;

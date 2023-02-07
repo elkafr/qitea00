@@ -23,7 +23,7 @@ import 'package:qitea/utils/app_colors.dart';
 import 'dart:math' as math;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:circular_check_box/circular_check_box.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';

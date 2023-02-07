@@ -12,7 +12,6 @@ ThemeData themeData() {
       buttonColor: cPrimaryColor,
       scaffoldBackgroundColor: Color(0xffFFFFFF),
       fontFamily: 'segoeui',
-      cursorColor: cPrimaryColor,
       tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
           labelStyle: TextStyle(color: Colors.red), // color for text
@@ -21,21 +20,21 @@ ThemeData themeData() {
       textTheme: TextTheme(
 
           // app bar style
-          display1: TextStyle(color: cText, fontSize: 17,  fontFamily: 'segoeui',fontWeight: FontWeight.w600),
+       //   display1: TextStyle(color: cText, fontSize: 17,  fontFamily: 'segoeui',fontWeight: FontWeight.w600),
           
             // title of dialog
-        title: TextStyle(
-            fontFamily: 'segoeui', fontSize: 18, fontWeight: FontWeight.w600),
+     //   title: TextStyle(
+        //    fontFamily: 'segoeui', fontSize: 18, fontWeight: FontWeight.w600),
 
           // style info Text
-          display2: TextStyle(
-              color: cBlack,
-              fontSize: 17,
-              fontWeight: FontWeight.w400,
-              height: 1.5),
+       //   display2: TextStyle(
+          //    color: cBlack,
+          //    fontSize: 17,
+          //    fontWeight: FontWeight.w400,
+           //   height: 1.5),
               
-          button: TextStyle(
-              color: cWhite, fontWeight: FontWeight.w600, fontSize: 15.0)
+        //  button: TextStyle(
+          //    color: cWhite, fontWeight: FontWeight.w600, fontSize: 15.0)
 
 
 //         // title of dialog
