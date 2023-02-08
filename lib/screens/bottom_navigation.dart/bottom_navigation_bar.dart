@@ -83,6 +83,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return termsContent;
   }
 
+
+
+
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
   new FlutterLocalNotificationsPlugin();
@@ -123,6 +126,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     var android = new AndroidNotificationDetails(
       'channel id',
       "CHANNLE NAME",
+      channelDescription:
+      "channelDescription",
     );
     var iOS = new DarwinNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
