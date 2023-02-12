@@ -134,7 +134,7 @@ class _RegisterCodeActivation1ScreenState
                    );
                    _progressIndicatorState!.setIsLoading(false);
                    if (results['response'] == '1') {
-                     showToast(results['message'], context);
+                     showToast(context,message: results['message']);
                      _appState!.setCurrentUser(User(userId:results['user_id'].toString() ));
                      // Navigator.pushNamed(context, '/register_code_activation_screen' );
                    } else {
@@ -172,7 +172,7 @@ class _RegisterCodeActivation1ScreenState
                     //_appState.setCurrentUser(User.fromJson(results['user_details']));
                     _navigationState!.upadateNavigationIndex(0);
                     Navigator.pushReplacementNamed(context, '/navigation');
-                    showToast(results['message'], context);
+                    showToast(context,message: results['message']);
 
 
                   } else {

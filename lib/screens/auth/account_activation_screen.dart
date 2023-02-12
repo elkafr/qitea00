@@ -95,7 +95,7 @@ class _AccountActivationScreenState extends State<AccountActivationScreen> {
                     '${Utils.REGISTER_CODE_ACTIVATION_URL}user_id=${_authState.userId}&user_code=$_activationCode&lang=${_appState.currentLang}');
                 _progressIndicatorState.setIsLoading(false);
                 if (results['response'] == '1') {
-                  showToast(results['message'], context);
+                  showToast(context,message: results['message']);
           showDialog(context:context,barrierDismissible: true ,builder: (_){
             return CongratulationDialog()
             ;
@@ -129,7 +129,7 @@ class _AccountActivationScreenState extends State<AccountActivationScreen> {
                     '${Utils.SEND_CODE_URL}user_phone=${_authState.userPhone}&lang=${_appState.currentLang}');
                 _progressIndicatorState.setIsLoading(false);
                 if (results['response'] == '1') {
-                  showToast(results['message'], context);
+                  showToast(context,message: results['message']);
                 } else {
                   showErrorDialog(results['message'], context);
                 }

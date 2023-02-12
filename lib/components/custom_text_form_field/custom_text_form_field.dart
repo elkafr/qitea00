@@ -127,7 +127,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(300),
+              color: Colors.grey.shade300,
               blurRadius: 25.0, // has the effect of softening the shadow
               spreadRadius: 5.0, // has the effect of extending the shadow
               offset: Offset(

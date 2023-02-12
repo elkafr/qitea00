@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
               margin: EdgeInsets.only(top: _height * 0.01),
 
               child: Image.asset(
-                'assets/images/ccc.png',
+                'assets/images/logo.png',
               ),
             ),
 

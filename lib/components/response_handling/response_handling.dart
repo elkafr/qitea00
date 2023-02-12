@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:qitea/utils/app_colors.dart';
 import 'package:toast/toast.dart';
 import 'package:qitea/components/app_data/shared_preferences_helper.dart';
 import 'package:qitea/components/dialogs/response_alert_dialog.dart';
@@ -43,10 +44,11 @@ handleUnauthenticated( BuildContext context ) {
           );
         });
   }
-  
-  showToast(String message, context) {
-  return Toast.show(message,
-      backgroundColor: Theme.of(context).primaryColor,
-      duration: Toast.lengthLong,
-      gravity: Toast.bottom);
+
+ void  showToast(BuildContext? context, {required  String message,Color? color}) {
+ToastContext().init(context!);
+return Toast.show(message,
+backgroundColor: color == null ? cPrimaryColor: color,
+duration: Toast.lengthLong,
+gravity: Toast.bottom);
 }

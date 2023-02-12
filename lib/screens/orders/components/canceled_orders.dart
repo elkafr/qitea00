@@ -24,7 +24,7 @@ class _CanceledOrdersState extends State<CanceledOrders> {
 
   Future<List<Order>> _getOrderList() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=3');
+        'https://qtaapp.com/api/dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&page=1&done=3');
     List orderList = <Order>[];
     if (results['response'] == '1') {
       Iterable iterable = results['result'];

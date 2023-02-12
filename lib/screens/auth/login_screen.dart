@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        if (results['response'] == '1') {
                          _appState!.setCurrentPhoneSend(_userPhone!);
                          _appState!.setCurrentTokenSend(token!);
-                         showToast(results['message'], context);
+                         showToast(context,message: results['message']);
                          _appState!.setCurrentUser(User.fromJson(results["user_details"]));
                          SharedPreferencesHelper.save("user", _appState!.currentUser);
                          _navigationState!.upadateNavigationIndex(0);

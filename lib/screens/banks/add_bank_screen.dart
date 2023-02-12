@@ -207,11 +207,11 @@ class _AddBankScreenState extends State<AddBankScreen> {
                     _progressIndicatorState!.setIsLoading(true);
 
                     var results = await _services.get(
-                      '${Utils.BASE_URL}add_bank?bank_title=$_bankTitle&bank_name=$_bankName&bank_acount=$_bankAcount&bank_iban=$_bankIban&bank_user=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}',
+                      '${Utils.BASE_URL}add_bank?bank_title=$_bankTitle&bank_name=$_bankName&bank_acount=$_bankAcount&bank_iban=$_bankIban&bank_user=${_appState!.currentUser!.userId}&lang=${_appState!.currentLang}',
                     );
                     _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
-                      showToast(results['message'], context);
+                      showToast(context,message: results['message']);
                       Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -100,7 +100,7 @@ class _RestorePasswordDialogState extends State<RestorePasswordDialog> {
                            'https://qtaapp.com/api/send_code?user_phone=$_userPhone&lang=${appState.currentLang}');
                     progressIndicatorState.setIsLoading(false);
                         if (results['response'] == '1') {
-                          showToast(results['message'], context);
+                          showToast(context,message: results['message']);
                           Navigator.pushNamed(context,  '/password_activation_code_screen');
                         } else {
                           showErrorDialog(results['message'], context);

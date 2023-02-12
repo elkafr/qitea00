@@ -78,7 +78,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
   Future<Order> _getOrderDetails() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/show_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&cartt_id=${_orderState!.carttId}');
+        'https://qtaapp.com/api/show_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&cartt_id=${_orderState!.carttId}');
     Order orderDetails = Order();
     if (results['response'] == '1') {
       orderDetails = Order.fromJson(results['result']);
@@ -152,7 +152,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(300),
+                    color: Colors.grey.shade300,
                     blurRadius: 12.0, // has the effect of softening the shadow
                     spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -701,7 +701,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                   borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.withOpacity(300),
+                                      color: Colors.grey.shade300,
                                       blurRadius: 25.0, // has the effect of softening the shadow
                                       spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -727,7 +727,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                   borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.withOpacity(300),
+                                      color: Colors.grey.shade300,
                                       blurRadius: 25.0, // has the effect of softening the shadow
                                       spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -1519,14 +1519,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 if (_formKey.currentState!.validate()) {
                                   if (_requestPrice1 == null && _requestPrice1Offer1 ==null) {
 
-                                    showToast(
-                                        "يجب ادخال عرض السعر",
-                                        context);
+                                    showToast(context,message:
+                                    "يجب ادخال عرض السعر");
                                   } else {
                                     _progressIndicatorState!.setIsLoading(true);
                                     FormData formData = new FormData.fromMap({
 
-                                      "offer_mtger": _appState!.currentUser.userId,
+                                      "offer_mtger": _appState!.currentUser!.userId,
                                       "offer_cartt": order.carttId,
                                       "offer_type": _offerType,
                                       "requestPrice1": _requestPrice1,
@@ -1567,7 +1566,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
                                     if (results['response'] == '1') {
 
-                                      showToast(results['message'], context);
+                                      showToast(context,message: results['message']);
                                       Navigator.pop(context);
                                       Navigator.pushReplacementNamed(context,  '/navigation');
                                     } else {
@@ -1597,7 +1596,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser.userId?Container(
+          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser!.userId?Container(
             padding: EdgeInsets.all(30),
             margin: EdgeInsets.only(
                 left: _width * 0.03,
@@ -1613,7 +1612,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(300),
+                  color: Colors.grey.shade300,
                   blurRadius: 12.0, // has the effect of softening the shadow
                   spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -1664,7 +1663,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser.userId?Container(
+          (order.carttDone==2 || order.carttDone==3 || order.carttDone==4 || order.carttDone==5 || order.carttDone==6 || order.carttDone==7) && order.carttMtgerId==_appState!.currentUser!.userId?Container(
             padding: EdgeInsets.all(30),
             margin: EdgeInsets.only(
                 left: _width * 0.03,
@@ -1679,7 +1678,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(300),
+                  color: Colors.grey.shade300,
                   blurRadius: 12.0, // has the effect of softening the shadow
                   spreadRadius: 5.0, // has the effect of extending the shadow
 

@@ -121,11 +121,11 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                         _progressIndicatorState!.setIsLoading(true);
 
                         var results = await _services.get(
-                          'https://qtaapp.com//api/profile?user_pass2=$_oldUserPassword&user_pass=$_newUserPassword&user_pass1=$_newUserPassword&user_id=${appState.currentUser.userId}&lang=${_appState!.currentLang}',
+                          'https://qtaapp.com//api/profile?user_pass2=$_oldUserPassword&user_pass=$_newUserPassword&user_pass1=$_newUserPassword&user_id=${appState.currentUser!.userId}&lang=${_appState!.currentLang}',
                         );
                         _progressIndicatorState!.setIsLoading(false);
                         if (results['response'] == '1') {
-                          showToast(results['message'], context);
+                          showToast(context,message: results['message']);
                           Navigator.pop(context);
                           Navigator.pushReplacementNamed(
                               context, '/personal_information_screen');

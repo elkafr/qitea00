@@ -207,7 +207,7 @@ class _ContactWithUsScreenState extends State<ContactWithUsScreen> {
                     );
                     _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
-                      showToast(results['message'], context);
+                      showToast(context,message: results['message']);
                       Navigator.pop(context);
                     } else {
                       showErrorDialog(results['message'], context);

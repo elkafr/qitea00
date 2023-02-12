@@ -112,10 +112,10 @@ class _StoreCardItemState extends State<FavouriteStoreItem> {
                 onPressed: () async {
                   progressIndicatorState.setIsLoading(true);
                   var results = await _services.get(
-                      'https://qtaapp.com/api/delete_save_ads?mtger_id=${widget.favouriteStore!.mtgerId}&user_id=${appState.currentUser.userId}&lang=${appState.currentLang}');
+                      'https://qtaapp.com/api/delete_save_ads?mtger_id=${widget.favouriteStore!.mtgerId}&user_id=${appState.currentUser!.userId}&lang=${appState.currentLang}');
                   progressIndicatorState.setIsLoading(false);
                   if (results['response'] == '1') {
-                    showToast(results['message'], context);
+                    showToast(context,message: results['message']);
                     navigationState.upadateNavigationIndex(2);
                     Navigator.pushReplacementNamed(context, '/navigation');
                   } else {

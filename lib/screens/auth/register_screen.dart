@@ -292,13 +292,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                    Consumer<AppState>(builder: (context, appState, child) {
                     return GestureDetector(
                       onTap: () =>
-                          appState.setAcceptTerms(!appState.acceptTerms),
+                          appState.setAcceptTerms(!appState.acceptTerms!),
                       child: Container(
                         width: 20,
                         height: 20,
                         margin: EdgeInsets.only(
                             left: _width * 0.02, right: _width * 0.02),
-                        child: appState.acceptTerms
+                        child: appState.acceptTerms!
                             ? Icon(
                                 Icons.check,
                                 color: cWhite,
@@ -306,9 +306,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               )
                             : Container(),
                         decoration: BoxDecoration(
-                          color:  appState.acceptTerms ? cPrimaryColor : cWhite,
+                          color:  appState.acceptTerms! ? cPrimaryColor : cWhite,
                           border: Border.all(
-                            color:  appState.acceptTerms
+                            color:  appState.acceptTerms!
                                 ? cPrimaryColor
                                 : cHintColor,
                           ),
@@ -358,7 +358,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 btnLbl: AppLocalizations.of(context)!.register,
                 onPressedFunction: () async {
                   if (_formKey.currentState!.validate()) {
-                    if (_appState!.acceptTerms) {
+                    if (_appState!.acceptTerms!) {
                       _progressIndicatorState!.setIsLoading(true);
                       print('$_userEmail');
                       print('$_userPassword');
@@ -366,7 +366,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           'https://qtaapp.com/api/register/?user_name=$_userName&user_phone=$_userPhone&user_email=$_userEmail&user_city=${_selectedCity!.cityId}&user_pass=$_userPassword&lang=${_appState!.currentLang}');
                       _progressIndicatorState!.setIsLoading(false);
                       if (results['response'] == '1') {
-                        showToast(results['message'], context);
+                        showToast(context,message: results['message']);
                      //   _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
                         _appState!.setCurrentPhone111(results['user_id'].toString());
                         Navigator.pushNamed(context, '/register_code_activation_screen' );

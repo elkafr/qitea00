@@ -73,7 +73,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith("https://qtaapp.com/site/hyper?id="+_appState!.url)) {
+            if (request.url.startsWith("https://qtaapp.com/site/hyper?id="+_appState!.url!)) {
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;

@@ -128,11 +128,11 @@ class _AddReqScreenState extends State<AddReqScreen> {
                     _progressIndicatorState!.setIsLoading(true);
 
                     var results = await _services.get(
-                      '${Utils.BASE_URL}send_req?req_value=$_reqValue&user_id=${_appState!.currentUser.userId}&req_type=${_appState!.currentUser.userType}&lang=${_appState!.currentLang}',
+                      '${Utils.BASE_URL}send_req?req_value=$_reqValue&user_id=${_appState!.currentUser!.userId}&req_type=${_appState!.currentUser!.userType}&lang=${_appState!.currentLang}',
                     );
                     _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
-                      showToast(results['message'], context);
+                      showToast(context,message: results['message']);
                       Navigator.push(
                           context,
                           MaterialPageRoute(

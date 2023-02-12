@@ -162,7 +162,7 @@ class _MainDrawer extends State<MainDrawer> {
                                   builder: (context,authProvider,child){
                                     return CircleAvatar(
                                       backgroundColor: cLightLemon,
-                                      backgroundImage: NetworkImage(_appState!.currentUser.userPhoto!=null?_appState!.currentUser!.userPhoto!:""),
+                                      backgroundImage: NetworkImage(_appState!.currentUser!.userPhoto!=null?_appState!.currentUser!.userPhoto!:""),
                                       maxRadius: 40,
                                     );
                                   }
@@ -174,7 +174,7 @@ class _MainDrawer extends State<MainDrawer> {
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.all(4)),
                                   Text(_appState!.currentUser!.userName!,style: TextStyle(color: cWhite,fontSize: 18)),
-                                  _appState!.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cLightLemon,fontSize: 16),):Row(
+                                  _appState!.currentUser!.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cLightLemon,fontSize: 16),):Row(
                                     children: <Widget>[
                                       RatingBar.builder(
                                         initialRating:  double.parse(_appState!.currentUser!.userRate!=null?_appState!.currentUser!.userRate!:"0"),
@@ -200,13 +200,13 @@ onRatingUpdate: (w){},
                                   Container(
 
                                     decoration: BoxDecoration(
-                                      color: _appState!.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
+                                      color: _appState!.currentUser!.userType=="driver"?cLightLemon:cPrimaryColor,
                                       borderRadius: BorderRadius.all(
                                         const Radius.circular(15.00),
                                       ),
                                     ),
                                     padding: EdgeInsets.only(right: 11,left: 11,top: 6,bottom: 6),
-                                    child: Text(_appState!.currentUser.userType=="driver"?"مندوب":_appState!.currentUser.userType=="mtger"?"تاجر":"مستخدم",style: TextStyle(color: Colors.white,fontSize: 15),),
+                                    child: Text(_appState!.currentUser!.userType=="driver"?"مندوب":_appState!.currentUser!.userType=="mtger"?"تاجر":"مستخدم",style: TextStyle(color: Colors.white,fontSize: 15),),
 
                                   )
                                 ],
@@ -278,7 +278,7 @@ onRatingUpdate: (w){},
                       ): Container();
                     }), */
 
-                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser.userType!="driver")?ListTile(
+                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser!.userType!="driver")?ListTile(
                       leading:Image.asset("assets/images/user.png"),
                       title: Text("التسجيل كمندوب",style: TextStyle(
                           color:Colors.white,fontSize: 15
@@ -291,7 +291,7 @@ onRatingUpdate: (w){},
                       },
                     ):Text("",style: TextStyle(height: 0),),
 
-                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser.userType!="mtger")?ListTile(
+                    _appState!.currentUser==null || (_appState!.currentUser!=null && _appState!.currentUser!.userType!="mtger")?ListTile(
                       leading:Image.asset("assets/images/home.png"),
                       title: Text("التسجيل كبائع",style: TextStyle(
                           color: Colors.white,fontSize: 15

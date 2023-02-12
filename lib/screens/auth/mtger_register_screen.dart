@@ -732,7 +732,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(300),
+                        color: Colors.grey.shade300,
                         blurRadius: 25.0, // has the effect of softening the shadow
                         spreadRadius: 5.0, // has the effect of extending the shadow
                         offset: Offset(
@@ -977,13 +977,13 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                    Consumer<AppState>(builder: (context, appState, child) {
                     return GestureDetector(
                       onTap: () =>
-                          appState.setAcceptTerms(!appState.acceptTerms),
+                          appState.setAcceptTerms(!appState.acceptTerms!),
                       child: Container(
                         width: 20,
                         height: 20,
                         margin: EdgeInsets.only(
                             left: _width * 0.02, right: _width * 0.02),
-                        child: appState.acceptTerms
+                        child: appState.acceptTerms!
                             ? Icon(
                                 Icons.check,
                                 color: cWhite,
@@ -991,9 +991,9 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                               )
                             : Container(),
                         decoration: BoxDecoration(
-                          color:  appState.acceptTerms ? cPrimaryColor : cWhite,
+                          color:  appState.acceptTerms! ? cPrimaryColor : cWhite,
                           border: Border.all(
-                            color:  appState.acceptTerms
+                            color:  appState.acceptTerms!
                                 ? cPrimaryColor
                                 : cHintColor,
                           ),
@@ -1048,7 +1048,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                   )
 
                   ) {
-                    if (_appState!.acceptTerms) {
+                    if (_appState!.acceptTerms!) {
 
                      if(_locData!=null){
 
@@ -1110,7 +1110,7 @@ class _MtgerRegisterScreenState extends State<MtgerRegisterScreen> with Validati
                       _progressIndicatorState!.setIsLoading(false);
                       if (results['response'] == '1') {
 
-                        showToast(results['message'], context);
+                        showToast(context,message: results['message']);
                        // _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
                         _appState!.setCurrentPhone111(results['user_id'].toString());
                         Navigator.pushNamed(context, '/register_code_activation1_screen' );

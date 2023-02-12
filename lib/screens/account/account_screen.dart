@@ -145,11 +145,11 @@ Widget _buildBodyItem(){
   mainAxisAlignment: MainAxisAlignment.start,
   children: <Widget>[
   Padding(padding: EdgeInsets.all(4)),
-  Text(_appState!.currentUser.userName!,style: TextStyle(color: cPrimaryColor,fontSize: 20)),
-    _appState!.currentUser.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cPrimaryColor,fontSize: 16),):Row(
+  Text(_appState!.currentUser!.userName!,style: TextStyle(color: cPrimaryColor,fontSize: 20)),
+    _appState!.currentUser!.userType=="user"?Text("الحساب الشخصي",style: TextStyle(color: cPrimaryColor,fontSize: 16),):Row(
       children: <Widget>[
         RatingBar.builder(
-          initialRating:  double.parse(_appState!.currentUser.userRate!),
+          initialRating:  double.parse(_appState!.currentUser!.userRate!),
           minRating: 1,
           direction: Axis.horizontal,
           allowHalfRating: true,
@@ -171,13 +171,13 @@ Widget _buildBodyItem(){
         Container(
 
   decoration: BoxDecoration(
-    color: _appState!.currentUser.userType=="driver"?cLightLemon:cPrimaryColor,
+    color: _appState!.currentUser!.userType=="driver"?cLightLemon:cPrimaryColor,
                 borderRadius: BorderRadius.all(
                  const Radius.circular(15.00),
              ),
  ),
           padding: EdgeInsets.only(right: 11,left: 11,top: 6,bottom: 6),
-          child: Text(_appState!.currentUser.userType=="driver"?"مندوب":"تاجر",style: TextStyle(color: Colors.white,fontSize: 15),),
+          child: Text(_appState!.currentUser!.userType=="driver"?"مندوب":"تاجر",style: TextStyle(color: Colors.white,fontSize: 15),),
 
         )
       ],
@@ -201,7 +201,7 @@ Widget _buildBodyItem(){
 
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(300),
+              color: Colors.grey.shade300,
               blurRadius: 12.0, // has the effect of softening the shadow
               spreadRadius: 5.0, // has the effect of extending the shadow
 
@@ -219,7 +219,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser.userNumberOfCartts!,
+                trailing: Text(_appState!.currentUser!.userNumberOfCartts!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -228,15 +228,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ),
-            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Container(
+            _appState!.currentUser!.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser!.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/wallet.png"),
                 title: Text("اجمالى المبالغ المترتبة",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser.userCredit!,
+                trailing: Text(_appState!.currentUser!.userCredit!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -245,15 +245,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Container(
+            _appState!.currentUser!.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser!.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/wallet.png"),
                 title: Text("اجمالى المبالغ المدفوعة",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser.totalOfReq!,
+                trailing: Text(_appState!.currentUser!.totalOfReq!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -262,15 +262,15 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Container(
+            _appState!.currentUser!.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser!.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/transfer.png"),
                 title: Text("طلبات التحويل",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser.numberOfReq!,
+                trailing: Text(_appState!.currentUser!.numberOfReq!,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -282,8 +282,8 @@ Widget _buildBodyItem(){
                 },
               ),
             ):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
-            _appState!.currentUser.userType!="user"?Container(
+            _appState!.currentUser!.userType!="user"?Divider(height: 1,):Text("",style: TextStyle(height: 0),),
+            _appState!.currentUser!.userType!="user"?Container(
               child: ListTile(
                 leading:Image.asset("assets/images/card.png"),
                 title: Text("حسابي البنكي",

@@ -61,7 +61,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               height: _height * 0.1,
               child: _buildRow(
                   AppLocalizations.of(context)!.name,
-                  appState.currentUser.userName!=null?appState.currentUser.userName:"",
+                  appState.currentUser!.userName!=null?appState.currentUser!.userName:"",
                   Icon(
                     Icons.person,
                     color: cLightLemon,
@@ -71,7 +71,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               color: Color(0xffFBF6F6),
               child: _buildRow(
                   AppLocalizations.of(context)!.email,
-                  appState.currentUser.userEmail!=null?appState.currentUser.userEmail:appState.currentUser.userEmail,
+                  appState.currentUser!.userEmail!=null?appState.currentUser!.userEmail:appState.currentUser!.userEmail,
                   Icon(
                     Icons.email,
                     color: cLightLemon,
@@ -80,7 +80,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               height: _height * 0.1,
               child: _buildRow(
                   AppLocalizations.of(context)!.phoneNo,
-                  appState.currentUser.userPhone,
+                  appState.currentUser!.userPhone,
                   Icon(
                     Icons.phone,
                     color: cLightLemon,
@@ -90,7 +90,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               color: Color(0xffFBF6F6),
               child: _buildRow(
                  "المدينة",
-                  appState.currentUser.userCityName,
+                  appState.currentUser!.userCityName,
                   Icon(
                     Icons.location_city,
                     color: cLightLemon,

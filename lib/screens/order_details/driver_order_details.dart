@@ -121,7 +121,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
 
   Future<Order> _getOrderDetails() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/show_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&cartt_id=${_orderState!.carttId}');
+        'https://qtaapp.com/api/show_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&cartt_id=${_orderState!.carttId}');
     Order orderDetails = Order();
     if (results['response'] == '1') {
       orderDetails = Order.fromJson(results['result']);
@@ -161,7 +161,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
   Future<String>? _checkSendOffer;
   Future<String> _getCheckSendOffer() async {
     var results = await _services.get(
-        'https://qtaapp.com/api/checkSendOffer?offer_driver=${_appState!.currentUser.userId}&offer_cartt=${_orderState!.carttId}');
+        'https://qtaapp.com/api/checkSendOffer?offer_driver=${_appState!.currentUser!.userId}&offer_cartt=${_orderState!.carttId}');
     String checkSendOffer = '';
     if (results['response'] == '1') {
       checkSendOffer = "1";
@@ -277,7 +277,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(300),
+                          color: Colors.grey.shade300,
                           blurRadius:
                               12.0, // has the effect of softening the shadow
                           spreadRadius:
@@ -1084,26 +1084,24 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                   onPressedFunction: () async {
                                     if (_formKey.currentState!.validate()) {
                                       if (_myOffer == null) {
-                                        showToast(
-                                            "يجب ادخال عرض السعر", context);
+                                        showToast(context,message:
+                                        "يجب ادخال عرض السعر");
                                       } else if (double.parse(_myOffer!) <
                                           from) {
-                                        showToast(
-                                            "يجب ان لا يقل السعر عن الحد الادنى " +
-                                                from.toString(),
-                                            context);
+                                        showToast(context,message:
+                                        "يجب ان لا يقل السعر عن الحد الادنى " +
+                                                from.toString());
                                       } else if (double.parse(_myOffer!) > to) {
-                                        showToast(
-                                            "يجب ان لا يزيد السعر عن الحد الاعلى " +
-                                                to.toString(),
-                                            context);
+                                        showToast(context,message:
+                                        "يجب ان لا يزيد السعر عن الحد الاعلى " +
+                                                to.toString());
                                       } else {
                                         _progressIndicatorState!
                                             .setIsLoading(true);
                                         FormData formData =
                                             new FormData.fromMap({
                                           "offer_driver":
-                                              _appState!.currentUser.userId,
+                                              _appState!.currentUser!.userId,
                                           "offer_cartt": order.carttId,
                                           "offer_price": _myOffer,
                                           "lang": _appState!.currentLang
@@ -1117,8 +1115,8 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                             .setIsLoading(false);
 
                                         if (results['response'] == '1') {
-                                          showToast(
-                                              results['message'], context);
+                                          showToast(context,message:
+                                          results['message']);
                                           Navigator.pop(context);
                                           // Navigator.pushReplacementNamed(context,  '/navigation');
                                         } else {
@@ -1316,7 +1314,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                   'https://qtaapp.com/api/do_update_cartt?id=${order.carttId}&done=5');
                               _progressIndicatorState!.setIsLoading(false);
                               if (results['response'] == '1') {
-                                showToast(results['message'], context);
+                                showToast(context,message: results['message']);
                                 setState(() {
                                   _orderDetails = _getOrderDetails();
                                 });
@@ -1350,7 +1348,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                   'https://qtaapp.com/api/do_update_cartt?id=${order.carttId}&done=6');
                               _progressIndicatorState!.setIsLoading(false);
                               if (results['response'] == '1') {
-                                showToast(results['message'], context);
+                                showToast(context,message: results['message']);
                                 setState(() {
                                   _orderDetails = _getOrderDetails();
                                 });
@@ -1384,7 +1382,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                   'https://qtaapp.com/api/do_update_cartt?id=${order.carttId}&done=7');
                               _progressIndicatorState!.setIsLoading(false);
                               if (results['response'] == '1') {
-                                showToast(results['message'], context);
+                                showToast(context,message: results['message']);
                                 setState(() {
                                   _orderDetails = _getOrderDetails();
                                 });

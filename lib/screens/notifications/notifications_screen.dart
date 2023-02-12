@@ -38,7 +38,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   Future<List<NotificationItem>> _getNotifications() async {
     Map<dynamic, dynamic> results =
-        await _services.get('https://qtaapp.com/api/my_inbox1?page=1&user_id=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}');
+        await _services.get('https://qtaapp.com/api/my_inbox1?page=1&user_id=${_appState!.currentUser!.userId}&lang=${_appState!.currentLang}');
     List notificationsList = <NotificationItem>[];
 
     if (results['response'] == '1') {
@@ -119,7 +119,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                       print(_appState!.currentOfferCartt);
                                       print(_appState!.currentOfferMtger);
 
-                                      if(_appState!.currentUser.userType=="user") {
+                                      if(_appState!.currentUser!.userType=="user") {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -128,7 +128,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
 
 
-                                      }else if(_appState!.currentUser.userType=="mtger") {
+                                      }else if(_appState!.currentUser!.userType=="mtger") {
 
                                    snapshot.data![index].messageTitle!.contains(new RegExp('اعتذار', caseSensitive: false))?Text("")
                                         :Navigator.push(
@@ -138,7 +138,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                                     MtgerOrderDetailsScreen()));
 
 
-                                      } else if(_appState!.currentUser.userType=="driver") {
+                                      } else if(_appState!.currentUser!.userType=="driver") {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -224,7 +224,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                      );
                                      _progressIndicatorState!.setIsLoading(false);
                                      if (results['response'] == '1') {
-                                       showToast(results['message'], context);
+                                       showToast(context,message: results['message']);
                                 setState(() {
                                   _notificationList = _getNotifications();
                                 });
@@ -306,11 +306,11 @@ trailing: _appState!.currentUser!=null?GestureDetector(
     _progressIndicatorState!.setIsLoading(true);
 
     var results = await _services.get(
-      'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState!.currentUser.userId}',
+      'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState!.currentUser!.userId}',
     );
     _progressIndicatorState!.setIsLoading(false);
     if (results['response'] == '1') {
-      showToast(results['message'], context);
+      showToast(context,message: results['message']);
       setState(() {
         _notificationList = _getNotifications();
       });

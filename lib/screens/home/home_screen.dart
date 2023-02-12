@@ -649,7 +649,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(300),
+                            color: Colors.grey,
                             blurRadius: 25.0, // has the effect of softening the shadow
                             spreadRadius: 5.0, // has the effect of extending the shadow
                             offset: Offset(
@@ -711,7 +711,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(300),
+                            color: Colors.grey.shade300,
                             blurRadius: 25.0, // has the effect of softening the shadow
                             spreadRadius: 5.0, // has the effect of extending the shadow
                             offset: Offset(
@@ -774,7 +774,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(300),
+                            color: Colors.grey.shade300,
                             blurRadius: 25.0, // has the effect of softening the shadow
                             spreadRadius: 5.0, // has the effect of extending the shadow
                             offset: Offset(
@@ -834,7 +834,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
                                : "";
 
                            FormData formData = new FormData.fromMap({
-                             "cartt_user": _appState!.currentUser.userId,
+                             "cartt_user": _appState!.currentUser!.userId,
                              "cartt_marka": _selectedMarka!.markaId,
                              "cartt_typee": _selectedType!.typeId,
                              "cartt_model": _selectedModel!.modelId,
@@ -976,7 +976,7 @@ class _HomeScreenState extends State<HomeScreen> with ValidationMixin{
             body: Stack(
               children: <Widget>[
 
-                _appState!.currentUser!=null?( _appState!.currentUser.userType=="user"?_buildBodyItem():(_appState!.currentUser.userType=="driver"?_buildBodyItemDriver():_buildBodyItemMtger())):_buildBodyItem(),
+                _appState!.currentUser!=null?( _appState!.currentUser!.userType=="user"?_buildBodyItem():(_appState!.currentUser!.userType=="driver"?_buildBodyItemDriver():_buildBodyItemMtger())):_buildBodyItem(),
 
                 Center(
                   child: ProgressIndicatorComponent(),

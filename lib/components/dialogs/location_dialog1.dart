@@ -261,13 +261,13 @@ btnColor: cLightLemon,
                     Navigator.pop(context);
                     _progressIndicatorState!.setIsLoading(true);
                     var results = await _services.get(
-                        'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState!.currentUser.userId}&request_cartt=${_appState!.currentOfferCartt}&lang=${_appState!.currentLang}');
+                        'https://qtaapp.com/api/send_request1?lang=ar&user_id=${_appState!.currentUser!.userId}&request_cartt=${_appState!.currentOfferCartt}&lang=${_appState!.currentLang}');
                     _progressIndicatorState!.setIsLoading(false);
                     if (results['response'] == '1') {
                       print(results['message']);
                       print(results['message']);
 
-                      showToast(results['message'], context);
+                      showToast(context,message: results['message']);
 
 
                     } else {

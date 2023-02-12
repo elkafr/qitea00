@@ -62,7 +62,7 @@ class _BanksScreenState extends State<BanksScreen> {
   ProgressIndicatorState? _progressIndicatorState;
   Future<List<Bank>> _getBanksList() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getbank?page=1&lang=${_appState!.currentLang}&bank_user=${_appState!.currentUser.userId}');
+        'https://qtaapp.com/api/getbank?page=1&lang=${_appState!.currentLang}&bank_user=${_appState!.currentUser!.userId}');
     List<Bank> bankList = <Bank>[];
     if (results['response'] == '1') {
       Iterable iterable = results['bank'];
@@ -97,7 +97,7 @@ class _BanksScreenState extends State<BanksScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(300),
+                            color: Colors.grey.shade300,
                             blurRadius: 7.0, // has the effect of softening the shadow
                             spreadRadius: 3.0, // has the effect of extending the shadow
 
@@ -151,7 +151,7 @@ class _BanksScreenState extends State<BanksScreen> {
                                      'https://qtaapp.com/api/do_delete_bank?id=${snapshot.data![index].bankId}&lang=${_appState!.currentLang}');
                                  _progressIndicatorState!.setIsLoading(false);
                                  if (results['response'] == '1') {
-                                   showToast(results['message'], context);
+                                   showToast(context,message: results['message']);
                                    _banksList = _getBanksList();
 
                                  } else {

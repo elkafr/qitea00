@@ -106,7 +106,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                         onTap: () {
                           _appState!.setSelectedSub(snapshot.data![index]);
                           print(_appState!.selectedCat.mtgerCatId);
-                          print(_appState!.selectedSub.mtgerCatId);
+                          print(_appState!.selectedSub!.mtgerCatId!);
                           setState(() {
                             for (int i = 0; i < snapshot.data!.length; i++) {
                               snapshot.data![i].isSelected = false;
@@ -116,7 +116,7 @@ class _Home1ScreenState extends State<Home1Screen> {
 
                               if (_appState!.currentUser != null) {
                                 _storeList = _getStores(
-                                    'show_mtager_cat_filter?page=1&cat=${_appState!.selectedCat.mtgerCatId}&sub=0&filter=${_appState!.filter}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
+                                    'show_mtager_cat_filter?page=1&cat=${_appState!.selectedCat.mtgerCatId}&sub=0&filter=${_appState!.filter}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               } else {
                                 _storeList =
                                     _getStores('show_mtager_cat_filter?page=1&cat=${_appState!.selectedCat.mtgerCatId}&sub=0&filter=${_appState!.filter}&lang=${_appState!.currentLang}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
@@ -124,7 +124,7 @@ class _Home1ScreenState extends State<Home1Screen> {
                             } else {
                               if (_appState!.currentUser != null) {
                                 _storeList = _getStores(
-                                    'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${snapshot.data![index].mtgerCatId}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
+                                    'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${snapshot.data![index].mtgerCatId}&user_id=${_appState!.currentUser!.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
                               } else {
                                 _storeList = _getStores(
                                     'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${snapshot.data![index].mtgerCatId}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
@@ -267,7 +267,7 @@ class _Home1ScreenState extends State<Home1Screen> {
       if (_appState!.currentUser != null) {
 
         _storeList = _getStores(
-            'show_mtager_cat_filter?page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
+            'show_mtager_cat_filter?page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
       } else {
         _storeList = _getStores('show_mtager_cat_filter?page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&lang=${_appState!.currentLang}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}');
       }
@@ -320,10 +320,10 @@ class _Home1ScreenState extends State<Home1Screen> {
 
                                 if (_appState!.currentUser != null) {
                                   _storeList = _getStores(
-                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub.mtgerCatId}&user_id=${_appState!.currentUser.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
+                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub!.mtgerCatId}&user_id=${_appState!.currentUser!.userId}&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
                                 } else {
                                   _storeList = _getStores(
-                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub.mtgerCatId}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
+                                      'show_mtager_cat_filter?lang=${_appState!.currentLang}&page=1&filter=${_appState!.filter}&cat=${_appState!.selectedCat.mtgerCatId}&sub=${_appState!.selectedSub!.mtgerCatId}&user_id=0&user_mapx=${_locationState!.locationLatitude}&user_mapy=${_locationState!.locationlongitude}&text=$text');
                                 }
 
 

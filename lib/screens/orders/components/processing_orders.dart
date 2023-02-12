@@ -35,10 +35,10 @@ class _ProcessingOrdersState extends State<ProcessingOrders> {
   Future<List<Order>> _getOrderList() async {
 
 
-    Map<dynamic, dynamic> results = _appState!.currentUser.userType=="user"?await _services.get(
-        'https://qtaapp.com/api/dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=0'):(_appState!.currentUser.userType=="mtger"?await _services.get(
-        'https://qtaapp.com/api/mtger_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=0'):await _services.get(
-        'https://qtaapp.com/api/driver_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser.userId}&page=1&done=0'));
+    Map<dynamic, dynamic> results = _appState!.currentUser!.userType=="user"?await _services.get(
+        'https://qtaapp.com/api/dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&page=1&done=0'):(_appState!.currentUser!.userType=="mtger"?await _services.get(
+        'https://qtaapp.com/api/mtger_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&page=1&done=0'):await _services.get(
+        'https://qtaapp.com/api/driver_dis_buy?lang=${_appState!.currentLang}&user_id=${_appState!.currentUser!.userId}&page=1&done=0'));
 
     List orderList = <Order>[];
     if (results['response'] == '1') {
@@ -85,19 +85,19 @@ class _ProcessingOrdersState extends State<ProcessingOrders> {
                                 onTap: (){
                                   _orderState!.setCarttId(snapshot.data![index].carttId!);
 
-                                  if(_appState!.currentUser.userType=="user") {
+                                  if(_appState!.currentUser!.userType=="user") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 OrderDetails1Screen()));
-                                  }else if(_appState!.currentUser.userType=="mtger") {
+                                  }else if(_appState!.currentUser!.userType=="mtger") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 MtgerOrderDetailsScreen()));
-                                  } else if(_appState!.currentUser.userType=="driver") {
+                                  } else if(_appState!.currentUser!.userType=="driver") {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(

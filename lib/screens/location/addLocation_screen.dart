@@ -233,7 +233,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                           bottomRight:  Radius.circular(6.00),
                                           bottomLeft:  Radius.circular(6.00),
                                         ),
-                                        border: Border.all(color: Colors.grey.withOpacity(300))),
+                                        border: Border.all(color: Colors.grey.shade300)),
 
                                     alignment: Alignment.center,
                                     padding: EdgeInsets.all(12),
@@ -268,7 +268,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                             bottomRight:  Radius.circular(6.00),
                                             bottomLeft:  Radius.circular(6.00),
                                           ),
-                                          border: Border.all(color: Colors.grey.withOpacity(300))),
+                                          border: Border.all(color: Colors.grey.shade300)),
 
                                       alignment: Alignment.center,
                                       padding: EdgeInsets.all(12),
@@ -348,7 +348,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                                                                       borderRadius: BorderRadius.all(
                                                                         const Radius.circular(5.00),
                                                                       ),
-                                                                      border: Border.all(color: _appState!.selectTab==snapshot.data![index].titlesId?cPrimaryColor:Colors.grey.withOpacity(300))),
+                                                                      border: Border.all(color: _appState!.selectTab==snapshot.data![index].titlesId?cPrimaryColor:Colors.grey.shade300)),
                                                                   width: _width*.24,
 
                                                                   child: Container(
@@ -409,12 +409,12 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           _progressIndicatorState!.setIsLoading(true);
 
           var results = await _services.get(
-            'https://qtaapp.com/api/addLocation?lang=${_appState!.currentLang}&location_titles=${_appState!.selectTab}&location_details=$_adress&location_mapx=${_locationState!.locationLatitude}&location_mapy=${_locationState!.locationlongitude}&location_user=${_appState!.currentUser.userId}',
+            'https://qtaapp.com/api/addLocation?lang=${_appState!.currentLang}&location_titles=${_appState!.selectTab}&location_details=$_adress&location_mapx=${_locationState!.locationLatitude}&location_mapy=${_locationState!.locationlongitude}&location_user=${_appState!.currentUser!.userId}',
           );
           _progressIndicatorState!.setIsLoading(false);
           if (results['response'] == '1') {
             _locationState!.setCurrentAddress(_adress);
-            showToast(results['message'], context);
+            showToast(context,message: results['message']);
             Navigator.pushNamed(context, '/navigation');
           } else {
             showErrorDialog(results['message'], context);

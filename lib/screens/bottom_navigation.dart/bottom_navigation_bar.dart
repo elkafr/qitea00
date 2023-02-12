@@ -73,7 +73,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Future<String>? _termsContent;
 
   Future<String> _getTermsContent() async {
-    var results =     await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_appState!.currentUser.userId}");
+    var results =     await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=0");
     String termsContent = '';
     if (results['response'] == '1') {
       termsContent = results['Number'];
@@ -258,11 +258,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==0?Image.asset("assets/images/home.png",color: cLightLemon,):Image.asset("assets/images/home.png",color: cPrimaryColor,),
-            label: AppLocalizations.of(context)!.home,
+            label: "الرئيسية",
           ),
            BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==1?Image.asset("assets/images/orders.png",color: cLightLemon,):Image.asset("assets/images/orders.png",color: cPrimaryColor,),
-            label: AppLocalizations.of(context)!.orders,
+            label: "طلباتي",
           ),
 
           BottomNavigationBarItem(

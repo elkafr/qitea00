@@ -21,12 +21,66 @@ import 'package:qitea/components/app_repo/store_state.dart';
 import 'package:qitea/utils/routes.dart';
 import 'package:qitea/screens/product/product_screen.dart';
 
-void main() => runApp(
 
-    // DevicePreview(
-    //   builder: (context) => MyApp(),
-    // ));
-    MyApp());
+
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:flutter/material.dart';
+
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Importance Notifications',
+  description: 'This channel is used for important notifications.', // description
+  importance: Importance.high,
+);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+  print(message.data);
+  flutterLocalNotificationsPlugin.show(
+      message.data.hashCode,
+      message.data['title'],
+      message.data['body'],
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          channel.id,
+          channel.name,
+          channelDescription: channel.description,
+        ),
+      ));
+}
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    run();
+  });
+}
+
+void run() async {
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -56,6 +110,62 @@ class _MyAppState extends State<MyApp> {
     _specificLocalizationDelegate =
         SpecificLocalizationDelegate(new Locale('ar'));
    _getLanguage();
+
+    Firebase.initializeApp().whenComplete(() async {
+      // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+      // flutterLocalNotificationsPlugin
+      //     .resolvePlatformSpecificImplementation<
+      //     AndroidFlutterLocalNotificationsPlugin>()
+      //     ?.createNotificationChannel(channel);
+      // flutterLocalNotificationsPlugin
+      //     .resolvePlatformSpecificImplementation<
+      //     IOSFlutterLocalNotificationsPlugin>()
+      //     ?.requestPermissions(
+      //   alert: true,
+      //   badge: true,
+      //   sound: true,
+      // );
+      // final IOSInitializationSettings initializationSettingsIOS =
+      // IOSInitializationSettings(
+      //     requestAlertPermission: false,
+      //     requestBadgePermission: false,
+      //     requestSoundPermission: false,
+      //     onDidReceiveLocalNotification: (
+      //         int id,
+      //         String? title,
+      //         String? body,
+      //         String? payload,
+      //         ) async {
+      //
+      //     });
+      //
+      // var initialzationSettingsAndroid =
+      // const AndroidInitializationSettings('@mipmap/ic_launcher');
+      // var initializationSettings =
+      // InitializationSettings(android: initialzationSettingsAndroid,iOS: initializationSettingsIOS);
+      //
+      // flutterLocalNotificationsPlugin.initialize(initializationSettings);
+      // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      //   RemoteNotification notification = message.notification!;
+      //   AndroidNotification android = message.notification!.android!;
+      //   flutterLocalNotificationsPlugin.show(
+      //       notification.hashCode,
+      //       notification.title,
+      //       notification.body,
+      //       NotificationDetails(
+      //         android: AndroidNotificationDetails(
+      //           channel.id,
+      //           channel.name,
+      //           channelDescription: channel.description,
+      //           icon: android.smallIcon,
+      //         ),
+      //       ));
+      // });
+      String? token = await FirebaseMessaging.instance.getToken();
+      print("Firebase token $token");
+    });
+
+
   }
 
   @override

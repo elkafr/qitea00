@@ -33,7 +33,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
   Future<List<FavouriteStore>> _getFavouriteStores() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/my_fav?user_id=${_appState!.currentUser.userId}&page=1&lang=${_appState!.currentLang}');
+        'https://qtaapp.com/api/my_fav?user_id=${_appState!.currentUser!.userId}&page=1&lang=${_appState!.currentLang}');
     List<FavouriteStore> storeList = <FavouriteStore>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];

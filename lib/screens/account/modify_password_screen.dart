@@ -126,7 +126,7 @@ class _ModifyPasswordScreenState extends State<ModifyPasswordScreen> {
                         _progressIndicatorState.setIsLoading(false);
 
                         if (results['response'] == '1') {
-                          showToast(results['message'], context);
+                          showToast(context,message: results['message']);
                                   showToast( results['message'], context);
                                   Navigator.pop(context);
                                   Navigator.pushReplacementNamed(context, '/profile_screen');

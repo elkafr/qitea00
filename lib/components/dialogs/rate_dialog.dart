@@ -79,7 +79,7 @@ class _RateDialogState extends State<RateDialog> {
                                '${Utils.RATE_ORDER_URL}user_id=${appState.currentUser.userId}&lang=${appState.currentLang}&rate_cart=${widget.cartFatora}&rate_value=${_rating.toString()}');
                                     progressIndicatorState.setIsLoading(false);
                                     if (results['response'] == '1') {
-                                      showToast(results['message'], context);
+                                      showToast(context,message: results['message']);
                                       Navigator.pop(context);
                                           Navigator.pop(context);
                                           tabState.upadateInitialIndex(1);

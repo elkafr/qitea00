@@ -61,7 +61,7 @@ class _ReqScreenState extends State<ReqScreen> {
   ProgressIndicatorState? _progressIndicatorState;
   Future<List<Req>> _getReqList() async {
     Map<dynamic, dynamic> results = await _services.get(
-        'https://qtaapp.com/api/getreq?page=1&lang=${_appState!.currentLang}&req_user=${_appState!.currentUser.userId}');
+        'https://qtaapp.com/api/getreq?page=1&lang=${_appState!.currentLang}&req_user=${_appState!.currentUser!.userId}');
     List<Req> reqList = <Req>[];
     if (results['response'] == '1') {
       Iterable iterable = results['req'];
@@ -96,7 +96,7 @@ class _ReqScreenState extends State<ReqScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(300),
+                            color: Colors.grey.shade300,
                             blurRadius: 7.0, // has the effect of softening the shadow
                             spreadRadius: 3.0, // has the effect of extending the shadow
 
@@ -143,7 +143,7 @@ class _ReqScreenState extends State<ReqScreen> {
                                      'https://qtaapp.com/api/do_delete_req?id=${snapshot.data![index].reqId}&lang=${_appState!.currentLang}');
                                  _progressIndicatorState!.setIsLoading(false);
                                  if (results['response'] == '1') {
-                                   showToast(results['message'], context);
+                                   showToast(context,message: results['message']);
                                    _reqList = _getReqList();
 
                                  } else {

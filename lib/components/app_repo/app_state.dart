@@ -11,18 +11,18 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  User get currentUser => _currentUser!;
+  User? get currentUser => _currentUser;
 
 
 
- bool _acceptTerms = false;
+ bool? _acceptTerms = false;
 
   void setAcceptTerms(bool acceptTerms) {
     _acceptTerms = acceptTerms;
     notifyListeners();
   }
 
-  bool get acceptTerms => _acceptTerms;
+  bool? get acceptTerms => _acceptTerms;
 
  void  updateUserEmail(String newUserEmail){
    _currentUser!.userEmail = newUserEmail;
@@ -56,7 +56,7 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get currentLang => _currentLang!;
+  String? get currentLang => _currentLang;
   // int _notificationLength = 0 ;
 
 
@@ -75,7 +75,7 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get phoneSend => _phoneSend!;
+  String? get phoneSend => _phoneSend;
 
 
   String? _tokenSend;
@@ -85,7 +85,7 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get tokenSend => _tokenSend!;
+  String? get tokenSend => _tokenSend;
 
    // update current cat
   Category?  _selectedCat ;
@@ -110,7 +110,7 @@ class AppState extends ChangeNotifier {
     _selectedSub = selectedSub;
     notifyListeners();
   }
-  Category  get selectedSub => _selectedSub!;
+  Category?  get selectedSub => _selectedSub;
 
 
 
@@ -121,7 +121,7 @@ class AppState extends ChangeNotifier {
     _filter= filter;
     notifyListeners();
   }
-  int get filter => _filter!;
+  int? get filter => _filter;
 
   // url provider
   String? _url;
@@ -129,7 +129,7 @@ class AppState extends ChangeNotifier {
     _url= url;
     notifyListeners();
   }
-  String get url => _url!;
+  String? get url => _url;
 
 
 
@@ -139,7 +139,7 @@ class AppState extends ChangeNotifier {
     _note= filter;
     notifyListeners();
   }
-  String get note => _note!;
+  String? get note => _note;
 
 
 
@@ -150,7 +150,7 @@ class AppState extends ChangeNotifier {
     _phone111= phone111;
     notifyListeners();
   }
-  String get phone111 => _phone111!;
+  String? get phone111 => _phone111;
 
 
 
@@ -160,7 +160,7 @@ class AppState extends ChangeNotifier {
     _tabb= tabb;
     notifyListeners();
   }
-  int get tabb => _tabb!;
+  int? get tabb => _tabb;
 
 
   // select pay method provider
@@ -169,7 +169,7 @@ class AppState extends ChangeNotifier {
     _payMethod= payMethod;
     notifyListeners();
   }
-  String get payMethod => _payMethod!;
+  String? get payMethod => _payMethod;
 
 
   // cupone value provider
@@ -211,42 +211,42 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get carttNumber => _carttNumber!;
+  String? get carttNumber => _carttNumber;
 
 
 
 
 
-  String _markaa = '';
+  String? _markaa = '';
 
   void setMarkaa(String markaa) {
     _markaa = markaa;
     notifyListeners();
   }
 
-  String get markaa => _markaa;
+  String? get markaa => _markaa;
 
 
 
 
 
-  String _currentOfferCartt = '';
+  String? _currentOfferCartt = '';
   void setCurrentOfferCartt(String currentOfferCartt) {
     _currentOfferCartt = currentOfferCartt;
     notifyListeners();
   }
-  String get currentOfferCartt => _currentOfferCartt;
+  String? get currentOfferCartt => _currentOfferCartt;
 
 
 
 
 
-  String _currentOfferMtger = '';
+  String? _currentOfferMtger = '';
   void setCurrentOfferMtger (String currentOfferMtger ) {
     _currentOfferMtger = currentOfferMtger ;
     notifyListeners();
   }
-  String get currentOfferMtger  => _currentOfferMtger ;
+  String? get currentOfferMtger  => _currentOfferMtger ;
 
 
   String _currentOfferDriver = '';

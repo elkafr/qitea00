@@ -113,7 +113,7 @@ class _OpinionDialogState extends State<OpinionDialog> {
                             '${Utils.RATE_APP_URL}rate1_user=${appState.currentUser.userId}&lang=${appState.currentLang}&rate1_value=$_rating&rate1_content=${_rating.toString()}');
                         progressIndicatorState.setIsLoading(false);
                         if (results['response'] == '1') {
-                          showToast(results['message'], context);
+                          showToast(context,message: results['message']);
                           Navigator.pop(context);
                           Navigator.pop(context);
                           Navigator.pushReplacementNamed(

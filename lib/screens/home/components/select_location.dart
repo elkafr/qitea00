@@ -89,7 +89,7 @@ class _SelectLocationState extends State<SelectLocation> {
 
   Future<List<Location>> _getLocations() async {
     String language =  await SharedPreferencesHelper.getUserLang();
-    Map<dynamic, dynamic> results = await _services.get(Utils.LOCATIONS_URL+ '?user_id=${_appState!.currentUser!=null?_appState!.currentUser.userId:"0"}&lang=$language');
+    Map<dynamic, dynamic> results = await _services.get(Utils.LOCATIONS_URL+ '?user_id=${_appState!.currentUser!=null?_appState!.currentUser!.userId:"0"}&lang=$language');
     List locationList = <Location>[];
     if (results['response'] == '1') {
       Iterable iterable = results['results'];
@@ -214,7 +214,7 @@ class _SelectLocationState extends State<SelectLocation> {
                                           );
                                           _progressIndicatorState!.setIsLoading(false);
                                           if (results['response'] == '1') {
-                                            showToast(results['message'], context);
+                                            showToast(context,message: results['message']);
                                             Navigator.pop(context);
                                           } else {
                                             showErrorDialog(results['message'], context);

@@ -162,11 +162,11 @@ class _StoreCardItemState extends State<StoreCardItem> {
                                 1) {
                               print('you should delete');
                               await _services.get(
-                                  'https://qtaapp.com/api/delete_save_ads?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store!.mtgerId}');
+                                  'https://qtaapp.com/api/delete_save_ads?user_id=${_appState.currentUser!.userId}&mtger_id=${widget.store!.mtgerId}');
                             } else {
                               print('you should add');
                               await _services.get(
-                                  'https://qtaapp.com/api/add_fav?user_id=${_appState.currentUser.userId}&mtger_id=${widget.store!.mtgerId}');
+                                  'https://qtaapp.com/api/add_fav?user_id=${_appState.currentUser!.userId}&mtger_id=${widget.store!.mtgerId}');
                             }
                                 storeState.updateChangesOnFavouriteList(
                                 widget.store!.mtgerId!);

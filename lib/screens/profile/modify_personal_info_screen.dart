@@ -71,7 +71,7 @@ class _ModifyPersonalInformationScreenState
                         left: _width * 0.025,
                         right: _width * 0.025),
                     child: CustomTextFormField(
-                      initialValue: appState.currentUser.userName,
+                      initialValue: appState.currentUser!.userName,
                       prefixIcon: Container(
                         margin: EdgeInsets.only(bottom: 5),
                         child: Icon(
@@ -96,7 +96,7 @@ class _ModifyPersonalInformationScreenState
                     margin: EdgeInsets.only(
                         left: _width * 0.025, right: _width * 0.025),
                     child: CustomTextFormField(
-                      initialValue: appState.currentUser.userPhone,
+                      initialValue: appState.currentUser!.userPhone,
                       prefixIcon: Container(
                         margin: EdgeInsets.only(bottom: 5),
                         child: Icon(
@@ -121,7 +121,7 @@ class _ModifyPersonalInformationScreenState
                     margin: EdgeInsets.only(
                         left: _width * 0.025, right: _width * 0.025),
                     child: CustomTextFormField(
-                      initialValue: appState.currentUser.userEmail,
+                      initialValue: appState.currentUser!.userEmail,
                       prefixIcon: Container(
                         margin: EdgeInsets.only(bottom: 5),
                         child: Icon(
@@ -210,7 +210,7 @@ class _ModifyPersonalInformationScreenState
                   // ),
                 ),
                 
-                _appState!.currentUser.userType!="user"?Container(
+                _appState!.currentUser!.userType!="user"?Container(
                   color: cLightLemon,
                   padding: EdgeInsets.all(10),
                   alignment: Alignment.center,
@@ -230,7 +230,7 @@ class _ModifyPersonalInformationScreenState
                         _progressIndicatorState!.setIsLoading(true);
 
                         var results = await _services.get(
-                          'https://qtaapp.com/api/profile?user_email=$_userEmail&user_name=$_userName&user_phone=$_userPhone&user_city=${_selectedCity!.cityId}&user_id=${_appState!.currentUser.userId}&lang=${_appState!.currentLang}',
+                          'https://qtaapp.com/api/profile?user_email=$_userEmail&user_name=$_userName&user_phone=$_userPhone&user_city=${_selectedCity!.cityId}&user_id=${_appState!.currentUser!.userId}&lang=${_appState!.currentLang}',
                         );
                         _progressIndicatorState!.setIsLoading(false);
                         if (results['response'] == '1') {
@@ -242,7 +242,7 @@ class _ModifyPersonalInformationScreenState
                           _appState!.updateUserCityName(_selectedCity!.cityName!);
                               SharedPreferencesHelper.save(
                                   "user", _appState!.currentUser);
-                                  showToast( results['message'], context);
+                                  showToast( context,message: results['message']);
                                   Navigator.pop(context);
                                   Navigator.pushReplacementNamed(context, '/personal_information_screen');
                         } else {
@@ -266,9 +266,9 @@ class _ModifyPersonalInformationScreenState
     if (_initialRun) {
       _initialRun = false;
       _appState = Provider.of<AppState>(context);
-      _userEmail = _appState!.currentUser.userEmail;
-      _userName = _appState!.currentUser.userName;
-      _userPhone = _appState!.currentUser.userPhone;
+      _userEmail = _appState!.currentUser!.userEmail;
+      _userName = _appState!.currentUser!.userName;
+      _userPhone = _appState!.currentUser!.userPhone;
       _cityList = _getCityItems();
     }
   }

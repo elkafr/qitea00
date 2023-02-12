@@ -223,14 +223,14 @@ class _ProductScreenState extends State<ProductScreen> {
                                  if (_appState!.currentUser != null) {
                                    _progressIndicatorState!.setIsLoading(true);
                                    var results = await _services.get(
-                                     'https://qtaapp.com/api/add_cart?user_id=${_appState!.currentUser.userId}&ads_id=${_productState!.currentProduct.adsMtgerId}&amountt=$amountt&lang=${_appState!.currentLang}',
+                                     'https://qtaapp.com/api/add_cart?user_id=${_appState!.currentUser!.userId}&ads_id=${_productState!.currentProduct.adsMtgerId}&amountt=$amountt&lang=${_appState!.currentLang}',
                                    );
                                    _progressIndicatorState!.setIsLoading(false);
                                    if (results['response'] == '1') {
 
                                      _storeState!.setCurrentIsAddToCart(1);
                                      Navigator.pushNamed(context, '/store_screen');
-                                     showToast(results['message'], context);
+                                     showToast(context,message: results['message']);
                                    } else {
                                      showErrorDialog(
                                          results['message'], context);
