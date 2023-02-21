@@ -80,7 +80,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://flutter.dev'));
+      ..loadRequest(Uri.parse("https://qtaapp.com/site/hyper?id="+_appState!.url!));
 
   }
 

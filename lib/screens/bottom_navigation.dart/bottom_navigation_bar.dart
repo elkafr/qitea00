@@ -86,97 +86,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
 
 
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-  FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-  new FlutterLocalNotificationsPlugin();
-  ValueNotifier<int> notificationCounterValueNotifer = ValueNotifier(0);
-
-  void _iOSPermission() {
-    _firebaseMessaging.requestPermission(sound: true, badge: true, alert: true);
-    // _firebaseMessaging.onIosSettingsRegistered
-    //     .listen((IosNotificationSettings settings) {
-    //   print("Settings registered: $settings");
-    // });
-  }
-  void _firebaseCloudMessagingListeners() {
-    var android = new AndroidInitializationSettings('mipmap/ic_launcher');
-    var ios = new DarwinInitializationSettings();
-    var platform = new InitializationSettings(android: android, iOS: ios);
-
-    _flutterLocalNotificationsPlugin.initialize(platform,
-        onDidReceiveNotificationResponse : selectNotification as void Function(NotificationResponse));
-
-    if (Platform.isIOS) _iOSPermission();
-    FirebaseMessaging.onMessage.listen((event) {
-      print('on message ${event.data}');
-      print("onMessage: ${event.data}");
-      notificationCounterValueNotifer.value++;
-
-      FlutterAppBadger.updateBadgeCount(
-          notificationCounterValueNotifer.value + 1);
-      _showNotification(event.data);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      _navigationState!.upadateNavigationIndex(2);
-      Navigator.pushReplacementNamed(context, '/navigation');
-    });
-  }
-
-  _showNotification(Map<String, dynamic> message) async {
-    var android = new AndroidNotificationDetails(
-      'channel id',
-      "CHANNLE NAME",
-      channelDescription:
-      "channelDescription",
-    );
-    var iOS = new DarwinNotificationDetails();
-    var platform = new NotificationDetails(android: android, iOS: iOS);
-   /* await _flutterLocalNotificationsPlugin.show(
-        0,
-        message['notification']['title'],
-        message['notification']['body'],
-        platform); */
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: ListTile(
-          title: Text(message['notification']['title']),
-          subtitle: Text(message['notification']['body']),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: message['notification']['title']=="تنويه باتمام الدفع"?Text('الانتقال لطلباتي'):Text('موافق'),
-            onPressed: () {
-              Navigator.of(context).pop();
-
-              message['notification']['title']=="تنويه باتمام الدفع"?_navigationState!.upadateNavigationIndex(1):_navigationState!.upadateNavigationIndex(2);
-              Navigator.pushReplacementNamed(context, '/navigation');
-            },
-          ),
-        ],
-      ),
-    ).then((value) => setState(() {}));
-
-  }
-
-
-
-  void selectNotification(String? payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: $payload');
-// Here you can check notification payload and redirect user to the respective screen
-      _navigationState!.upadateNavigationIndex(2);
-      Navigator.pushReplacementNamed(context, '/navigation');
-    }
-  }
 
   Future<Null> _checkIsLogin() async {
     var userData = await SharedPreferencesHelper.read("user");
 
     if (userData != null) {
       _appState!.setCurrentUser(User.fromJson(userData));
-      _firebaseCloudMessagingListeners();
+
     }
   }
 
@@ -293,7 +209,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         onTap: (int index) {
           _navigationState!.upadateNavigationIndex(index);
           if(index==2){
-            notificationCounterValueNotifer.value=0;
+
           }
 
 

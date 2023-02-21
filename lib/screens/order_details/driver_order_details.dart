@@ -700,7 +700,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                     const Radius.circular(5.00),
                                   ),
                                   border: Border.all(
-                                      color: Colors.grey.withOpacity(400))),
+                                      color: Colors.grey.shade300)),
                               child: FutureBuilder<String>(
                                 future: _distanceBetweenDriverAndMtger,
                                 builder: (context, snapshot) {
@@ -786,7 +786,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                     const Radius.circular(5.00),
                                   ),
                                   border: Border.all(
-                                      color: Colors.grey.withOpacity(400))),
+                                      color: Colors.grey.shade300)),
                               child: FutureBuilder<String>(
                                 future: _distanceBetweenMtgerAndUser,
                                 builder: (context, snapshot) {
@@ -872,7 +872,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                     const Radius.circular(5.00),
                                   ),
                                   border: Border.all(
-                                      color: Colors.grey.withOpacity(400))),
+                                      color: Colors.grey.shade300)),
                               child: FutureBuilder<String>(
                                 future: _costFrom,
                                 builder: (context, snapshot) {
@@ -914,7 +914,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                     const Radius.circular(5.00),
                                   ),
                                   border: Border.all(
-                                      color: Colors.grey.withOpacity(400))),
+                                      color: Colors.grey.shade300)),
                               child: FutureBuilder<String>(
                                 future: _costTo,
                                 builder: (context, snapshot) {
@@ -989,7 +989,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                                     const Radius.circular(5.00),
                                   ),
                                   border: Border.all(
-                                      color: Colors.grey.withOpacity(400))),
+                                      color: Colors.grey.shade300)),
                               child: Container(
                                 color: Colors.grey[100],
                                 height: 38,
