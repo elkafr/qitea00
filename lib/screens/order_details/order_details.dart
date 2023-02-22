@@ -4037,6 +4037,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Mada"),
                                                 onTap: () async {
+
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print(_appState!.url);
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+
                                                   _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
@@ -4054,7 +4063,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                PaymentScreen()));
+                                                                PaymentScreen(
+                                                                  url:results['id']
+                                                                )));
                                                   } else {
                                                     showErrorDialog(
                                                         results['message'],

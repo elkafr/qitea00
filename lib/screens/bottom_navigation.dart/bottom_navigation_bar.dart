@@ -71,6 +71,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Services _services = Services();
 
   Future<String>? _termsContent;
+  Future<String>? _xxx;
+
+  String? zzz;
+
+
 
   Future<String> _getTermsContent() async {
     var results =     await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=0");
@@ -85,6 +90,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
 
 
+  Future<String> getUnreadNotify() async {
+    final response =
+    await _services.get("https://qtaapp.com/api/get_unread_notify?user_id=${_appState!.currentUser!.userId}");
+    String messages = '';
+    if (response['response'] == '1') {
+      messages = response['Number'];
+      setState(() {
+        zzz=response['Number'];
+      });
+    }
+    return messages;
+  }
 
 
   Future<Null> _checkIsLogin() async {
@@ -155,8 +172,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
       _appState = Provider.of<AppState>(context);
       _locationState = Provider.of<LocationState>(context);
       _termsContent = _getTermsContent();
+       getUnreadNotify();
       _checkIsLogin();
       _getCurrentUserLocation();
+
+
+
     }
   }
 
@@ -175,11 +196,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
           drawer: MainDrawer(),
       body: _navigationState!.selectedContent,
+
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==0?Image.asset("assets/images/home.png",color: cLightLemon,):Image.asset("assets/images/home.png",color: cPrimaryColor,),
             label: "الرئيسية",
+
           ),
            BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==1?Image.asset("assets/images/orders.png",color: cLightLemon,):Image.asset("assets/images/orders.png",color: cPrimaryColor,),
@@ -187,7 +210,34 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
 
           BottomNavigationBarItem(
-            icon:  _navigationState!.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
+            icon:
+            new Stack(
+              children: <Widget>[
+                _navigationState!.navigationIndex==2?Image.asset("assets/images/notifications.png",color: cLightLemon,):Image.asset("assets/images/notifications.png",color: cPrimaryColor,),
+                new Positioned(
+                  right: 0,
+                  child: new Container(
+                    padding: EdgeInsets.all(1),
+                    decoration: new BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    constraints: BoxConstraints(
+                      minWidth: 12,
+                      minHeight: 12,
+                    ),
+                    child: new Text(
+                      zzz.toString(),
+                      style: new TextStyle(
+                        color: Colors.white,
+                        fontSize: 8,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              ],
+            ),
             label: "الاشعارات",
 
 
@@ -196,6 +246,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
           BottomNavigationBarItem(
             icon: _navigationState!.navigationIndex==3?Image.asset("assets/images/user.png",color: cLightLemon,):Image.asset("assets/images/user.png",color: cPrimaryColor,),
+
 
             label:_appState!.currentLang=="ar"?"حسابي":"My account",
           ),

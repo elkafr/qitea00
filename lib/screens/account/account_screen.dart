@@ -41,7 +41,7 @@ import 'package:qitea/utils/utils.dart';
 import 'package:qitea/screens/auth/password_recovery_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
-
+import 'package:share/share.dart';
 
 
 class AccountScreen extends StatefulWidget {
@@ -326,10 +326,9 @@ Widget _buildBodyItem(){
                   ), ),
 
                 onTap: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ContactWithUsScreen()));
+                  Share.share("https://play.google.com/store/apps/details?id=com.omar.qitea",
+                    subject: "اعجبنى تطبيق قطعة غيار وانصحك به",
+                  );
                 },
               ),
             ),

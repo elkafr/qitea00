@@ -26,7 +26,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
-  PaymentScreen({Key? key}) : super(key: key);
+  final String? url;
+  PaymentScreen({Key? key,this.url}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -61,6 +62,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     super.initState();
     _focusNode = FocusNode();
 
+
+    print(widget.url);
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -80,7 +83,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse("https://qtaapp.com/site/hyper?id="+_appState!.url!));
+      ..loadRequest(Uri.parse("https://qtaapp.com/site/hyper?id="+widget.url!));
 
   }
 
