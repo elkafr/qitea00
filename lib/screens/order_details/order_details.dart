@@ -1868,9 +1868,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             GestureDetector(
                                                                 onTap:
                                                                     () async {
+
                                                                   _progressIndicatorState!
                                                                       .setIsLoading(
                                                                           true);
+                                                                  _orderDetails = _getOrderDetails();
                                                                   var results =
                                                                       await _services
                                                                           .get(

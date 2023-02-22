@@ -98,6 +98,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       messages = response['Number'];
       setState(() {
         zzz=response['Number'];
+
       });
     }
     return messages;
@@ -227,7 +228,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       minHeight: 12,
                     ),
                     child: new Text(
-                      zzz.toString(),
+                      zzz.toString()=="null"?"0":zzz.toString(),
                       style: new TextStyle(
                         color: Colors.white,
                         fontSize: 8,

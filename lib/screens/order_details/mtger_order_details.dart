@@ -835,6 +835,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         child: CustomTextFormField(
                                           hintTxt: "السعر",
                                           inputData: TextInputType.number,
+
                                           onChangedFunc: (String text) {
                                             _requestPrice1= text.toString();
                                           },

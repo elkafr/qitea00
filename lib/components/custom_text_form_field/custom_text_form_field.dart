@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qitea/utils/app_colors.dart';
-
+import 'package:flutter/services.dart';
 class CustomTextFormField extends StatefulWidget {
   final String? initialValue;
   final String? hintTxt;
@@ -112,6 +112,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.isPassword! ? _obsecureText : false,
       validator: widget.validationFunc,
       onChanged: widget.onChangedFunc as void Function(String)?,
+      inputFormatters: widget.inputData=="TextInputType.number"?<TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+      ]:null,
     );
   }
 

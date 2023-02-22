@@ -4323,7 +4323,10 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           ),
                                                                           GestureDetector(
                                                                               onTap: () async {
+
                                                                                 _progressIndicatorState!.setIsLoading(true);
+
+                                                                                _orderDetails = _getOrderDetails();
                                                                                 var results = await _services.get('https://qtaapp.com/api/acceptOffer1?cartt_id=${snapshot.data![index].offerCartt}&offer_id=${snapshot.data![index].offerId}&lang=${_appState!.currentLang}');
                                                                                 _progressIndicatorState!.setIsLoading(false);
                                                                                 if (results['response'] == '1') {
