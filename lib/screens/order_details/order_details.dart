@@ -1001,7 +1001,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: _width * .04,
+                                  height: _width * .01,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -1092,7 +1092,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: _width * .04,
+                          height: _width * .01,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1242,7 +1242,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: _width * .04,
+                                    height: _width * .01,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -1330,7 +1330,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: _width * .04,
+                          height: _width * .01,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
