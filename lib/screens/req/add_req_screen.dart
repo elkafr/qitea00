@@ -31,6 +31,7 @@ class AddReqScreen extends StatefulWidget {
 }
 
 class _AddReqScreenState extends State<AddReqScreen> {
+  bool _initialRun = true;
   double _height=0;
   double _width=0;
   final _formKey = GlobalKey<FormState>();
@@ -38,7 +39,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
   Services _services = Services();
   AppState? _appState;
   ProgressIndicatorState? _progressIndicatorState;
-
+  String _userCredit='';
 
   FocusNode? _focusNode;
 
@@ -51,7 +52,30 @@ class _AddReqScreenState extends State<AddReqScreen> {
   }
 
 
+  Future<Null> _getUserCredit() async {
+    final response =
+    await _services.get("https://qtaapp.com/api/get_user_credit?user_id=${_appState!.currentUser!.userId}");
 
+    if (response['response'] == '1') {
+
+      setState(() {
+        _userCredit=response['user_credit'];
+      });
+    }
+
+  }
+
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_initialRun) {
+      _initialRun = false;
+      _appState = Provider.of<AppState>(context);
+      _getUserCredit();
+    }
+  }
 
   @override
   void initState() {
@@ -77,7 +101,7 @@ class _AddReqScreenState extends State<AddReqScreen> {
               height: _height * 0.16,
             ),
 
-            Text("الرصيد الحالي : "+_appState!.currentUser!.userCredit!+" SR ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: cPrimaryColor),),
+            Text("الرصيد الحالي : "+_userCredit+" SR ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: cPrimaryColor),),
             SizedBox(
               height: _height * 0.04,
             ),

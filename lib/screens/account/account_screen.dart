@@ -51,7 +51,7 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
 
-
+  bool _initialRun = true;
 double _height=0,_width=0;
 AppState? _appState;
 Services _services = Services();
@@ -59,6 +59,10 @@ String _facebookUrl = '',
     _instragramUrl = '',
     _linkedinUrl = '',
     _twitterUrl = '';
+
+String _userCredit='';
+String _userReq='';
+String _userReqs='';
 
 _launchURL(String url) async {
    launch(url);
@@ -77,11 +81,66 @@ Future<Null> _getSocialContact() async {
   }
 }
 
+
+
+Future<Null> _getUserCredit() async {
+  final response =
+  await _services.get("https://qtaapp.com/api/get_user_credit?user_id=${_appState!.currentUser!.userId}");
+
+  if (response['response'] == '1') {
+
+   setState(() {
+     _userCredit=response['user_credit'];
+   });
+  }
+
+}
+
+  Future<Null> _getUserReq() async {
+    final response =
+    await _services.get("https://qtaapp.com/api/get_user_credit?user_id=${_appState!.currentUser!.userId}");
+
+    if (response['response'] == '1') {
+
+      setState(() {
+        _userReq =response['user_req'];
+      });
+    }
+
+  }
+
+
+  Future<Null> _getUserReqs() async {
+    final response =
+    await _services.get("https://qtaapp.com/api/get_user_credit?user_id=${_appState!.currentUser!.userId}");
+
+    if (response['response'] == '1') {
+
+      setState(() {
+        _userReqs =response['user_reqs'];
+      });
+    }
+
+  }
+
+
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  if (_initialRun) {
+    _initialRun = false;
+    _appState = Provider.of<AppState>(context);
+    _getUserCredit();
+    _getUserReq();
+    _getUserReqs();
+  }
+}
 @override
 void initState() {
   super.initState();
 
   _getSocialContact();
+
 }
 
 Widget _buildBodyItem(){
@@ -236,7 +295,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser!.userCredit!,
+                trailing: Text(_userCredit,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -253,7 +312,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser!.totalOfReq!,
+                trailing: Text(_userReq,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -270,7 +329,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser!.numberOfReq!,
+                trailing: Text(_userReqs,
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
@@ -388,7 +447,7 @@ Widget _buildBodyItem(){
     _height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     _width = MediaQuery.of(context).size.width;
-    _appState = Provider.of<AppState>(context);
+
     return  NetworkIndicator( child:PageContainer(
       child: Scaffold(
           backgroundColor: Color(0xffF5F6F8),          body: Stack(
