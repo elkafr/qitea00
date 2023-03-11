@@ -332,6 +332,58 @@ onRatingUpdate: (w){},
 
 
 
+
+
+                    Consumer<AppState>(builder: (context, appState, child) {
+                      return  appState.currentUser != null
+                          ? ListTile(
+                        leading: Icon(
+                          FontAwesomeIcons.signInAlt,
+                          color: cWhite,
+                          size: 22,
+                        ),
+                        title: Text(
+                          "حذف الحساب",
+                          style: TextStyle(
+                              color: cWhite,fontSize: 15
+                          ),
+                        ),
+                        onTap: () {
+                          showDialog(
+                              barrierDismissible: true,
+                              context: context,
+                              builder: (_) {
+                                return LogoutDialog(
+                                  alertMessage: "هل متاكد انك تريد حذف الحساب ؟",
+                                );
+                              });
+                        },
+                      )
+                          : ListTile(
+                        leading: Transform.rotate(
+                          angle: 180 * math.pi / 180,
+                          child: Icon(
+                            FontAwesomeIcons.signInAlt,
+                            color: cWhite,
+                            size: 22,
+                          ),
+                        ),
+                        title: Text(
+                            AppLocalizations.of(context)!.enter,
+                            style: TextStyle(
+                                color: cWhite,fontSize: 15
+                            )
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/login_screen');
+                        },
+                      );
+                    }),
+
+
+
+
+
                     Consumer<AppState>(builder: (context, appState, child) {
                       return  appState.currentUser != null
                           ? ListTile(
