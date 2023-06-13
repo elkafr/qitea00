@@ -1876,7 +1876,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                   var results =
                                                                       await _services
                                                                           .get(
-                                                                              'https://qtaapp.com/api/acceptOffer1?cartt_id=${snapshot.data!.offerCartt}&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                              'https://qtaapp.com/api/1?cartt_id=${snapshot.data!.offerCartt}&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
                                                                   _progressIndicatorState!
                                                                       .setIsLoading(
                                                                           false);
