@@ -551,11 +551,11 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
     return SingleChildScrollView(
       child: Container(
         width: _width,
-        height: _height,
+        height: _height*.94,
         child: ListView(
           children: <Widget>[
             SizedBox(
-              height: 60,
+              height: 50,
             ),
 
             Container(
@@ -1031,6 +1031,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
+
                               itemCount: 5,
                               itemPadding: EdgeInsets.all(0),
                               itemSize: 25,
@@ -1038,7 +1039,11 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                 Icons.star,
                                 color: Colors.amber,
                               ),
-                              onRatingUpdate: (w){},
+                              onRatingUpdate: (w){
+                                print(w);
+                              },
+                              ignoreGestures: true,
+
                             ),
                           ],
                         )
@@ -1177,6 +1182,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                 color: Colors.amber,
                               ),
                               onRatingUpdate: (s){},
+                              ignoreGestures: true,
                             ),
                           ],
                         )
@@ -1599,6 +1605,8 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                               GestureDetector(
                                                 child: Text("Visa"),
                                                 onTap: () async {
+
+
                                                   _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
@@ -1610,18 +1618,24 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     _appState!.setCurrentUrl(
                                                         results['id']);
                                                     print("Sssss");
-                                                    print(_appState!.url);
+                                                    print("Ccccccccccc");
+
                                                     print("Sssss");
+                                                    print("Ccccccccccc");
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                PaymentScreen()));
+                                                                PaymentScreen(
+                                                                    url:results['id']
+                                                                )));
                                                   } else {
                                                     showErrorDialog(
                                                         results['message'],
                                                         context);
                                                   }
+
+
                                                 },
                                               ),
 
@@ -1630,6 +1644,8 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                               GestureDetector(
                                                 child: Text("Master"),
                                                 onTap: () async {
+
+
                                                   _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
@@ -1641,18 +1657,24 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     _appState!.setCurrentUrl(
                                                         results['id']);
                                                     print("Sssss");
-                                                    print(_appState!.url);
+                                                    print("Ccccccccccc");
+
                                                     print("Sssss");
+                                                    print("Ccccccccccc");
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                PaymentScreen()));
+                                                                PaymentScreen(
+                                                                    url:results['id']
+                                                                )));
                                                   } else {
                                                     showErrorDialog(
                                                         results['message'],
                                                         context);
                                                   }
+
+
                                                 },
                                               ),
                                             ],

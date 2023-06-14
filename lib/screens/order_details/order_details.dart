@@ -530,7 +530,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     return SingleChildScrollView(
       child: Container(
         width: _width,
-        height: _height,
+        height: _height*.94,
         child: ListView(
           children: <Widget>[
             SizedBox(
@@ -1026,6 +1026,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         color: Colors.amber,
                                       ),
                                       onRatingUpdate: (d){},
+                                      ignoreGestures: true,
                                     ),
                                   ],
                                 )
@@ -1115,6 +1116,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 color: Colors.amber,
                               ),
                               onRatingUpdate: (s) {},
+                              ignoreGestures: true,
                             ),
                           ],
                         )
@@ -1267,6 +1269,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           color: Colors.amber,
                                         ),
                                         onRatingUpdate: (rating) async {},
+                                        ignoreGestures: true,
                                       ),
                                     ],
                                   )
@@ -1353,6 +1356,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 color: Colors.amber,
                               ),
                               onRatingUpdate: (c){},
+                              ignoreGestures: true,
                             ),
                           ],
                         )
@@ -4081,6 +4085,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Visa"),
                                                 onTap: () async {
+
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print(_appState!.url);
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+
                                                   _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
@@ -4098,7 +4111,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                PaymentScreen()));
+                                                                PaymentScreen(
+                                                                    url:results['id']
+                                                                )));
                                                   } else {
                                                     showErrorDialog(
                                                         results['message'],
@@ -4112,6 +4127,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               GestureDetector(
                                                 child: Text("Master"),
                                                 onTap: () async {
+
+
+
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print(_appState!.url);
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+                                                  print("#####11111######");
+
                                                   _progressIndicatorState!
                                                       .setIsLoading(true);
                                                   var results = await _services.get(
@@ -4129,12 +4155,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                PaymentScreen()));
+                                                                PaymentScreen(
+                                                                    url:results['id']
+                                                                )));
                                                   } else {
                                                     showErrorDialog(
                                                         results['message'],
                                                         context);
                                                   }
+
+
                                                 },
                                               ),
                                             ],

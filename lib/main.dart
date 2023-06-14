@@ -50,7 +50,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -85,6 +85,7 @@ FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -93,6 +94,15 @@ void main() async {
     sound: true,
   );
 
+
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
+
+
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -100,6 +110,10 @@ void main() async {
       .then((_) {
     run();
   });
+
+
+
+
 }
 
 void run() async {
