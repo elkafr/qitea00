@@ -188,7 +188,8 @@ class _MainDrawer extends State<MainDrawer> {
                                           Icons.star,
                                           color: Colors.amber,
                                         ),
-onRatingUpdate: (w){},
+                                        onRatingUpdate: (s){},
+                                        ignoreGestures: true,
                                       ),
 
 
@@ -359,25 +360,7 @@ onRatingUpdate: (w){},
                               });
                         },
                       )
-                          : ListTile(
-                        leading: Transform.rotate(
-                          angle: 180 * math.pi / 180,
-                          child: Icon(
-                            FontAwesomeIcons.signInAlt,
-                            color: cWhite,
-                            size: 22,
-                          ),
-                        ),
-                        title: Text(
-                            AppLocalizations.of(context)!.enter,
-                            style: TextStyle(
-                                color: cWhite,fontSize: 15
-                            )
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, '/login_screen');
-                        },
-                      );
+                          : Text("");
                     }),
 
 

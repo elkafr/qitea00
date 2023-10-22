@@ -1880,7 +1880,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                                   var results =
                                                                       await _services
                                                                           .get(
-                                                                              'https://qtaapp.com/api/1?cartt_id=${snapshot.data!.offerCartt}&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
+                                                                              'https://qtaapp.com/api/acceptOffer1?cartt_id=${snapshot.data!.offerCartt}&offer_id=${snapshot.data!.offerId}&lang=${_appState!.currentLang}');
                                                                   _progressIndicatorState!
                                                                       .setIsLoading(
                                                                           false);
@@ -4275,7 +4275,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             btnColor: cPrimaryColor,
                             btnLbl: "التوصيل لعنوان مختلف",
                             onPressedFunction: () {
-                              _getCurrentUserLocation();
+                            //  _getCurrentUserLocation();
+
+                              print("object");
+                              print("object");
+                              print(_locationState!.locationLatitude.toString());
+                              print("object");
+                              print("object");
+                              showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (_) {
+                                    return LocationDialog();
+                                  });
+
+
                             },
                           )
                         : CustomButton(
@@ -4691,8 +4705,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         }),
         markerId: MarkerId('my marker'),
         // infoWindow: InfoWindow(title: widget.address),
-        position: LatLng(
-            _locationState!.locationLatitude, _locationState!.locationlongitude),
+        position:LatLng(11.2,11.2),
         flat: true);
     _markers.add(_marker!);
 

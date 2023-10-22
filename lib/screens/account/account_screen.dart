@@ -219,9 +219,8 @@ Widget _buildBodyItem(){
             Icons.star,
             color: Colors.amber,
           ),
-          onRatingUpdate: (x){
-            
-          },
+          onRatingUpdate: (s){},
+          ignoreGestures: true,
 
         ),
 

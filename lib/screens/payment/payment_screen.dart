@@ -22,6 +22,10 @@ import 'package:qitea/screens/auth/password_recovery_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// Import for Android features.
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+// Import for iOS features.
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 
@@ -76,9 +80,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith("https://qtaapp.com/site/hyper?id="+_appState!.url!)) {
-              return NavigationDecision.prevent;
-            }
+           // if (request.url.startsWith("https://qtaapp.com/site/hyper?id="+_appState!.url!)) {
+           //   return NavigationDecision.prevent;
+           // }
             return NavigationDecision.navigate;
           },
         ),

@@ -116,6 +116,8 @@ void main() async {
 
 }
 
+
+
 void run() async {
   runApp(MyApp());
 }
@@ -166,9 +168,9 @@ class _MyAppState extends State<MyApp> {
       );
       final IOSInitializationSettings initializationSettingsIOS =
       IOSInitializationSettings(
-          requestAlertPermission: false,
-          requestBadgePermission: false,
-          requestSoundPermission: false,
+          requestAlertPermission: true,
+          requestBadgePermission: true,
+          requestSoundPermission: true,
           onDidReceiveLocalNotification: (
               int id,
               String? title,

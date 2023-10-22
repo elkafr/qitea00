@@ -1647,11 +1647,8 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                         Icons.star,
                         color: Colors.amber,
                       ),
-                      onRatingUpdate: (rating) async {
-
-
-
-                      },
+                      onRatingUpdate: (s){},
+                      ignoreGestures: true,
                     ),
                   ],
                 )

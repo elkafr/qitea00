@@ -228,8 +228,8 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
     print("==============ssss==================");
     print("=============sssss===================");
     print("=============ssss===================");
-    print(_locationState!.locationLatitude);
-    print(_locationState!.locationlongitude);
+   // print(_locationState!.locationLatitude);
+   // print(_locationState!.locationlongitude);
     print("==============ssss==================");
     print("==============sss==================");
     print("==============sss==================");
@@ -835,7 +835,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                       ),
                 order.carttDone == 3
                     ? Container(
-                        padding: EdgeInsets.all(15),
+                        padding: EdgeInsets.all(10),
                         alignment: Alignment.centerRight,
                         decoration: BoxDecoration(
                             color: cWhite,
@@ -846,7 +846,7 @@ class _DriverOrderDetailsScreenState extends State<DriverOrderDetailsScreen> {
                         margin: EdgeInsets.only(
                             left: _width * 0.03,
                             right: _width * 0.03,
-                            bottom: _width * 0.025),
+                            bottom: _width * 0.00025),
                         child: Row(
                           children: <Widget>[
                             Icon(

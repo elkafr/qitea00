@@ -1785,7 +1785,28 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                             btnColor: cPrimaryColor,
                             btnLbl: "التوصيل لعنوان مختلف",
                             onPressedFunction: () {
-                              _getCurrentUserLocation();
+                             // _getCurrentUserLocation();
+
+
+
+                              //  _getCurrentUserLocation();
+
+                              print("object");
+                              print("object");
+                              print(_locationState!.locationLatitude.toString());
+                              print("object");
+                              print("object");
+                              showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (_) {
+                                    return LocationDialog();
+                                  });
+
+
+
+
+
                             },
                           )
                         : CustomButton(
@@ -4446,8 +4467,7 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
         }),
         markerId: MarkerId('my marker'),
         // infoWindow: InfoWindow(title: widget.address),
-        position: LatLng(
-            _locationState!.locationLatitude, _locationState!.locationlongitude),
+        position:LatLng(11.2,11.2),
         flat: true);
     _markers.add(_marker!);
 

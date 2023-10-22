@@ -17,6 +17,7 @@ import 'package:qitea/components/safe_area/page_container.dart';
 import 'package:qitea/locale/localization.dart';
 import 'package:qitea/models/city.dart';
 import 'package:qitea/models/user.dart';
+import 'package:qitea/screens/account/terms1_screen.dart';
 import 'package:qitea/screens/account/terms_screen.dart';
 import 'package:qitea/services/access_api.dart';
 import 'package:qitea/utils/app_colors.dart';
@@ -993,7 +994,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TermsScreen()));
+                              builder: (context) => Terms1Screen()));
                     },
                     child: Container(
                         margin: EdgeInsets.symmetric(horizontal: _width * 0.02),
