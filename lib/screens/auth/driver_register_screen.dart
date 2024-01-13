@@ -1128,6 +1128,7 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> with Valida
                         showToast(context,message: results['message']);
                       //  _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
                         _appState!.setCurrentPhone111(results['user_id'].toString());
+                        _appState!.setCurrentPhoneSend(_userPhone);
                         Navigator.pushNamed(context, '/register_code_activation1_screen' );
 
                       } else {

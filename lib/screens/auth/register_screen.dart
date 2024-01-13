@@ -369,6 +369,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         showToast(context,message: results['message']);
                      //   _appState.setCurrentUser(User(userId:results['user_id'].toString() ));
                         _appState!.setCurrentPhone111(results['user_id'].toString());
+                        _appState!.setCurrentPhoneSend(_userPhone);
                         Navigator.pushNamed(context, '/register_code_activation_screen' );
                       } else {
                         showErrorDialog(results['message'], context);

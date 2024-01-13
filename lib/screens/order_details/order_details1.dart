@@ -1515,14 +1515,14 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                     context: context,
                                     builder: (builder) {
                                       return Container(
-                                        height: _height * 0.35,
+                                        height: _height * 0.50,
                                         width: _width,
                                         child: CancelOrderBottomSheet(
-                                          onPressedConfirmation: () async {
+                                          onPressedConfirmation: (String reason) async {
                                             _progressIndicatorState!
                                                 .setIsLoading(true);
                                             var results = await _services.get(
-                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                             _progressIndicatorState!
                                                 .setIsLoading(false);
                                             if (results['response'] == '1') {
@@ -1855,13 +1855,13 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                           context: context,
                           builder: (builder) {
                             return Container(
-                              height: _height * 0.35,
+                              height: _height * 0.50,
                               width: _width,
                               child: CancelOrderBottomSheet(
-                                onPressedConfirmation: () async {
+                                onPressedConfirmation: (String reason) async {
                                   _progressIndicatorState!.setIsLoading(true);
                                   var results = await _services.get(
-                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                   _progressIndicatorState!.setIsLoading(false);
                                   if (results['response'] == '1') {
                                     showToast(context,message: results['message']);
@@ -2253,11 +2253,12 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                     Text(snapshot.data![index]
                                                         .requestLabel1
                                                         .toString()),
-                                                    Text(" سعر " +
+                                                    snapshot.data![index]
+                                                        .requestPrice1Available!=0?Text(" سعر " +
                                                         snapshot.data![index]
                                                             .requestPrice1
                                                             .toString() +
-                                                        " ريال "),
+                                                        " ريال "):Text(""),
                                                     Container(
                                                       alignment:
                                                           Alignment.center,
@@ -2402,13 +2403,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   .data![index]
                                                                   .requestPrice1Label1
                                                                   .toString()),
-                                                              Text(" سعر " +
+                                                              snapshot
+                                                                  .data![
+                                                              index]
+                                                                  .requestPrice1Offer1Available!=0?Text(" سعر " +
                                                                   snapshot
                                                                       .data![
                                                                           index]
                                                                       .requestPrice1Offer1
                                                                       .toString() +
-                                                                  " ريال "),
+                                                                  " ريال "):Text(""),
                                                               Container(
                                                                 alignment:
                                                                     Alignment
@@ -2545,13 +2549,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   .data![index]
                                                                   .requestPrice1Label2
                                                                   .toString()),
-                                                              Text(" سعر " +
+                                                              snapshot
+                                                                  .data![
+                                                              index]
+                                                                  .requestPrice1Offer2Available!=0?Text(" سعر " +
                                                                   snapshot
                                                                       .data![
                                                                           index]
                                                                       .requestPrice1Offer2
                                                                       .toString() +
-                                                                  " ريال "),
+                                                                  " ريال "):Text(""),
                                                               Container(
                                                                 alignment:
                                                                     Alignment
@@ -2687,13 +2694,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                   .data![index]
                                                                   .requestPrice1Label3
                                                                   .toString()),
-                                                              Text(" سعر " +
+                                                              snapshot
+                                                                  .data![
+                                                              index]
+                                                                  .requestPrice1Offer3Available!=0?Text(" سعر " +
                                                                   snapshot
                                                                       .data![
                                                                           index]
                                                                       .requestPrice1Offer3
                                                                       .toString() +
-                                                                  " ريال "),
+                                                                  " ريال "):Text(""),
                                                               Container(
                                                                 alignment:
                                                                     Alignment
@@ -2861,11 +2871,12 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                             .data![index]
                                                             .requestLabel2
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data![index]
+                                                            .requestPrice2Available!=0?Text(" سعر " +
                                                             snapshot.data![index]
                                                                 .requestPrice2
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3012,13 +3023,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice2Label1
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice2Offer1Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice2Offer1
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -3141,13 +3155,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice2Label2
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice2Offer2Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice2Offer2
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -3270,13 +3287,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice2Label3
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice2Offer3Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice2Offer3
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -3432,11 +3452,12 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                             .data![index]
                                                             .requestLabel3
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data![index]
+                                                            .requestPrice3Available!=0?Text(" سعر " +
                                                             snapshot.data![index]
                                                                 .requestPrice3
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3583,13 +3604,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice3Label1
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice3Offer1Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice3Offer1
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -3712,13 +3736,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice3Label2
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice3Offer2Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice3Offer2
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -3841,13 +3868,16 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                                                           index]
                                                                       .requestPrice3Label3
                                                                       .toString()),
-                                                                  Text(" سعر " +
+                                                                  snapshot
+                                                                      .data![
+                                                                  index]
+                                                                      .requestPrice3Offer3Available!=0?Text(" سعر " +
                                                                       snapshot
                                                                           .data![
                                                                               index]
                                                                           .requestPrice3Offer3
                                                                           .toString() +
-                                                                      " ريال "),
+                                                                      " ريال "):Text(""),
                                                                   Container(
                                                                     alignment:
                                                                         Alignment
@@ -4518,17 +4548,17 @@ class _OrderDetails1ScreenState extends State<OrderDetails1Screen> {
                                               context: context,
                                               builder: (builder) {
                                                 return Container(
-                                                  height: _height * 0.35,
+                                                  height: _height * 0.50,
                                                   width: _width,
                                                   child:
                                                   CancelOrderBottomSheet(
                                                     onPressedConfirmation:
-                                                        () async {
+                                                        (String reason) async {
                                                       _progressIndicatorState!
                                                           .setIsLoading(true);
                                                       var results =
                                                       await _services.get(
-                                                          'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data!.carttId}&lang=${_appState!.currentLang}');
+                                                          'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data!.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                                       _progressIndicatorState!
                                                           .setIsLoading(
                                                           false);

@@ -1457,7 +1457,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             (order.carttDone == 4 ||
                     order.carttDone == 5 ||
                     order.carttDone == 6 ||
-                    order.carttDone == 7)
+                    order.carttDone == 7 ||
+                order.carttDone == 13
+            )
                 ? Container(
                     padding: EdgeInsets.all(30),
                     margin: EdgeInsets.only(
@@ -1517,7 +1519,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            (order.carttDone == 4 || order.carttDone == 7)
+            (order.carttDone == 4 || order.carttDone == 7 || order.carttDone == 13)
                 ? Container(
                     padding: EdgeInsets.only(
                         right: _width * .08,
@@ -1566,7 +1568,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            (order.carttDone == 4 || order.carttDone == 7)
+            (order.carttDone == 4 || order.carttDone == 7 )
                 ? Container(
                     padding: EdgeInsets.only(
                         right: _width * .08,
@@ -1615,7 +1617,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            (order.carttDone == 4 || order.carttDone == 7)
+            (order.carttDone == 4 || order.carttDone == 7 || order.carttDone == 13)
                 ? Container(
                     padding: EdgeInsets.only(
                         right: _width * .08,
@@ -1664,7 +1666,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            (order.carttDone == 4 || order.carttDone == 7)
+            (order.carttDone == 4 || order.carttDone == 7 || order.carttDone == 13)
                 ? Container(
                     padding: EdgeInsets.only(
                         right: _width * .08,
@@ -1713,7 +1715,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            (order.carttDone == 4 || order.carttDone == 7)
+            (order.carttDone == 4 || order.carttDone == 7 || order.carttDone == 13)
                 ? Container(
                     padding: EdgeInsets.only(
                         right: _width * .08,
@@ -1996,10 +1998,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         children: <Widget>[
                                           Text(snapshot.data!.requestLabel1
                                               .toString()),
-                                          Text(" سعر " +
+                                          snapshot.data!.requestPrice1Available!=0?Text(" سعر " +
                                               snapshot.data!.requestPrice1
                                                   .toString() +
-                                              " ريال "),
+                                              " ريال "):Text(""),
                                           Container(
                                             alignment: Alignment.center,
                                             child: snapshot.data!
@@ -2146,11 +2148,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                     Text(snapshot.data!
                                                         .requestPrice1Label1
                                                         .toString()),
-                                                    Text(" سعر " +
+                                                    snapshot.data!
+                                                        .requestPrice1Offer1Available!=0?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer1
                                                             .toString() +
-                                                        " ريال "),
+                                                        " ريال "):Text(""),
                                                     Container(
                                                       alignment:
                                                           Alignment.center,
@@ -2294,11 +2297,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                     Text(snapshot.data!
                                                         .requestPrice1Label2
                                                         .toString()),
-                                                    Text(" سعر " +
+                                                    snapshot.data!
+                                                        .requestPrice1Offer2Available!=0?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer2
                                                             .toString() +
-                                                        " ريال "),
+                                                        " ريال "):Text(""),
                                                     Container(
                                                       alignment:
                                                           Alignment.center,
@@ -2441,11 +2445,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                     Text(snapshot.data!
                                                         .requestPrice1Label3
                                                         .toString()),
-                                                    Text(" سعر " +
+                                                    snapshot.data!
+                                                        .requestPrice1Offer3Available!=0?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer3
                                                             .toString() +
-                                                        " ريال "),
+                                                        " ريال "):Text(""),
                                                     Container(
                                                       alignment:
                                                           Alignment.center,
@@ -2617,10 +2622,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: <Widget>[
                                               Text(snapshot.data!.requestLabel2
                                                   .toString()),
-                                              Text(" سعر " +
+                                              snapshot.data!.requestPrice2Available!=0?Text(" سعر " +
                                                   snapshot.data!.requestPrice2
                                                       .toString() +
-                                                  " ريال "),
+                                                  " ريال "):Text(""),
                                               Container(
                                                 alignment: Alignment.center,
                                                 child: snapshot.data!
@@ -2760,11 +2765,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice2Label1
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice2Offer1Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer1
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -2906,11 +2912,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice2Label2
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice2Offer2Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer2
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3052,11 +3059,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice2Label3
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice2Offer3Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer3
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3228,10 +3236,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: <Widget>[
                                               Text(snapshot.data!.requestLabel3
                                                   .toString()),
-                                              Text(" سعر " +
+                                              snapshot.data!.requestPrice3Available!=0?Text(" سعر " +
                                                   snapshot.data!.requestPrice3
                                                       .toString() +
-                                                  " ريال "),
+                                                  " ريال "):Text(""),
                                               Container(
                                                 alignment: Alignment.center,
                                                 child: snapshot.data!
@@ -3371,11 +3379,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice3Label1
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice3Offer1Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer1
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3517,11 +3526,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice3Label2
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice3Offer2Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer2
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3663,11 +3673,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         Text(snapshot.data!
                                                             .requestPrice3Label3
                                                             .toString()),
-                                                        Text(" سعر " +
+                                                        snapshot.data!
+                                                            .requestPrice3Offer3Available!=0?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer3
                                                                 .toString() +
-                                                            " ريال "),
+                                                            " ريال "):Text(""),
                                                         Container(
                                                           alignment:
                                                               Alignment.center,
@@ -3965,7 +3976,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
-            order.carttDone == 4 && order.carttPay == 0
+            (order.carttDone == 4 && order.carttPay == 0) || (order.carttDone == 13 && order.carttPay == 0)
                 ? Container(
                     margin: EdgeInsets.only(
                         right: _width * .04, left: _width * .04),
@@ -3989,14 +4000,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     context: context,
                                     builder: (builder) {
                                       return Container(
-                                        height: _height * 0.35,
+                                        height: _height * 0.50,
                                         width: _width,
                                         child: CancelOrderBottomSheet(
-                                          onPressedConfirmation: () async {
+                                          onPressedConfirmation: (String reason) async {
                                             _progressIndicatorState!
                                                 .setIsLoading(true);
                                             var results = await _services.get(
-                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                                'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                             _progressIndicatorState!
                                                 .setIsLoading(false);
                                             if (results['response'] == '1') {
@@ -4322,6 +4333,49 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: TextStyle(height: 0),
                   ),
 
+
+
+
+
+
+
+
+
+            order.carttDone == 2 &&
+                _appState!.currentOfferCartt != "0" &&
+                _appState!.currentOfferMtger != ""
+                ? Container(
+              child: CustomButton(
+                btnColor: cPrimaryColor,
+                btnLbl: "الاستلام من الفرع",
+                onPressedFunction: () async {
+                  _progressIndicatorState!.setIsLoading(true);
+                  var results = await _services.get(
+                      'https://qtaapp.com/api/send_request1_from_mtger?lang=ar&user_id=${_appState!.currentUser!.userId}&request_cartt=${order.carttId}&lang=${_appState!.currentLang}');
+                  _progressIndicatorState!.setIsLoading(false);
+                  if (results['response'] == '1') {
+                    print(results['message']);
+                    print(results['message']);
+
+                    showToast(context,message: results['message']);
+
+                    setState(() {
+                      _orderDetails = _getOrderDetails();
+                      _offerDetails = _getOfferDetails();
+                    });
+                  } else {
+                    showErrorDialog(results['message'], context);
+                  }
+                },
+              ),
+            )
+                : Text(
+              "",
+              style: TextStyle(height: 0),
+            ),
+
+
+
             order.carttState == "0"
                 ? CustomButton(
                     btnStyle: TextStyle(
@@ -4337,13 +4391,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           context: context,
                           builder: (builder) {
                             return Container(
-                              height: _height * 0.35,
+                              height: _height * 0.50,
                               width: _width,
                               child: CancelOrderBottomSheet(
-                                onPressedConfirmation: () async {
+                                onPressedConfirmation: (String reason) async {
                                   _progressIndicatorState!.setIsLoading(true);
                                   var results = await _services.get(
-                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&lang=${_appState!.currentLang}');
+                                      'https://qtaapp.com/api/do_dis_buy?cartt_id=${order.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                   _progressIndicatorState!.setIsLoading(false);
                                   if (results['response'] == '1') {
                                     showToast(context,message: results['message']);
@@ -4763,16 +4817,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               context: context,
                                               builder: (builder) {
                                                 return Container(
-                                                  height: _height * 0.35,
+                                                  height: _height * 0.50,
                                                   width: _width,
                                                   child: CancelOrderBottomSheet(
                                                     onPressedConfirmation:
-                                                        () async {
+                                                        (String reason) async {
                                                       _progressIndicatorState!
                                                           .setIsLoading(true);
                                                       var results =
                                                           await _services.get(
-                                                              'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data!.carttId}&lang=${_appState!.currentLang}');
+                                                              'https://qtaapp.com/api/do_dis_buy?cartt_id=${snapshot.data!.carttId}&reason=$reason&lang=${_appState!.currentLang}');
                                                       _progressIndicatorState!
                                                           .setIsLoading(false);
                                                       if (results['response'] ==

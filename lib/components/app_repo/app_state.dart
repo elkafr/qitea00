@@ -68,6 +68,16 @@ class AppState extends ChangeNotifier {
   // int get notificationLength => _notificationLength;
 
 
+
+  String? _reason;
+  void setReason(String reason) {
+    _reason = reason;
+    notifyListeners();
+  }
+  String? get reason => _reason;
+
+
+
   String? _phoneSend;
 
   void setCurrentPhoneSend(String phoneSend) {

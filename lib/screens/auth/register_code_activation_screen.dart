@@ -122,7 +122,11 @@ class _RegisterCodeActivationScreenState
                onTap: () async{
 
 
-
+                 print("ahmed");
+   print(_appState!.phoneSend);
+   print(_appState!.phoneSend);
+   print(_appState!.phoneSend);
+   print("ahmed");
 
 
                  _firebaseMessaging.getToken().then((token) async {
@@ -131,6 +135,7 @@ class _RegisterCodeActivationScreenState
                    var results = await _services.get(
                      '${Utils.SENDCODE_URL}?user_phone=${_appState!.phoneSend}&token=${_appState!.tokenSend}&lang=${_appState!.currentLang}&key=$cKey',
                    );
+
                    _progressIndicatorState!.setIsLoading(false);
                    if (results['response'] == '1') {
                      showToast(context,message: results['message']);

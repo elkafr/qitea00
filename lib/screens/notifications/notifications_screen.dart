@@ -111,39 +111,61 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                           .data![index].messageAdsId!);
 
 
-                                      snapshot.data![index].messageSenderType=="mtger"?_appState!.setCurrentOfferMtger(snapshot
-                                          .data![index].messageSenderId!):_appState!.setCurrentOfferDriver(snapshot
-                                          .data![index].messageSenderId!);
+
+                                      if(snapshot.data![index].messageAdsId==""){
+                                         print("object");
+                                         print("object");
+                                         print("object");
+                                      }else {
+                                        snapshot.data![index]
+                                            .messageSenderType == "mtger"
+                                            ? _appState!.setCurrentOfferMtger(
+                                            snapshot
+                                                .data![index].messageSenderId!)
+                                            : _appState!.setCurrentOfferDriver(
+                                            snapshot
+                                                .data![index].messageSenderId!);
 
 
-                                      print(_appState!.currentOfferCartt);
-                                      print(_appState!.currentOfferMtger);
+                                        print(_appState!.currentOfferCartt);
+                                        print(_appState!.currentOfferMtger);
 
-                                      if(_appState!.currentUser!.userType=="user") {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    OrderDetailsScreen()));
+                                        if (_appState!.currentUser!.userType ==
+                                            "user") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      OrderDetailsScreen()));
+                                        } else
+                                        if (_appState!.currentUser!.userType ==
+                                            "mtger") {
+                                          snapshot.data![index].messageTitle!
+                                              .contains(new RegExp(
+                                              'اعتذار', caseSensitive: false))
+                                              ? Text("")
+                                              : Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MtgerOrderDetailsScreen()));
+                                        } else
+                                        if (_appState!.currentUser!.userType ==
+                                            "driver") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DriverOrderDetailsScreen()));
+                                        }
 
 
 
-                                      }else if(_appState!.currentUser!.userType=="mtger") {
-
-                                   snapshot.data![index].messageTitle!.contains(new RegExp('اعتذار', caseSensitive: false))?Text("")
-                                        :Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MtgerOrderDetailsScreen()));
 
 
-                                      } else if(_appState!.currentUser!.userType=="driver") {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DriverOrderDetailsScreen()));
+
+
+
                                       }
 
                                     },
@@ -267,65 +289,74 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       return  NetworkIndicator( child:PageContainer(
       child: Scaffold(
           backgroundColor: Color(0xffF5F6F8),
-          body: Stack(
+          body: RefreshIndicator(
+              onRefresh: _refreshLocalGallery,
+              child: Stack(
             children: <Widget>[
-            Column(
-              children: <Widget>[
-                SizedBox(height: 50,),
-                 Container(
-                   height: _height  - (_height*.16),
-                   width: _width,
-                   padding: EdgeInsets.all(10),
-                   child:  _buildBodyItem(),
-                 )
-              ],
-            ),
+              Column(
+                children: <Widget>[
+                  SizedBox(height: 50,),
+                  Container(
+                    height: _height  - (_height*.16),
+                    width: _width,
+                    padding: EdgeInsets.all(10),
+                    child:  _buildBodyItem(),
+                  )
+                ],
+              ),
               Positioned(
                 top: 0,
                 left: 0,
                 right: 0,
                 child: GradientAppBar(
-leading: IconButton(
-  icon: Image.asset("assets/images/menu.png"),
-  onPressed: () => Scaffold.of(context).openDrawer(),
-  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-),
+                  leading: IconButton(
+                    icon: Image.asset("assets/images/menu.png"),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  ),
                   appBarTitle: AppLocalizations.of(context)!.notifications,
-trailing: _appState!.currentUser!=null?GestureDetector(
-  child: Container(
-    padding: EdgeInsets.all(12),
-    child: Row(
-      children: <Widget>[
-        Icon(Icons.delete_sweep,color: cPrimaryColor,),
-        Text("حذف الكل",style: TextStyle(fontSize: 13),)
-      ],
-    ),
-  ),
-  onTap: () async{
+                  trailing: _appState!.currentUser!=null?GestureDetector(
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.delete_sweep,color: cPrimaryColor,),
+                          Text("حذف الكل",style: TextStyle(fontSize: 13),)
+                        ],
+                      ),
+                    ),
+                    onTap: () async{
 
-    _progressIndicatorState!.setIsLoading(true);
+                      _progressIndicatorState!.setIsLoading(true);
 
-    var results = await _services.get(
-      'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState!.currentUser!.userId}',
-    );
-    _progressIndicatorState!.setIsLoading(false);
-    if (results['response'] == '1') {
-      showToast(context,message: results['message']);
-      setState(() {
-        _notificationList = _getNotifications();
-      });
-    } else {
-      showErrorDialog(results['message'], context);
-    }
+                      var results = await _services.get(
+                        'https://qtaapp.com/api/do_delete_message1_all?user_id=${_appState!.currentUser!.userId}',
+                      );
+                      _progressIndicatorState!.setIsLoading(false);
+                      if (results['response'] == '1') {
+                        showToast(context,message: results['message']);
+                        setState(() {
+                          _notificationList = _getNotifications();
+                        });
+                      } else {
+                        showErrorDialog(results['message'], context);
+                      }
 
-  },
-):Text(""),
+                    },
+                  ):Text(""),
 
                 ),
               ),
-            
+
             ],
-          )),
+          ))),
     ));
+  }
+
+  Future<Null> _refreshLocalGallery() async{
+    setState(() {
+      _notificationList = _getNotifications();
+    });
+
   }
 }

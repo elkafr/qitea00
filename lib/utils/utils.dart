@@ -4,7 +4,7 @@ class Utils {
 
   static const String BASE_URL = "https://qtaapp.com/api/";
   static const String LOGIN_URL = BASE_URL + "login/";
-  static const String SENDCODE_URL = BASE_URL + "login/";
+  static const String SENDCODE_URL = BASE_URL + "send_code/";
   static const String UPDATE_PROFILE_URL = BASE_URL + "profile/";
   static const String PASSWORD_RECOVERY_URL = BASE_URL + "pass_recover/";
   static const String REGISTER_URL = BASE_URL + "register/";

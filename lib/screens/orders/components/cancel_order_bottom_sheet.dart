@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:qitea/components/buttons/custom_button.dart';
+import 'package:qitea/components/custom_text_form_field/custom_text_form_field.dart';
+import 'package:qitea/components/response_handling/response_handling.dart';
 import 'package:qitea/locale/localization.dart';
 import 'package:qitea/utils/app_colors.dart';
 
 class CancelOrderBottomSheet extends StatefulWidget {
   final Function? onPressedConfirmation;
+
 
   const CancelOrderBottomSheet({Key? key, this.onPressedConfirmation})
       : super(key: key);
@@ -13,6 +16,7 @@ class CancelOrderBottomSheet extends StatefulWidget {
 }
 
 class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
+  String? reason;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -24,7 +28,7 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
               margin: EdgeInsets.only(top: constraints.maxHeight * 0.05),
               child: Icon(
                 Icons.not_interested,
-                size: constraints.maxHeight * 0.4,
+                size: constraints.maxHeight * 0.25,
                 color: cLightRed,
               )),
           Container(
@@ -34,6 +38,28 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
               AppLocalizations.of(context)!.wantToCancelOrder,
               style: TextStyle(
                   color: cBlack, fontSize: 17, fontWeight: FontWeight.w600),
+            ),
+          ),
+
+
+
+          Container(
+            margin:
+            EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.05),
+ height: 100,
+            child: CustomTextFormField(
+              maxLines: 3,
+              hintTxt: "ما سبب الالغاء ...",
+              validationFunc: (value) {
+                if (value!.trim().length == 0) {
+                  return "يجب ادخال سبب الالغاء";
+                }
+                return null;
+              },
+              inputData: TextInputType.text,
+              onChangedFunc: (String text) {
+                reason=text;
+              },
             ),
           ),
           Row(
@@ -52,7 +78,12 @@ class _CancelOrderBottomSheetState extends State<CancelOrderBottomSheet> {
                         color: cWhite),
                     btnLbl: AppLocalizations.of(context)!.ok,
                     onPressedFunction: () async {
-                      widget.onPressedConfirmation!();
+                      if(reason==null){
+                        showErrorDialog("فضلا ادخال سبب الالغاء", context);
+                      }else{
+                        widget.onPressedConfirmation!(reason);
+                      }
+
                     }),
               ),
               Spacer(

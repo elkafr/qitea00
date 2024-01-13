@@ -75,6 +75,11 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
   String?  _requestPrice1Offer1, _requestPrice1Offer2, _requestPrice1Offer3,_requestPrice1Label1,_requestPrice1Label2,_requestPrice1Label3;
   String?  _requestPrice2Offer1, _requestPrice2Offer2, _requestPrice2Offer3,_requestPrice2Label1,_requestPrice2Label2,_requestPrice2Label3;
   String?  _requestPrice3Offer1, _requestPrice3Offer2, _requestPrice3Offer3,_requestPrice3Label1,_requestPrice3Label2,_requestPrice3Label3;
+  int? _requestPrice1Available, _requestPrice2Available, _requestPrice3Available;
+  int? _requestPrice1Offer1Available, _requestPrice1Offer2Available, _requestPrice1Offer3Available;
+  int? _requestPrice2Offer1Available, _requestPrice2Offer2Available, _requestPrice2Offer3Available;
+  int? _requestPrice3Offer1Available, _requestPrice3Offer2Available, _requestPrice3Offer3Available;
+
 
   Future<Order> _getOrderDetails() async {
     Map<dynamic, dynamic> results = await _services.get(
@@ -769,7 +774,9 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
                                 SizedBox(height: 15,),
-                                Container(
+                                _requestPrice1Available==0?Container(
+                                  child: Text("القطعة 1 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -789,19 +796,30 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة 1 ",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "1  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: cLightRed,
+                                            fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestLabel1="غير متوفرة";
+                                          _requestPrice1="0";
+                                          _requestPrice1Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
@@ -809,7 +827,28 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-                                Container(
+                                _requestPrice1Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      _requestLabel1=null;
+                                      _requestPrice1=null;
+                                      _requestPrice1Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
+                                  ),
+                                ):Container(
                                   width: _width,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -848,7 +887,10 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
                                 order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
+
+                                _requestPrice2Available==0?Container(
+                                  child: Text("القطعة 2 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):order.carttNumber=="2" || order.carttNumber=="3"?Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -868,24 +910,58 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة  2",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "2  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: cLightRed,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestLabel2="غير متوفرة";
+                                          _requestPrice2="0";
+                                          _requestPrice2Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
+
+
+                                _requestPrice2Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      _requestLabel2=null;
+                                      _requestPrice2=null;
+                                      _requestPrice2Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
+                                  ),
+                                ):order.carttNumber=="2" || order.carttNumber=="3"?Container(
                                   width: _width,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -924,8 +1000,14 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
+                                
+
                                 order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
+
+
+                                _requestPrice3Available==0?Container(
+                                  child: Text("القطعة 3 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):order.carttNumber=="3"?Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -945,24 +1027,59 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة 3 ",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "3  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: cLightRed,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestLabel3="غير متوفرة";
+                                          _requestPrice3="0";
+                                          _requestPrice3Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
+
+
+
+                                _requestPrice3Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      _requestLabel3=null;
+                                      _requestPrice3=null;
+                                      _requestPrice3Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
+                                  ),
+                                ):order.carttNumber=="3"?Container(
                                   width: _width,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1023,7 +1140,10 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 // القطعة 1
                                 // القطعة 1
                                 SizedBox(height: 15,),
-                                Container(
+
+                                _requestPrice1Offer1Available==0?Container(
+                                  child: Text("القطعة 1 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -1043,128 +1163,180 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة  1",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "1  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: cLightRed,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestPrice1Label1="غير متوفرة";
+                                          _requestPrice1Offer1="0";
+                                          _requestPrice1Offer1Available=0;
+                                          _requestPrice1Label2="غير متوفرة";
+                                          _requestPrice1Offer2="0";
+                                          _requestPrice1Offer2Available=0;
+                                          _requestPrice1Label3="غير متوفرة";
+                                          _requestPrice1Offer3="0";
+                                          _requestPrice1Offer3Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Label1= text.toString();
-                                          },
-                                        ),
+
+                                _requestPrice1Offer1Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
                                       ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Offer1= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                    onTap: (){
+                                      _requestPrice1Label1=null;
+                                      _requestPrice1Offer1=null;
+                                      _requestPrice1Offer1Available=null;
+                                      _requestPrice1Label2=null;
+                                      _requestPrice1Offer2=null;
+                                      _requestPrice1Offer2Available=null;
+                                      _requestPrice1Label3=null;
+                                      _requestPrice1Offer3=null;
+                                      _requestPrice1Offer3Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
                                   ),
-                                ),
-                                SizedBox(height: 5,),
-                                Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
+                                ):Column(
+                                  children: [
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Label2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Offer2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 5,),
-                                Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Label3= text.toString();
-                                          },
-                                        ),
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Label1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Offer1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
 
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice1Offer3= text.toString();
-                                          },
-                                        ),
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Label2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Offer2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
                                       ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
 
-                                    ],
-                                  ),
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Label3= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice1Offer3= text.toString();
+                                              },
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
                                 ),
                                 // نهاية لقطعة 1
                                 // نهاية لقطعة 1
@@ -1181,7 +1353,9 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 // القطعة 2
                                 // القطعة 2
                                 order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
+                                _requestPrice2Offer1Available==0?Container(
+                                  child: Text("القطعة 2 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):order.carttNumber=="2" || order.carttNumber=="3"?Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -1201,129 +1375,188 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة 2 ",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "2  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: cLightRed,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestPrice2Label1="غير متوفرة";
+                                          _requestPrice2Offer1="0";
+                                          _requestPrice2Offer1Available=0;
+                                          _requestPrice2Label2="غير متوفرة";
+                                          _requestPrice2Offer2="0";
+                                          _requestPrice2Offer2Available=0;
+                                          _requestPrice2Label3="غير متوفرة";
+                                          _requestPrice2Offer3="0";
+                                          _requestPrice2Offer3Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Label1= text.toString();
-                                          },
-                                        ),
+
+
+
+                                _requestPrice2Offer1Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
                                       ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Offer1= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                    onTap: (){
+                                      _requestPrice2Label1=null;
+                                      _requestPrice2Offer1=null;
+                                      _requestPrice2Offer1Available=null;
+                                      _requestPrice2Label2=null;
+                                      _requestPrice2Offer2=null;
+                                      _requestPrice2Offer2Available=null;
+                                      _requestPrice2Label3=null;
+                                      _requestPrice2Offer3=null;
+                                      _requestPrice2Offer3Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
                                   ),
+                                ):order.carttNumber=="2" || order.carttNumber=="3"?Column(
+                                  children: [
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Label1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Offer1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Label2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Offer2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Label3= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice2Offer3= text.toString();
+                                              },
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    )
+
+
+                                  ],
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 5,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Label2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Offer2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 5,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="2" || order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Label3= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
 
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice2Offer3= text.toString();
-                                          },
-                                        ),
-                                      ),
 
-                                    ],
-                                  ),
-                                ):Text("",style: TextStyle(height: 0),),
                                 // نهاية لقطعة 2
                                 // نهاية لقطعة 2
 
@@ -1348,7 +1581,11 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 // القطعة 3
                                 // القطعة 3
                                 order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
+
+
+                                _requestPrice3Offer1Available==0?Container(
+                                  child: Text("القطعة 3 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
+                                ):order.carttNumber=="3"?Container(
                                   height: _height*.04,
                                   padding: EdgeInsets.all(6),
                                   alignment: Alignment.centerRight,
@@ -1368,129 +1605,189 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "القطعة  ",
+                                        "القطعة 3 ",
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: cOmarColor,
                                         ),
                                       ),
 
-                                      Text(
-                                        "3  ",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: cOmarColor,
+                                      GestureDetector(
+                                        child: Text(
+                                          "غير متوفرة  ",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: cLightRed,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        onTap: (){
+                                          _requestPrice3Label1="غير متوفرة";
+                                          _requestPrice3Offer1="0";
+                                          _requestPrice3Offer1Available=0;
+                                          _requestPrice3Label2="غير متوفرة";
+                                          _requestPrice3Offer2="0";
+                                          _requestPrice3Offer2Available=0;
+                                          _requestPrice3Label3="غير متوفرة";
+                                          _requestPrice3Offer3="0";
+                                          _requestPrice3Offer3Available=0;
+                                          setState(() {
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Label1= text.toString();
-                                          },
-                                        ),
+
+
+                                _requestPrice3Offer1Available==0?Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
+                                  color: Colors.red,
+                                  child:    GestureDetector(
+                                    child: Text(
+                                      "تراجع  ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: cWhite,
                                       ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Offer1= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                    onTap: (){
+                                      _requestPrice3Label1=null;
+                                      _requestPrice3Offer1=null;
+                                      _requestPrice3Offer1Available=null;
+                                      _requestPrice3Label2=null;
+                                      _requestPrice3Offer2=null;
+                                      _requestPrice3Offer2Available=null;
+                                      _requestPrice3Label3=null;
+                                      _requestPrice3Offer3=null;
+                                      _requestPrice3Offer3Available=null;
+                                      setState(() {
+
+                                      });
+                                    },
                                   ),
+                                ):order.carttNumber=="3"?Column(
+                                  children: [
+
+
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Label1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Offer1= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Label2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Offer2= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      width: _width,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: _width*.46,
+                                            child: CustomTextFormField(
+
+                                              hintTxt: "نوع الصنع",
+                                              inputData: TextInputType.text,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Label3= text.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 1,
+                                            color: cOmarColor,
+                                            height: 45,
+                                          ),
+                                          Container(
+                                            width: _width*.46,
+
+                                            child: CustomTextFormField(
+                                              hintTxt: "السعر",
+                                              inputData: TextInputType.number,
+                                              onChangedFunc: (String text) {
+                                                _requestPrice3Offer3= text.toString();
+                                              },
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
                                 ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?SizedBox(height: 5,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Label2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Offer2= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?SizedBox(height: 5,):Text("",style: TextStyle(height: 0),),
-                                order.carttNumber=="3"?Container(
-                                  width: _width,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width: _width*.46,
-                                        child: CustomTextFormField(
 
-                                          hintTxt: "نوع الصنع",
-                                          inputData: TextInputType.text,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Label3= text.toString();
-                                          },
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 1,
-                                        color: cOmarColor,
-                                        height: 45,
-                                      ),
-                                      Container(
-                                        width: _width*.46,
 
-                                        child: CustomTextFormField(
-                                          hintTxt: "السعر",
-                                          inputData: TextInputType.number,
-                                          onChangedFunc: (String text) {
-                                            _requestPrice3Offer3= text.toString();
-                                          },
-                                        ),
-                                      ),
 
-                                    ],
-                                  ),
-                                ):Text("",style: TextStyle(height: 0),),
+
                                 // نهاية لقطعة 3
                                 // نهاية لقطعة 3
 
@@ -1518,11 +1815,143 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
                                 if (_formKey.currentState!.validate()) {
-                                  if (_requestPrice1 == null && _requestPrice1Offer1 ==null) {
 
-                                    showToast(context,message:
-                                    "يجب ادخال عرض السعر");
-                                  } else {
+                                  if(_appState!.tabb==0){
+
+
+
+                                    if(order.carttNumber=="1"){
+
+                                      if (_requestPrice1 == null || _requestLabel1 == null || _requestPrice1 == "" || _requestLabel1 == "") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولى ونوع صنعها");
+                                        return false;
+
+                                      }
+
+                                    }else if(order.carttNumber=="2"){
+
+                                      if (_requestPrice1 == null || _requestLabel1 ==null || _requestPrice1 == "" || _requestLabel1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولى ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2 == null || _requestLabel2 ==null || _requestPrice2 == "" || _requestLabel2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }
+
+                                    }else if(order.carttNumber=="3"){
+
+
+                                      if (_requestPrice1 == null || _requestLabel1 == null || _requestPrice1 == "" || _requestLabel1 == "") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولي ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2 == null || _requestLabel2 ==null || _requestPrice2 == "" || _requestLabel2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice3 == null || _requestLabel3 ==null || _requestPrice3 == "" || _requestLabel3 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثالثة ونوع صنعها");
+                                        return false;
+
+                                      }
+
+                                    }
+
+
+
+
+                                  }else{
+
+
+
+
+                                    if(order.carttNumber=="1"){
+
+                                      if (_requestPrice1Offer1 == null || _requestPrice1Label1 ==null || _requestPrice1Offer1 == "" || _requestPrice1Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولى ونوع صنعها");
+                                        return false;
+                                      }else if (_requestPrice1Offer2 == null || _requestPrice1Label2 ==null || _requestPrice1Offer2 == "" || _requestPrice1Label2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الاولى ونوع صنعها");
+                                        return false;
+                                      }
+
+                                    }else if(order.carttNumber=="2"){
+
+                                      if (_requestPrice1Offer1 == null || _requestPrice1Label1 ==null || _requestPrice1Offer1 == "" || _requestPrice1Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولي ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2Offer1 == null || _requestPrice2Label1 ==null || _requestPrice2Offer1 == "" || _requestPrice2Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice1Offer2 == null || _requestPrice1Label2 ==null || _requestPrice1Offer2 == "" || _requestPrice1Label2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الاولي ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2Offer2 == null || _requestPrice2Label2 ==null || _requestPrice2Offer2 == "" || _requestPrice2Label2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }
+
+                                    }else if(order.carttNumber=="3"){
+
+
+                                      if (_requestPrice1Offer1 == null || _requestPrice1Label1 ==null || _requestPrice1Offer1 == "" || _requestPrice1Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الاولي ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2Offer1 == null || _requestPrice2Label1 ==null || _requestPrice2Offer1 == "" || _requestPrice2Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice3Offer1 == null || _requestPrice3Label1 ==null || _requestPrice3Offer1 == "" || _requestPrice3Label1 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر القطعة الثالثة ونوع صنعها");
+                                        return false;
+
+                                      }else  if (_requestPrice1Offer2 == null || _requestPrice1Label2 ==null || _requestPrice1Offer2 == "" || _requestPrice1Label2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الاولي ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice2Offer2 == null || _requestPrice2Label2 ==null || _requestPrice2Offer2 == "" || _requestPrice2Label2 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الثانية ونوع صنعها");
+                                        return false;
+
+                                      }else if (_requestPrice3Offer3 == null || _requestPrice3Label3 ==null || _requestPrice3Offer3 == "" || _requestPrice3Label3 =="") {
+
+                                        showToast(context,message: "يجب ادخال عرض سعر اخر للقطعة الثالثة ونوع صنعها");
+                                        return false;
+
+                                      }
+
+                                    }
+
+
+
+
+
+                                  }
+
                                     _progressIndicatorState!.setIsLoading(true);
                                     FormData formData = new FormData.fromMap({
 
@@ -1530,26 +1959,38 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                       "offer_cartt": order.carttId,
                                       "offer_type": _offerType,
                                       "requestPrice1": _requestPrice1,
+                                      "requestPrice1Available": _requestPrice1Available,
                                       "requestLabel1": _requestLabel1,
                                       "requestPrice2":_requestPrice2,
+                                      "requestPrice2Available":_requestPrice2Available,
                                       "requestLabel2":_requestLabel2,
                                       "requestPrice3": _requestPrice3,
+                                      "requestPrice3Available": _requestPrice3Available,
                                       "requestLabel3": _requestLabel3,
                                       "requestPrice1Offer1":_requestPrice1Offer1,
+                                      "requestPrice1Offer1Available":_requestPrice1Offer1Available,
                                       "requestPrice1Offer2":_requestPrice1Offer2,
+                                      "requestPrice1Offer2Available":_requestPrice1Offer2Available,
                                       "requestPrice1Offer3":_requestPrice1Offer3,
+                                      "requestPrice1Offer3Available":_requestPrice1Offer3Available,
                                       "requestPrice1Label1":_requestPrice1Label1,
                                       "requestPrice1Label2":_requestPrice1Label2,
                                       "requestPrice1Label3":_requestPrice1Label3,
                                       "requestPrice2Offer1":_requestPrice2Offer1,
+                                      "requestPrice2Offer1Available":_requestPrice2Offer1Available,
                                       "requestPrice2Offer2":_requestPrice2Offer2,
+                                      "requestPrice2Offer2Available":_requestPrice2Offer2Available,
                                       "requestPrice2Offer3":_requestPrice2Offer3,
+                                      "requestPrice2Offer3Available":_requestPrice2Offer3Available,
                                       "requestPrice2Label1":_requestPrice2Label1,
                                       "requestPrice2Label2":_requestPrice2Label2,
                                       "requestPrice2Label3":_requestPrice2Label3,
                                       "requestPrice3Offer1":_requestPrice3Offer1,
+                                      "requestPrice3Offer1Available":_requestPrice3Offer1Available,
                                       "requestPrice3Offer2":_requestPrice3Offer2,
+                                      "requestPrice3Offer2Available":_requestPrice3Offer2Available,
                                       "requestPrice3Offer3":_requestPrice3Offer3,
+                                      "requestPrice3Offer3Available":_requestPrice3Offer3Available,
                                       "requestPrice3Label1":_requestPrice3Label1,
                                       "requestPrice3Label2":_requestPrice3Label2,
                                       "requestPrice3Label3":_requestPrice3Label3,
@@ -1573,7 +2014,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                     } else {
                                       showErrorDialog(results['message'], context);
                                     }
-                                  }
+
                                 }
 
 

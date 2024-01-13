@@ -277,7 +277,7 @@ Widget _buildBodyItem(){
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),
-                trailing: Text(_appState!.currentUser!.userNumberOfCartts!,
+                trailing: Text(_appState!.currentUser!.userNumberOfCartts!=null?_appState!.currentUser!.userNumberOfCartts!:"0",
                   style: TextStyle(
                       color: cPrimaryColor,fontSize: 15
                   ), ),

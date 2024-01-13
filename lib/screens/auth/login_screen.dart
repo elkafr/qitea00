@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        //       print('mobile token $token');
                        _progressIndicatorState!.setIsLoading(true);
                        var results = await _services.get(
-                         '${Utils.SENDCODE_URL}?user_phone=$_userPhone&user_pass=$_userPassword&token=$token&lang=${_appState!.currentLang}&key=$cKey',
+                         '${Utils.LOGIN_URL}?user_phone=$_userPhone&user_pass=$_userPassword&token=$token&lang=${_appState!.currentLang}&key=$cKey',
                        );
                        _progressIndicatorState!.setIsLoading(false);
                        if (results['response'] == '1') {

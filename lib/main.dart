@@ -16,6 +16,7 @@ import 'package:qitea/locale/Locale_helper.dart';
 import 'package:qitea/locale/localization.dart';
 import 'package:qitea/screens/auth/password_recovery_screen.dart';
 import 'package:qitea/screens/bottom_navigation.dart/bottom_navigation_bar.dart';
+import 'package:qitea/screens/req/req_screen.dart';
 import 'package:qitea/theme/style.dart';
 import 'package:qitea/components/app_repo/store_state.dart';
 import 'package:qitea/utils/routes.dart';
@@ -200,7 +201,17 @@ class _MyAppState extends State<MyApp> {
                 icon: android.smallIcon,
               ),
             ));
+
+
       });
+
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ReqScreen()));
+      });
+
     });
   }
 
