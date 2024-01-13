@@ -774,7 +774,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
                                 SizedBox(height: 15,),
-                                _requestPrice1Available==0?Container(
+                                _requestPrice1Available==1?Container(
                                   child: Text("القطعة 1 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):Container(
                                   height: _height*.04,
@@ -815,7 +815,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestLabel1="غير متوفرة";
                                           _requestPrice1="0";
-                                          _requestPrice1Available=0;
+                                          _requestPrice1Available=1;
                                           setState(() {
 
                                           });
@@ -827,7 +827,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-                                _requestPrice1Available==0?Container(
+                                _requestPrice1Available==1?Container(
                                   margin: EdgeInsets.all(15),
                                   padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                   color: Colors.red,
@@ -888,7 +888,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
                                 order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
 
-                                _requestPrice2Available==0?Container(
+                                _requestPrice2Available==1?Container(
                                   child: Text("القطعة 2 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):order.carttNumber=="2" || order.carttNumber=="3"?Container(
                                   height: _height*.04,
@@ -929,7 +929,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestLabel2="غير متوفرة";
                                           _requestPrice2="0";
-                                          _requestPrice2Available=0;
+                                          _requestPrice2Available=1;
                                           setState(() {
 
                                           });
@@ -940,7 +940,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 ):Text("",style: TextStyle(height: 0),),
 
 
-                                _requestPrice2Available==0?Container(
+                                _requestPrice2Available==1?Container(
                                   margin: EdgeInsets.all(15),
                                   padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                   color: Colors.red,
@@ -1005,7 +1005,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
 
 
-                                _requestPrice3Available==0?Container(
+                                _requestPrice3Available==1?Container(
                                   child: Text("القطعة 3 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):order.carttNumber=="3"?Container(
                                   height: _height*.04,
@@ -1046,7 +1046,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestLabel3="غير متوفرة";
                                           _requestPrice3="0";
-                                          _requestPrice3Available=0;
+                                          _requestPrice3Available=1;
                                           setState(() {
 
                                           });
@@ -1058,7 +1058,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-                                _requestPrice3Available==0?Container(
+                                _requestPrice3Available==1?Container(
                                   margin: EdgeInsets.all(15),
                                   padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                   color: Colors.red,
@@ -1141,7 +1141,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 // القطعة 1
                                 SizedBox(height: 15,),
 
-                                _requestPrice1Offer1Available==0?Container(
+                                _requestPrice1Offer1Available==1?Container(
                                   child: Text("القطعة 1 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):Container(
                                   height: _height*.04,
@@ -1182,13 +1182,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestPrice1Label1="غير متوفرة";
                                           _requestPrice1Offer1="0";
-                                          _requestPrice1Offer1Available=0;
+                                          _requestPrice1Offer1Available=1;
                                           _requestPrice1Label2="غير متوفرة";
                                           _requestPrice1Offer2="0";
-                                          _requestPrice1Offer2Available=0;
+                                          _requestPrice1Offer2Available=1;
                                           _requestPrice1Label3="غير متوفرة";
                                           _requestPrice1Offer3="0";
-                                          _requestPrice1Offer3Available=0;
+                                          _requestPrice1Offer3Available=1;
                                           setState(() {
 
                                           });
@@ -1199,7 +1199,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 ),
 
 
-                                _requestPrice1Offer1Available==0?Container(
+                                _requestPrice1Offer1Available==1?Container(
                                   margin: EdgeInsets.all(15),
                                   padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                   color: Colors.red,
@@ -1353,7 +1353,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 // القطعة 2
                                 // القطعة 2
                                 order.carttNumber=="2" || order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
-                                _requestPrice2Offer1Available==0?Container(
+                                _requestPrice2Offer1Available==1?Container(
                                   child: Text("القطعة 2 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):order.carttNumber=="2" || order.carttNumber=="3"?Container(
                                   height: _height*.04,
@@ -1394,13 +1394,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestPrice2Label1="غير متوفرة";
                                           _requestPrice2Offer1="0";
-                                          _requestPrice2Offer1Available=0;
+                                          _requestPrice2Offer1Available=1;
                                           _requestPrice2Label2="غير متوفرة";
                                           _requestPrice2Offer2="0";
-                                          _requestPrice2Offer2Available=0;
+                                          _requestPrice2Offer2Available=1;
                                           _requestPrice2Label3="غير متوفرة";
                                           _requestPrice2Offer3="0";
-                                          _requestPrice2Offer3Available=0;
+                                          _requestPrice2Offer3Available=1;
                                           setState(() {
 
                                           });
@@ -1413,7 +1413,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
 
 
 
-                                _requestPrice2Offer1Available==0?Container(
+                                _requestPrice2Offer1Available==1?Container(
                                   margin: EdgeInsets.all(15),
                                   padding:EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
                                   color: Colors.red,
@@ -1583,7 +1583,7 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                 order.carttNumber=="3"?SizedBox(height: 15,):Text("",style: TextStyle(height: 0),),
 
 
-                                _requestPrice3Offer1Available==0?Container(
+                                _requestPrice3Offer1Available==1?Container(
                                   child: Text("القطعة 3 غير متوفرة",style: TextStyle(fontSize: 20,color: cOmarColor),),
                                 ):order.carttNumber=="3"?Container(
                                   height: _height*.04,
@@ -1624,13 +1624,13 @@ class _MtgerOrderDetailsScreenState extends State<MtgerOrderDetailsScreen> {
                                         onTap: (){
                                           _requestPrice3Label1="غير متوفرة";
                                           _requestPrice3Offer1="0";
-                                          _requestPrice3Offer1Available=0;
+                                          _requestPrice3Offer1Available=1;
                                           _requestPrice3Label2="غير متوفرة";
                                           _requestPrice3Offer2="0";
-                                          _requestPrice3Offer2Available=0;
+                                          _requestPrice3Offer2Available=1;
                                           _requestPrice3Label3="غير متوفرة";
                                           _requestPrice3Offer3="0";
-                                          _requestPrice3Offer3Available=0;
+                                          _requestPrice3Offer3Available=1;
                                           setState(() {
 
                                           });

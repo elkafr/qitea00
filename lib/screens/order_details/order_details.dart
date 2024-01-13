@@ -1998,7 +1998,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                         children: <Widget>[
                                           Text(snapshot.data!.requestLabel1
                                               .toString()),
-                                          snapshot.data!.requestPrice1Available!=0?Text(" سعر " +
+                                          snapshot.data!.requestPrice1Available!=1?Text(" سعر " +
                                               snapshot.data!.requestPrice1
                                                   .toString() +
                                               " ريال "):Text(""),
@@ -2149,7 +2149,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         .requestPrice1Label1
                                                         .toString()),
                                                     snapshot.data!
-                                                        .requestPrice1Offer1Available!=0?Text(" سعر " +
+                                                        .requestPrice1Offer1Available!=1?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer1
                                                             .toString() +
@@ -2298,7 +2298,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         .requestPrice1Label2
                                                         .toString()),
                                                     snapshot.data!
-                                                        .requestPrice1Offer2Available!=0?Text(" سعر " +
+                                                        .requestPrice1Offer2Available!=1?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer2
                                                             .toString() +
@@ -2446,7 +2446,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                         .requestPrice1Label3
                                                         .toString()),
                                                     snapshot.data!
-                                                        .requestPrice1Offer3Available!=0?Text(" سعر " +
+                                                        .requestPrice1Offer3Available!=1?Text(" سعر " +
                                                         snapshot.data!
                                                             .requestPrice1Offer3
                                                             .toString() +
@@ -2622,7 +2622,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: <Widget>[
                                               Text(snapshot.data!.requestLabel2
                                                   .toString()),
-                                              snapshot.data!.requestPrice2Available!=0?Text(" سعر " +
+                                              snapshot.data!.requestPrice2Available!=1?Text(" سعر " +
                                                   snapshot.data!.requestPrice2
                                                       .toString() +
                                                   " ريال "):Text(""),
@@ -2766,7 +2766,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice2Label1
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice2Offer1Available!=0?Text(" سعر " +
+                                                            .requestPrice2Offer1Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer1
                                                                 .toString() +
@@ -2913,7 +2913,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice2Label2
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice2Offer2Available!=0?Text(" سعر " +
+                                                            .requestPrice2Offer2Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer2
                                                                 .toString() +
@@ -3060,7 +3060,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice2Label3
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice2Offer3Available!=0?Text(" سعر " +
+                                                            .requestPrice2Offer3Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice2Offer3
                                                                 .toString() +
@@ -3236,7 +3236,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             children: <Widget>[
                                               Text(snapshot.data!.requestLabel3
                                                   .toString()),
-                                              snapshot.data!.requestPrice3Available!=0?Text(" سعر " +
+                                              snapshot.data!.requestPrice3Available!=1?Text(" سعر " +
                                                   snapshot.data!.requestPrice3
                                                       .toString() +
                                                   " ريال "):Text(""),
@@ -3380,7 +3380,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice3Label1
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice3Offer1Available!=0?Text(" سعر " +
+                                                            .requestPrice3Offer1Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer1
                                                                 .toString() +
@@ -3527,7 +3527,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice3Label2
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice3Offer2Available!=0?Text(" سعر " +
+                                                            .requestPrice3Offer2Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer2
                                                                 .toString() +
@@ -3674,7 +3674,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                             .requestPrice3Label3
                                                             .toString()),
                                                         snapshot.data!
-                                                            .requestPrice3Offer3Available!=0?Text(" سعر " +
+                                                            .requestPrice3Offer3Available!=1?Text(" سعر " +
                                                             snapshot.data!
                                                                 .requestPrice3Offer3
                                                                 .toString() +
